@@ -1,6 +1,5 @@
 import java.util.Random;
 import java.lang.Math;
-import java.util.Arrays;
 
 public class Main{
     static boolean checkIfValueInArray(double [] nums, double valueToCheck){
