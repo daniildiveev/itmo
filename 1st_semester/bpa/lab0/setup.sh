@@ -1,3 +1,4 @@
+#1
 mkdir beautifly3
 touch froslass6
 echo "Тип покемона ICE GHOST" > froslass6
@@ -35,6 +36,7 @@ mkdir venipede
 cd .. 
 tree
 
+#2
 chmod 524 beautifly3 
 chmod 004 beautifly3/alakazam
 chmod 752 beautifly3/lillipup
@@ -52,3 +54,22 @@ chmod 537 teddiursa5
 chmod 500 teddiursa5/deino
 chmod 777 teddiursa5/rampardos
 chmod 752 teddiursa5/venipede
+
+#3
+ln -s rhydon0 Copy_10
+cp froslass6 beautifly3/alakazamfroslass
+ln -s garchomp8 beautifly3/alakazamgarchomp
+cat beautifly3/umbreon beautifly3/umbreon > froslass6_98
+cp froslass6 beautifly3/lillipup
+ln -h happiny1 beautifly3/umbreonhappiny
+cp -r teddiursa5 teddiursa5/deino/
+
+#4
+
+#5
+rm garchomp8
+rm beautifly3/umbreon
+rm Copy_*
+rm beautifly3/umbreonhappi*
+rmdir beautifly3
+rmdir rhydon0/dusclops
