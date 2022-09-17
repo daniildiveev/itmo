@@ -62,9 +62,15 @@ ln -s garchomp8 beautifly3/alakazamgarchomp
 cat beautifly3/umbreon beautifly3/umbreon > froslass6_98
 cp froslass6 beautifly3/lillipup
 ln -h happiny1 beautifly3/umbreonhappiny
-cp -r teddiursa5 teddiursa5/deino/
+cp teddiursa5 teddiursa5/deino/
 
 #4
+wc teddiursa5/*
+ls -R | grep *s | head -n 3 | sort -s
+cat happiny1 | grep -v -i Mo
+ls -R | sort -sr 2>/dev/null
+ls -R -tcr | grep ^d | tail -n 2
+cat -b  beautifly3/alakazam beautifly3/darmanitan | grep -v e$
 
 #5
 rm garchomp8
