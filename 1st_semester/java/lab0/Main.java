@@ -2,9 +2,9 @@ import java.util.Random;
 import java.lang.Math;
 
 public class Main{
-    static boolean checkIfValueInArray(double [] nums, double valueToCheck){
+    static boolean CheckIfValueInArray(double[] nums, double valueToCheck)
+    {
         for (double el : nums){
-            
             if (el == valueToCheck){
                 return true;
             }
@@ -12,7 +12,8 @@ public class Main{
         return false;
     }
 
-    static double[] calculateTanLnAbsX(double [] nums){
+    static double[] CalculateTanLnAbsX(double[] nums)
+    {
         double[] newNums = new double[nums.length];
 
         for(int i = 0; i < newNums.length; i++){
@@ -22,7 +23,8 @@ public class Main{
         return newNums;
     }
 
-    static double[] calculateFirstScaryThing(double [] nums){
+    static double[] CalculateFirstScaryThing(double[] nums)
+    {
         double [] newNums = new double[nums.length];
 
         for(int i = 0; i < newNums.length; i++){
@@ -40,12 +42,12 @@ public class Main{
         return newNums;
     }
 
-    static double[] calculateSecondScaryThing(double [] nums){
+    static double[] CalculateSecondScaryThing(double[] nums)
+    {
         double [] newNums = new double[nums.length];
-        final double pi = 3.14159265358979323846264;
 
         for (int i = 0; i < newNums.length; i++){
-            newNums[i] = Math.pow(pi * nums[i], nums[i]);
+            newNums[i] = Math.pow(Math.PI * nums[i], nums[i]);
             newNums[i] = Math.pow(0.5 * newNums[i], 3);
             newNums[i] = Math.pow(Math.sin(newNums[i]), 2);
             newNums[i] = 1 / Math.exp(newNums[i]);
@@ -55,7 +57,18 @@ public class Main{
         return newNums;
     }
 
-    public static void main(String [] args){
+    public static void PrettyOutput(double[][] nums)
+    {
+        for (int i = 0; i < nums.length; i++){
+            for (int j = 0; j < nums[0].length; j++){
+                System.out.printf("%10.4f ", nums[i][j]);
+            }
+            System.out.printf("\n");
+        }
+    }
+
+    public static void main(String[] args)
+    {
         int[] b = new int[12];
 
         for(int i = 0; i < b.length; i++){
@@ -74,23 +87,18 @@ public class Main{
 
         for(int i = 0; i < b.length; i++){
             if(x[i] == 7){
-                h[i] = calculateTanLnAbsX(x);
+                h[i] = CalculateTanLnAbsX(x);
             }
 
-            else if(checkIfValueInArray(new double [] {5, 6, 8, 10, 11, 13}, b[i]) == true){
-                h[i] = calculateFirstScaryThing(x);
+            else if(CheckIfValueInArray(new double [] {5, 6, 8, 10, 11, 13}, b[i]) == true){
+                h[i] = CalculateFirstScaryThing(x);
             }
 
             else{
-                h[i] = calculateSecondScaryThing(x);
+                h[i] = CalculateSecondScaryThing(x);
             }
         }
 
-        for (int i = 0; i < h.length; i++){
-            for (int j = 0; j < h[0].length; j++){
-                System.out.printf("%5.4f ", h[i][j]);
-            }
-            System.out.printf("\n");
-        }
+        PrettyOutput(h);
     }
 }
