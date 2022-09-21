@@ -1,19 +1,19 @@
+package ru.danya.lab0;
+
 import java.util.Random;
 import java.lang.Math;
 
 public class Main{
-    static boolean CheckIfValueInArray(double[] nums, double valueToCheck)
-    {
-        for (double el : nums){
-            if (el == valueToCheck){
+    static boolean checkIfValueInArray(double[] nums, double valueToCheck){
+        for (int i=0; i < nums.length; i++){
+            if (nums[i] == valueToCheck){
                 return true;
             }
         }
         return false;
     }
 
-    static double[] CalculateTanLnAbsX(double[] nums)
-    {
+    static double[] calculateTanLnAbsX(double[] nums){
         double[] newNums = new double[nums.length];
 
         for(int i = 0; i < newNums.length; i++){
@@ -23,8 +23,7 @@ public class Main{
         return newNums;
     }
 
-    static double[] CalculateFirstScaryThing(double[] nums)
-    {
+    static double[] calculateFirstScaryThing(double[] nums){
         double [] newNums = new double[nums.length];
 
         for(int i = 0; i < newNums.length; i++){
@@ -42,8 +41,7 @@ public class Main{
         return newNums;
     }
 
-    static double[] CalculateSecondScaryThing(double[] nums)
-    {
+    static double[] calculateSecondScaryThing(double[] nums){
         double [] newNums = new double[nums.length];
 
         for (int i = 0; i < newNums.length; i++){
@@ -57,8 +55,7 @@ public class Main{
         return newNums;
     }
 
-    public static void PrettyOutput(double[][] nums)
-    {
+    public static void prettyOutput(double[][] nums){
         for (int i = 0; i < nums.length; i++){
             for (int j = 0; j < nums[0].length; j++){
                 System.out.printf("%10.4f ", nums[i][j]);
@@ -67,8 +64,7 @@ public class Main{
         }
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         int[] b = new int[12];
 
         for(int i = 0; i < b.length; i++){
@@ -87,18 +83,18 @@ public class Main{
 
         for(int i = 0; i < b.length; i++){
             if(x[i] == 7){
-                h[i] = CalculateTanLnAbsX(x);
+                h[i] = calculateTanLnAbsX(x);
             }
 
-            else if(CheckIfValueInArray(new double [] {5, 6, 8, 10, 11, 13}, b[i]) == true){
-                h[i] = CalculateFirstScaryThing(x);
+            else if(checkIfValueInArray(new double [] {5, 6, 8, 10, 11, 13}, b[i]) == true){
+                h[i] = calculateFirstScaryThing(x);
             }
 
             else{
-                h[i] = CalculateSecondScaryThing(x);
+                h[i] = calculateSecondScaryThing(x);
             }
         }
 
-        PrettyOutput(h);
+        prettyOutput(h);
     }
 }

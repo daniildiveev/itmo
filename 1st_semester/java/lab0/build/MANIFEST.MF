@@ -1,0 +1,1 @@
+Main-Class: ru.danya.lab0.Main
