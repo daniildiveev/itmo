@@ -1,23 +1,17 @@
 #1
 mkdir beautifly3
 touch froslass6
-echo "Тип покемона ICE GHOST" > froslass6
 touch garchomp8
-echo "satk=8 sdef=9 \nspd=10" > garchomp8
 touch happiny1
-echo "Способности Last Chance Natural Cure Serene Grace" > happiny1
 mkdir rhydon0
 mkdir teddiursa5
 
 cd beautifly3
 touch alakazam
-echo "Способности Mind Mold Synchronize Inner \nFocus" > alakazam
 mkdir lillipup
 mkdir politoed
 touch darmanitan
-echo "Развитые способности Zen Mode" > darmanitan
 touch umbreon
-echo "Тип покемона \nDARK NONE" > umbreon
 
 cd .. 
 
@@ -34,7 +28,15 @@ mkdir rampardos
 mkdir venipede
 
 cd .. 
-tree
+
+echo "Тип покемона ICE GHOST" > froslass6
+echo "satk=8 sdef=9 \nspd=10" > garchomp8
+echo "Способности Last Chance Natural Cure Serene Grace" > happiny1
+echo "Способности Mind Mold Synchronize Inner \nFocus" > beautifly3/alakazam
+echo "Развитые способности Zen Mode" > beautifly3/darmanitan
+echo "Тип покемона \nDARK NONE" > beautifly3/umbreon
+
+ls -lR
 
 #2
 chmod 524 beautifly3 
@@ -55,6 +57,8 @@ chmod 500 teddiursa5/deino
 chmod 777 teddiursa5/rampardos
 chmod 752 teddiursa5/venipede
 
+ls -lR
+
 #3
 ln -s rhydon0 Copy_10
 cp froslass6 beautifly3/alakazamfroslass
@@ -63,6 +67,8 @@ cat beautifly3/umbreon beautifly3/umbreon > froslass6_98
 cp froslass6 beautifly3/lillipup
 ln -h happiny1 beautifly3/umbreonhappiny
 cp teddiursa5 teddiursa5/deino/
+
+ls -lR
 
 #4
 wc teddiursa5/*
@@ -79,3 +85,5 @@ rm Copy_*
 rm beautifly3/umbreonhappi*
 rmdir beautifly3
 rmdir rhydon0/dusclops
+
+ls -R
