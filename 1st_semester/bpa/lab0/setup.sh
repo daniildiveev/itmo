@@ -1,33 +1,13 @@
+!/bin/bash
+
 #1
-mkdir beautifly3
+mkdir -p beautifly3/{lillipup,politoed}
+touch beautifly3/{alakazam,darmanitan,umbreon}
 touch froslass6
 touch garchomp8
 touch happiny1
-mkdir rhydon0
-mkdir teddiursa5
-
-cd beautifly3
-touch alakazam
-mkdir lillipup
-mkdir politoed
-touch darmanitan
-touch umbreon
-
-cd .. 
-
-cd rhydon0
-mkdir vibrava
-mkdir dusclops
-mkdir glameow
-
-cd .. 
-
-cd teddiursa5
-mkdir deino
-mkdir rampardos
-mkdir venipede
-
-cd .. 
+mkdir -p rhydon0/{vibrava,dusclops,glameow}
+mkdir -p teddiursa5/{deino,rampardos,venipede}
 
 echo "Тип покемона ICE GHOST" > froslass6
 echo "satk=8 sdef=9 \nspd=10" > garchomp8
@@ -38,27 +18,29 @@ echo "Тип покемона \nDARK NONE" > beautifly3/umbreon
 
 ls -lR
 
+
 #2
 chmod 524 beautifly3 
-chmod 004 beautifly3/alakazam
-chmod 752 beautifly3/lillipup
+chmod u=---,g=---,o=r-- beautifly3/alakazam
+chmod rwxr-x-w- beautifly3/lillipup
 chmod 737 beautifly3/politoed
-chmod 400 beautifly3/darmanitan
-chmod 400 beautifly3/umbreon
+chmod u=r--,g=---,o=--- beautifly3/darmanitan
+chmod r-------- beautifly3/umbreon
 chmod 404 froslass6
-chmod 640 garchomp8
-chmod 444 happiny1
+chmod u=rw-,g=r--,o=--- garchomp8
+chmod r--r--r-- happiny1
 chmod 500 rhydon0
-chmod 737 rhydon0/vibrava
-chmod 335 rhydon0/dusclops
+chmod u=rwx,g=-wx,o=rwx rhydon0/vibrava
+chmod -wx-wxr-x rhydon0/dusclops
 chmod 550 rhydon0/glameow
-chmod 537 teddiursa5
-chmod 500 teddiursa5/deino
+chmod u=r-x,g=-wx,o=rwx teddiursa5
+chmod r-x------ teddiursa5/deino
 chmod 777 teddiursa5/rampardos
-chmod 752 teddiursa5/venipede
+chmod u=rwx,g=r-x,o=-w- teddiursa5/venipede
 
 ls -lR
 
+<<com
 #3
 ln -s rhydon0 Copy_10
 cp froslass6 beautifly3/alakazamfroslass
@@ -87,3 +69,4 @@ rmdir beautifly3
 rmdir rhydon0/dusclops
 
 ls -R
+com
