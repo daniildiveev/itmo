@@ -1,4 +1,4 @@
 .DS_store
 */*.jar
 */*.class
-*/classes/*
+1st_semester/java/lab1/build/classes/*
