@@ -22,24 +22,27 @@ echo "-----------------------------------------------"
 
 #2
 chmod 524 beautifly3 
-chmod u=---,g=---,o=r-- beautifly3/alakazam
-chmod rwxr-x-w- beautifly3/lillipup
+chmod u=,g=,o=r beautifly3/alakazam
+chmod u=rwx,g=r-x,o=-w- beautifly3/lillipup
 chmod 737 beautifly3/politoed
-chmod u=r--,g=---,o=--- beautifly3/darmanitan
-chmod r-------- beautifly3/umbreon
+chmod u=r--,g=,o= beautifly3/darmanitan
+chmod u=r--,g=,o= beautifly3/umbreon
 chmod 404 froslass6
-chmod u=rw-,g=r--,o=--- garchomp8
-chmod r--r--r-- happiny1
+chmod u=rw-,g=r--,o= garchomp8
+chmod u=r--,g=r--,o=r-- happiny1
 chmod 500 rhydon0
 chmod u=rwx,g=-wx,o=rwx rhydon0/vibrava
-chmod -wx-wxr-x rhydon0/dusclops
+chmod u=-wx,g=-wx,o=r-x rhydon0/dusclops
 chmod 550 rhydon0/glameow
 chmod u=r-x,g=-wx,o=rwx teddiursa5
-chmod r-x------ teddiursa5/deino
+chmod u=r-x,g=,o= teddiursa5/deino
 chmod 777 teddiursa5/rampardos
 chmod u=rwx,g=r-x,o=-w- teddiursa5/venipede
 
 ls -lR
+
+chmod 777 ../lab0/*
+chmod 777 ../lab0/**/*
 
 echo "-----------------------------------------------"
 
@@ -56,22 +59,43 @@ ls -lR
 
 echo "-----------------------------------------------"
 
+chmod 524 beautifly3 
+chmod u=,g=,o=r beautifly3/alakazam
+chmod u=rwx,g=r-x,o=-w- beautifly3/lillipup
+chmod 737 beautifly3/politoed
+chmod u=r--,g=,o= beautifly3/darmanitan
+chmod u=r--,g=,o= beautifly3/umbreon
+chmod 404 froslass6
+chmod u=rw-,g=r--,o= garchomp8
+chmod u=r--,g=r--,o=r-- happiny1
+chmod 500 rhydon0
+chmod u=rwx,g=-wx,o=rwx rhydon0/vibrava
+chmod u=-wx,g=-wx,o=r-x rhydon0/dusclops
+chmod 550 rhydon0/glameow
+chmod u=r-x,g=-wx,o=rwx teddiursa5
+chmod u=r-x,g=,o= teddiursa5/deino
+chmod 777 teddiursa5/rampardos
+chmod u=rwx,g=r-x,o=-w- teddiursa5/venipede
+
 #4
 wc -m teddiursa5/* 2>&1 | sort -k1
 ls -lR 2>&1 | grep ^- | grep s$ | head -n 3 | sort -s
 cat happiny1 2>&1 | grep -vi Mo 
-ls -Rl teddiursa5/ 2>/dev/null | grep ^- | sort -sr
+ls -RSl teddiursa5/ 2>/dev/null | grep ^- | sort -r
 ls -Rltcr 2>&1 | grep ^- | sort -k6 | grep "^.\{44\}d"
 cat -b beautifly3/alakazam beautifly3/darmanitan 2>/dev/null | grep -vi e$
 
 echo "-----------------------------------------------"
 
+chmod 777 ../lab0/*
+chmod 777 ../lab0/**/*
+
 #5
-rm garchomp8
-rm beautifly3/umbreon
-rm Copy_*
-rm beautifly3/umbreonhappi*
+rm -f garchomp8
+rm -f beautifly3/umbreon
+rm -f Copy_*
+rm -f beautifly3/umbreonhappi*
 rm -rf beautifly3
-rmdir rhydon0/dusclops
+rm -rf rhydon0/dusclops
 
 ls -R
