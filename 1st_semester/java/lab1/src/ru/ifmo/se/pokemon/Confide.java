@@ -1,5 +1,6 @@
 package ru.ifmo.se.pokemon;
 import ru.ifmo.se.pokemon.StatusMove;
+import ru.ifmo.se.pokemon.Pokemon;
 
 public class Confide extends StatusMove{
     public Confide(){
