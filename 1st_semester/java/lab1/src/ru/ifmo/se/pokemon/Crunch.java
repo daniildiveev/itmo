@@ -9,7 +9,9 @@ public class Crunch extends PhysicalMove{
 
     @Override
     protected void applyOppEffects(Pokemon p){
-        p.setMod(Stat.DEFENSE, -1);
+        if Math.random() <= 0.2{
+            p.setMod(Stat.DEFENSE, -1);
+        }
     }
 
     @Override
