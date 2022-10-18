@@ -2,3 +2,4 @@
 */*.jar
 */*.class
 1st_semester/java/lab1/build/classes/*
+*/**/*.class
