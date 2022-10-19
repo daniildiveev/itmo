@@ -1,4 +1,4 @@
-def check_for_errors(message:str) -> str:
+def check_for_errors(message:str) -> None:
     if len(message) != 7:
         raise ValueError("sequence must be exactly 7 characters long")
 
