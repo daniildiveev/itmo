@@ -47,9 +47,9 @@ chmod 777 ../lab0/**/*
 echo "-----------------------------------------------"
 
 #3
-ln -s rhydon0 Copy_10
+ln rhydon0 Copy_10
 cp froslass6 beautifly3/alakazamfroslass
-ln -s ../garchomp8 beautifly3/alakazamgarchomp
+ln ../garchomp8 beautifly3/alakazamgarchomp
 cat beautifly3/umbreon beautifly3/umbreon > froslass6_98
 cp froslass6 beautifly3/lillipup
 ln -h happiny1 beautifly3/umbreonhappiny
