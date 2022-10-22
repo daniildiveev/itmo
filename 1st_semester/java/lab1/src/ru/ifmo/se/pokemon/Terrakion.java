@@ -5,5 +5,9 @@ class Terrakion extends Pokemon{
         super(name, level);
         setStats(91, 129, 90, 72, 90, 108);
         setType(Type.ROCK, Type.FIGHTING);
+        setMove(new SwordsDance(), 
+                new RockPolish(), 
+                new Bulldoze(), 
+                new PoisonJab());
     }
 }
