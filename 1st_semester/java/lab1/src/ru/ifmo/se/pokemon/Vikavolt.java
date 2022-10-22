@@ -1,6 +1,4 @@
 package ru.ifmo.se.pokemon;
-import ru.ifmo.se.pokemon.Type;
-import ru.ifmo.se.pokemon.Pokemon;
 
 class Vikavolt extends Pokemon{
     public Vikavolt(String name, int level){
