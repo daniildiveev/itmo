@@ -5,5 +5,6 @@ class Avalugg extends Pokemon{
         super(name, level);
         setStats(95, 117, 184, 44, 46, 28);
         setType(Type.ICE);
+        setMove(new FlashCannon(), new Blizzard(), new IceFang(), new BodySlam());
     }
 }
