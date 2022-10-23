@@ -8,3 +8,4 @@
 ## Computer science:
 - [Numeral systems (1st lab)](https://github.com/daniildiveev/itmo/tree/main/1st_semester/cs/lab0)
 - [Noise-resitant code synthesis (2nd lab)](https://github.com/daniildiveev/itmo/tree/main/1st_semester/cs/lab1)
+- [Regular expressions](https://github.com/daniildiveev/itmo/tree/main/1st_semester/cs/lab2)
