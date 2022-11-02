@@ -40,5 +40,21 @@ def parse_json(source_file:str) -> dict:
     return timetable_dict
 
 
+def create_xml_code(data:dict,
+                    n_tabs:int) -> str:
+    xml_code = ""
+    data_keys = list(data.keys())
+
+    for key in data_keys:
+        if isinstance(data[key], dict):
+            xml_code += "\t" * n_tabs + f"<{key}>\n"
+            xml_code += create_xml_code(data[key], n_tabs=n_tabs+1)
+            xml_code += "\t" * n_tabs + f"</{key}>\n"
+        else:
+            xml_code += f"<{key}>{data[key]}</{key}>"
+
+    return xml_code
+
+
 if __name__ == "__main__":
     data = parse_json(SOURCE_FILE)
