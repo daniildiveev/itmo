@@ -51,10 +51,16 @@ def create_xml_code(data:dict,
             xml_code += create_xml_code(data[key], n_tabs=n_tabs+1)
             xml_code += "\t" * n_tabs + f"</{key}>\n"
         else:
-            xml_code += f"<{key}>{data[key]}</{key}>"
+            xml_code += f"<{key}>{data[key]}</{key}>\n"
 
     return xml_code
 
+
+def dump_to_xml(output_file:str, 
+                xml_code:str) -> None:
+    with open(output_file, 'w') as f:
+        f.write('<?xml version="1.0" encoding="UTF-8"?>')
+        f.write(xml_code)
 
 if __name__ == "__main__":
     data = parse_json(SOURCE_FILE)
