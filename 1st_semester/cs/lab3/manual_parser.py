@@ -12,7 +12,9 @@ def extract_data(source_string:str,
 
 
 def parse_json(source_file:str) -> dict:
-    timetable_dict = {}
+    timetable_dict = {
+        'timetable' : {}
+    }
 
     with open(source_file) as f:
         data = f.read()
@@ -24,7 +26,7 @@ def parse_json(source_file:str) -> dict:
     data = data.split("subject")[1:]
 
     for i in range(len(data)):
-        timetable_dict[f"subject{i+1}"] = {}
+        timetable_dict['timetable'][f"subject{i+1}"] = {}
 
         for part in ("day", "time", "name", "teacher", "week", "location"):
             if part in ("teacher", "format"):
@@ -34,7 +36,7 @@ def parse_json(source_file:str) -> dict:
             else:
                 value = extract_data(data[i], part)
 
-            timetable_dict[f"subject{i+1}"][part] = value
+            timetable_dict['timetable'][f"subject{i+1}"][part] = value
             data[i] = data[i][data[i].find(",") + 1:] 
 
     return timetable_dict
@@ -59,8 +61,10 @@ def create_xml_code(data:dict,
 def dump_to_xml(output_file:str, 
                 xml_code:str) -> None:
     with open(output_file, 'w') as f:
-        f.write('<?xml version="1.0" encoding="UTF-8"?>')
+        f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         f.write(xml_code)
-
+        
 if __name__ == "__main__":
     data = parse_json(SOURCE_FILE)
+    xml_code = create_xml_code(data, 0)
+    dump_to_xml(OUTPUT_FILE, xml_code)
