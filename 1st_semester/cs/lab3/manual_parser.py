@@ -14,7 +14,7 @@ def extract_data(source_string:str,
 def parse_json(source_file:str) -> dict:
     timetable_dict = {}
 
-    with open(SOURCE_FILE) as f:
+    with open(source_file) as f:
         data = f.read()
 
     data = "".join(data.splitlines())    
