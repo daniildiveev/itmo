@@ -1,3 +1,5 @@
+from typing import List
+
 SOURCE_FILE = "timetable.json"
 OUTPUT_FILE = "timetable.csv"
 
@@ -67,11 +69,16 @@ def create_csv_rows(data:dict,
 
 def create_csv(data:dict,
                output_file:str,
-               delimiter:str=",") -> None:
+               delimiter:str=",",
+               col_names:List[str]=None) -> None:
     csv_rows = create_csv_rows(data, delimiter)
     csv_rows = [f"{i}{delimiter}{csv_row}" for i, csv_row in enumerate(csv_rows)]
 
-    header = "," * (len(csv_rows[0].split(",")) - 1) + "\n"
+    if not col_names:
+        header = "," * (len(csv_rows[0].split(",")) - 1) + "\n"
+    else:
+        header = delimiter.join("col_names") + "\n"
+        
     csv = header + "\n".join(csv_rows)
 
     with open(output_file, 'w') as f:
