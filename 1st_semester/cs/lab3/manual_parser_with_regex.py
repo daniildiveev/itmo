@@ -4,7 +4,7 @@ from manual_parser import create_xml_code, dump_to_xml
 SOURCE_FILE = "timetable.json"
 OUTPUT_FILE = "timetable.xml"
 
-def parse_json(source_file:str) -> dict:
+def parse_json_with_regex(source_file:str) -> dict:
     with open(source_file) as f:
         string_to_parse = f.read()
 
@@ -25,6 +25,6 @@ def parse_json(source_file:str) -> dict:
     return output_dict
     
 if __name__ == "__main__":
-    data = parse_json(SOURCE_FILE)
+    data = parse_json_with_regex(SOURCE_FILE)
     xml_code = create_xml_code(data)
     dump_to_xml(OUTPUT_FILE, xml_code)
