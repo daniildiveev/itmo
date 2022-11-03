@@ -1,5 +1,5 @@
 SOURCE_FILE = "timetable.json"
-OUTPUT_FILE = "timetable.xml"
+OUTPUT_FILE = "timetable.csv"
 
 def extract_data(source_string:str, 
                  target:str,
@@ -51,18 +51,32 @@ def create_csv_rows(data:dict,
 
     csv_row = ''
 
-    for key in data_keys:
+    for i, key in enumerate(data_keys):
         if isinstance(data[key], dict):
             csv_rows += create_csv_rows(data[key])
         else:
-            csv_row += data[key] + delimiter
+            if i == len(data_keys) - 1:
+                csv_row += data[key] 
+            else:
+                csv_row += data[key] + delimiter
 
     if csv_row:
         csv_rows.append(csv_row)
 
     return csv_rows
 
+def create_csv(data:dict,
+               output_file:str,
+               delimiter:str=",") -> None:
+    csv_rows = create_csv_rows(data, delimiter)
+    csv_rows = [f"{i}{delimiter}{csv_row}" for i, csv_row in enumerate(csv_rows)]
+
+    header = "," * (len(csv_rows[0].split(",")) - 1) + "\n"
+    csv = header + "\n".join(csv_rows)
+
+    with open(output_file, 'w') as f:
+        f.write(csv)
+
 if __name__ == "__main__":
     data = parse_json(SOURCE_FILE)
-    csv = create_csv_rows(data)
-    print(csv)
+    create_csv(data, OUTPUT_FILE)
