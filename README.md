@@ -1,6 +1,7 @@
 ## Java:
 - [Introduction to Java (1st lab)](https://github.com/daniildiveev/itmo/tree/main/1st_semester/java/lab0)
-- [Pokemons (2nd_lab)](https://github.com/daniildiveev/itmo/tree/main/1st_semester/java/lab1)
+- [Pokemons (2nd lab)](https://github.com/daniildiveev/itmo/tree/main/1st_semester/java/lab1)
+- [Subject domains (3rd lab)](https://github.com/daniildiveev/itmo/tree/main/1st_semester/java/lab2)
 
 ## CS Basics (Fundamentals of Professional Activity):
 - [Linux terminal basics (1st lab)](https://github.com/daniildiveev/itmo/tree/main/1st_semester/csbasics/lab0)
