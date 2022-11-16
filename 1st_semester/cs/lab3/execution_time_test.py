@@ -5,14 +5,14 @@ from manual_parser_with_regex import parse_json_with_regex
 
 SOURCE_FILE = "timetable.json"
 OUTPUT_FILE = "timetable.xml"
-N_TESTS = 1000
+N_TESTS = 10
 
 if __name__ == "__main__":
     print(f"Time took to execute {N_TESTS} tests: ")
 
     start = time.time()
 
-    for _ in range(1000):
+    for _ in range(N_TESTS):
         data = parse_json(SOURCE_FILE)
         xml_code = create_xml_code(data)
         dump_to_xml(OUTPUT_FILE, xml_code)
@@ -21,7 +21,7 @@ if __name__ == "__main__":
 
     start = time.time()
 
-    for _ in range(1000):
+    for _ in range(N_TESTS):
         data = parse_json_with_regex(SOURCE_FILE)
         xml_code = create_xml_code(data)
         dump_to_xml(OUTPUT_FILE, xml_code)
@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
     start = time.time()
 
-    for _ in range(1000):
+    for _ in range(N_TESTS):
         parse_json_and_dump_to_xml(SOURCE_FILE, OUTPUT_FILE)
 
     print(f"Manual parsing using libraries: {time.time() - start}")
