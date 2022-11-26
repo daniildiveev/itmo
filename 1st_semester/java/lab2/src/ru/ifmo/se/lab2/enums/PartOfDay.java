@@ -1,0 +1,5 @@
+enum PartOfDay { 
+    NIGHT, 
+    DAYS
+}
+
