@@ -10,4 +10,8 @@ public abstract class Madeable{
     public String getMaterial(){
         return "из " + material;
     }
+
+    public String canBeMadeOutOf(){
+        return "можно сделать " + toString();
+    }
 } 
