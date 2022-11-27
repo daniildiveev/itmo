@@ -1,8 +1,8 @@
 package ru.ifmo.se.lab2.characters;
-import ru.ifmo.se.lab2.objects.*;
+import ru.ifmo.se.lab2.objects.Carriable;
 
 public abstract class Character{ 
-    public String gather(Gatherable g){
-        return "собирать " + g.toString();
+    public String carry(Carriable с){
+        return "приносить " + с.toString();
     }
 }
