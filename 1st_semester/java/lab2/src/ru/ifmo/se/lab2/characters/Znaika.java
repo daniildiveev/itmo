@@ -1,8 +1,8 @@
 package ru.ifmo.se.lab2.characters;
 import ru.ifmo.se.lab2.enums.PartOfDay;
-import ru.ifmo.se.lab2.objects.Madeable;
+import ru.ifmo.se.lab2.objects.*;
 
-public class Znaika extends Character{
+public class Znaika extends Person{
     public String think(PartOfDay p, int howLong){
         String output = "думал ";
 
@@ -23,7 +23,15 @@ public class Znaika extends Character{
         return "Знайка ";
     }
 
-    public String getTheIdea(Madeable m){
-        return "придумал " + m.toString() + m.getMaterial();
+    public String getTheIdea(){
+        return "придумал ";
+    }
+
+    public String tell(Person p){
+        return "велел " + p.toString();
+    }
+
+    public String prepare(Preparable p){
+        return " приготовил" + p.toString();
     }
 }
