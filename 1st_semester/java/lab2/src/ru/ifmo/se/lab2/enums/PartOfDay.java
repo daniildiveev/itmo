@@ -1,5 +1,8 @@
-enum PartOfDay { 
+package ru.ifmo.se.lab2.enums;
+
+public enum PartOfDay { 
     NIGHT, 
-    DAYS
+    DAY,
+    NONE
 }
 
