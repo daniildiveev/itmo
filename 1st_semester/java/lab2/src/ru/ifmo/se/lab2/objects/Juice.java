@@ -1,8 +1,6 @@
 package ru.ifmo.se.lab2.objects;
 
 public class Juice implements Gatherable, Carriable{
-    public final String color = " белый";
-    
     @Override
     public String toString(){
         return "сок ";
