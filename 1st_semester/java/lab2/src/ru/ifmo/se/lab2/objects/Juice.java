@@ -19,5 +19,10 @@ public class Juice implements Gatherable, Carriable{
         return "превращается в " + m.toString();
     }
 
-    public String specifyType()
+    public String specifyType(JuiceParams jp){
+        switch (jp){
+            case JuiceParams.WHITE -> return " белый";
+            case JuiceParams.RUBBER -> return " резиновый";
+        }
+    }
 }
