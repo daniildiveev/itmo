@@ -5,11 +5,7 @@ public class Shorties extends Person{
     public String mine(Mineable m){
         return "добывать " + m.toString();
     }
-
-    public String gather(Gatherable g){
-        return "собирать " + g.toString();
-    }
-
+    
     @Override
     public String toString(){
         return "Коротышки ";
