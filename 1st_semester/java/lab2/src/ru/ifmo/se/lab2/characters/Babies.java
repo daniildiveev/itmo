@@ -5,4 +5,9 @@ public class Babies extends Person{
     public String toString(){
         return " малышки";
     }
+
+    public String gather(Gatherable g){
+        return "собирать " + g.toString();
+    }
+
 }
