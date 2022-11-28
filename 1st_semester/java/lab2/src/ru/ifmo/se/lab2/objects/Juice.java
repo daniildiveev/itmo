@@ -1,4 +1,5 @@
 package ru.ifmo.se.lab2.objects;
+import ru.ifmo.se.lab2.enums.JuiceParams;
 
 public class Juice implements Gatherable, Carriable{
     @Override
@@ -17,4 +18,6 @@ public class Juice implements Gatherable, Carriable{
     public String transform(Mineable m){
         return "превращается в " + m.toString();
     }
+
+    public String specifyType()
 }
