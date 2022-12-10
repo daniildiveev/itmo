@@ -7,6 +7,6 @@ public class Ball extends Sphere{
 
     @Override
     public String toString(){
-        return "мяч ";
+        return " мяч";
     }
 }

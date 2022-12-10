@@ -8,7 +8,7 @@ public class Babies extends Person{
     }
 
     public String gather(Gatherable g){
-        return "собирать " + g.toString();
+        return " собирать" + g.toString();
     }
 
 }

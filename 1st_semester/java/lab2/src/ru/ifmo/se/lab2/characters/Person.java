@@ -3,11 +3,11 @@ import ru.ifmo.se.lab2.objects.Carriable;
 
 public class Person{ 
     public String carry(Carriable с){
-        return "приносить " + с.toString();
+        return " приносить" + с.toString();
     }
 
     @Override
     public String toString(){
-        return "все ";
+        return " все";
     }
 }

@@ -7,6 +7,6 @@ public class Boots extends Madeable{
 
     @Override
     public String toString(){
-        return " калоши ";
+        return " калоши";
     }
 }

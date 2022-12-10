@@ -4,7 +4,7 @@ import ru.ifmo.se.lab2.objects.*;
 
 public class Znaika extends Person{
     public String think(PartOfDay p, int howLong){
-        String output = "думал ";
+        String output = " думал ";
 
         if (howLong != 0){
             output = output + Integer.toString(howLong);
@@ -20,15 +20,15 @@ public class Znaika extends Person{
 
     @Override
     public String toString(){
-        return "Знайка ";
+        return " Знайка";
     }
 
     public String getTheIdea(){
-        return "придумал ";
+        return " придумал";
     }
 
     public String tell(Person p){
-        return "велел " + p.toString();
+        return " велел" + p.toString();
     }
 
     public String prepare(Preparable p){

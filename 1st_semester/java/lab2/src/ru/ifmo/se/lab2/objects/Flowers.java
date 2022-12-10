@@ -5,7 +5,7 @@ public class Flowers{
     class Stem{
         @Override
         public String toString(){
-            return " стебель ";
+            return " стебель";
         }
     }
 
@@ -13,7 +13,7 @@ public class Flowers{
 
     public String grow(Place p){
         if (p == Place.CITY){
-            return "В городе росли";
+            return " В городе росли";
         }
 
         else {
@@ -23,14 +23,14 @@ public class Flowers{
 
     @Override
     public String toString(){
-        return " цветы ";
+        return " цветы";
     }
 
     public String lookALike(){
-        return " похожие на фикусы ";
+        return " похожие на фикусы";
     }
 
     public String makeACut(){
-        return "сделать надрез " + stem.toString();
+        return " сделать надрез" + stem.toString();
     }
 }

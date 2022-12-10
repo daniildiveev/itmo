@@ -3,11 +3,11 @@ import ru.ifmo.se.lab2.objects.Mineable;
 
 public class Shorties extends Person{
     public String mine(Mineable m){
-        return "добывать " + m.toString();
+        return " добывать" + m.toString();
     }
 
     @Override
     public String toString(){
-        return "Коротышки ";
+        return " Коротышки";
     }
 }

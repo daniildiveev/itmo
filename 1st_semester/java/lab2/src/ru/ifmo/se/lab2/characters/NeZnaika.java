@@ -9,7 +9,7 @@ public class NeZnaika extends Person{
 
     public String meet(Person p, Place where){
         if (where == Place.STREET){
-            return "на улице встретил" + p.toString();
+            return " на улице встретил" + p.toString();
         }
 
         else{

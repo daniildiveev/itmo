@@ -7,6 +7,6 @@ public class Sphere extends Madeable{
 
     @Override
     public String toString(){
-        return "шар ";
+        return " шар";
     }
 }
