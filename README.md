@@ -5,6 +5,7 @@
 
 ## CS Basics (Fundamentals of Professional Activity):
 - [Linux terminal basics (1st lab)](https://github.com/daniildiveev/itmo/tree/main/1st_semester/csbasics/lab0)
+- [Assembly code understanding and program tracing](https://github.com/daniildiveev/itmo/tree/main/1st_semester/csbasics/lab1)
 
 ## Computer science:
 - [Numeral systems (1st lab)](https://github.com/daniildiveev/itmo/tree/main/1st_semester/cs/lab0)
