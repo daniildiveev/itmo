@@ -23,8 +23,8 @@ public class Znaika extends Person{
         return " Знайка";
     }
 
-    public String getTheIdea(){
-        return " придумал";
+    public String getTheIdea(Thinkable t){
+        return " придумал" + t.toString();
     }
 
     public String tell(Person p){
