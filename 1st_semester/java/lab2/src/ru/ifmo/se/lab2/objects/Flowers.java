@@ -12,13 +12,14 @@ public class Flowers{
     final Stem stem = new Stem(); 
 
     public String grow(Place p){
-        if (p == Place.CITY){
-            return " В городе росли";
+        String output;
+
+        switch (p){
+            case CITY -> output = " В городе росли";
+            default -> output = "";
         }
 
-        else {
-            return "";
-        }
+        return output;
     }
 
     @Override
