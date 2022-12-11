@@ -1,5 +1,5 @@
-package ru.ifmo.se.lab.objects;
+package ru.ifmo.se.lab2.objects;
 
 public interface Thinkable{
-    
+
 }
