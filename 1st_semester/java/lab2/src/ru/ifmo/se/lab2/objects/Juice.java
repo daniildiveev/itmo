@@ -11,7 +11,7 @@ public class Juice implements Gatherable, Carriable{
         return " вытекает";
     }
 
-    public String thickify(){
+    public String thicken(){
         return " густеет";
     }
 

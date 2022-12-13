@@ -7,6 +7,6 @@ public class Gunka extends Person{
     }
 
     public String playPrigalki(Person p, int amountOfPlayers){
-        return " играть в прыгалки с " + Integer.toString(amountOfPlayers) + p.toString();
+        return toString() + " играть в прыгалки с " + Integer.toString(amountOfPlayers) + p.toString();
     }
 }

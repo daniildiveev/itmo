@@ -1,5 +1,6 @@
 package ru.ifmo.se.lab2.characters;
 import ru.ifmo.se.lab2.enums.Place;
+import ru.ifmo.se.lab2.objects.Gatherable;
 
 public class NeZnaika extends Person{
     @Override
@@ -8,12 +9,17 @@ public class NeZnaika extends Person{
     }
 
     public String meet(Person p, Place where){
-        if (where == Place.STREET){
-            return " на улице встретил" + p.toString();
+        String output = toString() + " встретил" + p.toString();
+
+        switch(where){
+            case STREET -> output += " на улице";
+            default -> output += "";
         }
 
-        else{
-            return "";
-        }
+        return output;
+    }
+
+    public String gather(Gatherable g){
+        return toString() + " тоже пошел собирать" + g.toString();
     }
 }

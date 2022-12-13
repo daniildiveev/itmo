@@ -28,7 +28,7 @@ public class Flowers{
     }
 
     public String lookALike(){
-        return " похожие на фикусы";
+        return toString() + " похожие на фикусы";
     }
 
     public String makeACut(){
