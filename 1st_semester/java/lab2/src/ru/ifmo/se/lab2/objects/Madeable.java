@@ -14,4 +14,15 @@ public abstract class Madeable{
     public String canBeMadeOutOf(){
         return " можно сделать" + toString();
     }
+
+    @Override
+    public int hashCode(){
+        String stringToHash = this.getClass().getSimpleName() + this.material;
+        return stringToHash.hashCode()
+    }
+
+    @Override 
+    public boolean equals(Madeable m){
+        return hashCode() == m.hashCode()
+    }
 } 
