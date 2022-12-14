@@ -23,6 +23,6 @@ public abstract class Madeable{
 
     @Override 
     public boolean equals(Madeable m){
-        return hashCode() == m.hashCode()
+        return hashCode() == m.hashCode();
     }
 } 
