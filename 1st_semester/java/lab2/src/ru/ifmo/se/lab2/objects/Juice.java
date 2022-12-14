@@ -31,4 +31,15 @@ public class Juice implements Gatherable, Carriable{
     public String getType(){
         return this.type;
     }
+
+    @Override
+    public int hashCode(){
+        String stringToHash = this.getClass().getSimpleName() + this.type;
+        return stringToHash.hashCode();
+    }
+
+    @Override
+    public boolean equals(Juice j){
+        return hashCode() == j.hashCode();
+    }
 }
