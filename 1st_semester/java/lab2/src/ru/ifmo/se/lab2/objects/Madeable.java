@@ -1,14 +1,14 @@
 package ru.ifmo.se.lab2.objects;
 
 public abstract class Madeable{
-    public static String material;
+    private String material;
 
     public Madeable(Mineable m){
-        material = m.toString();    
+        this.material = m.toString();    
     }
 
     public String getMaterial(){
-        return " из" + material;
+        return " из" + this.material;
     }
 
     public String canBeMadeOutOf(){
