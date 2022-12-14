@@ -2,6 +2,8 @@ package ru.ifmo.se.lab2.objects;
 import ru.ifmo.se.lab2.enums.Place;
 
 public class Flowers{
+    private String growPlace;
+
     class Stem{
         @Override
         public String toString(){
@@ -11,15 +13,25 @@ public class Flowers{
 
     final Stem stem = new Stem(); 
 
-    public String grow(Place p){
-        String output;
-
+    public void grow(Place p){
         switch (p){
-            case CITY -> output = " В городе росли";
-            default -> output = "";
+            case CITY -> this.growPlace = " В городе росли";
+            default -> this.growPlace = "";
         }
+    }
 
-        return output;
+    public String getGrowPlace(){
+        return this.growPlace;
+    }
+
+    @Override
+    public int hashCode(){
+        return this.growPlace.hashCode();
+    }
+
+    @Override
+    public boolean equals(Flowers f){
+        return f.hashCode() == hashCode();
     }
 
     @Override
