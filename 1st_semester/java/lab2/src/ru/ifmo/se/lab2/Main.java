@@ -25,7 +25,7 @@ class Main {
         output = output + flowers.grow(Place.CITY) + flowers.toString() + flowers.lookALike();
         output = output + flowers.makeACut() + juice.dripOut() + juice.specifyType(JuiceParams.WHITE) + juice.toString();
         output = output + juice.toString() + juice.thicken() + juice.transform(rubber);
-        output = output + boots.getMaterial() + boots.canBeMadeOutOf() + ball.canBeMadeOutOf();
+        output = output + boots.getMaterial() + boots.canBeMadeOutOf() + ball.getMaterial() + ball.canBeMadeOutOf();
         output = output + z.getTheIdea(ball) + z.getTheIdea(boots) + z.tell(b);
         output = output + b.gather(juice) + juice.specifyType(JuiceParams.RUBBER) +  person.carry(juice);
         output = output + z.prepare(barrel);
