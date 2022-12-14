@@ -2,6 +2,8 @@ package ru.ifmo.se.lab2.objects;
 import ru.ifmo.se.lab2.enums.JuiceParams;
 
 public class Juice implements Gatherable, Carriable{
+    private String type;
+
     @Override
     public String toString(){
         return " сок";
@@ -19,13 +21,14 @@ public class Juice implements Gatherable, Carriable{
         return " превращается в" + m.toString();
     }
 
-    public String specifyType(JuiceParams jp){
-        String type = "";
+    public void specifyType(JuiceParams jp){
         switch (jp){
-            case WHITE -> type = " белый";
-            case RUBBER -> type = " резиновый";
+            case WHITE -> this.type = " белый";
+            case RUBBER -> this.type = " резиновый";
         }
+    }
 
-        return type;
+    public String getType(){
+        return this.type;
     }
 }
