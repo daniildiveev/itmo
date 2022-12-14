@@ -10,4 +10,15 @@ public class Person{
     public String toString(){
         return " все";
     }
+
+    @Override
+    public int hashCode(){
+        String stringToHash = this.getClass().getSimpleName();
+        return stringToHash.hashCode();
+    }
+
+    @Override 
+    public boolean equals(Person p){
+        return hashCode() == p.hashCode();
+    }
 }
