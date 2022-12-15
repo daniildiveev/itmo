@@ -17,8 +17,11 @@ public class Person{
         return stringToHash.hashCode();
     }
 
-    @Override 
-    public boolean equals(Person p){
-        return hashCode() == p.hashCode();
+    @Override
+    public boolean equals(Object o){
+        if (this.getClass() != o.getClass() || o == null){
+            return false;
+        }
+        return true;
     }
 }

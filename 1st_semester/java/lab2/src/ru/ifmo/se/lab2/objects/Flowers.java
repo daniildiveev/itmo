@@ -30,9 +30,12 @@ public class Flowers{
     }
 
     @Override
-    public boolean equals(Flowers f){
-        return f.hashCode() == hashCode();
-    }
+    public boolean equals(Object o){
+        if (this.getClass() != o.getClass() || o == null){
+            return false;
+        }
+
+        return o.growPlace == this.growPlace;
 
     @Override
     public String toString(){

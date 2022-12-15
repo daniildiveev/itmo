@@ -38,8 +38,11 @@ public class Juice implements Gatherable, Carriable{
         return stringToHash.hashCode();
     }
 
-    @Override
     public boolean equals(Juice j){
-        return hashCode() == j.hashCode();
+        if (this.getClass() != o.getClass() || o == null){
+            return false;
+        }
+
+        return o.type == this.type;
     }
 }

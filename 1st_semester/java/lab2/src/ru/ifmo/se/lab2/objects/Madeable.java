@@ -18,11 +18,15 @@ public abstract class Madeable{
     @Override
     public int hashCode(){
         String stringToHash = this.getClass().getSimpleName() + this.material;
-        return stringToHash.hashCode()
+        return stringToHash.hashCode();
     }
 
     @Override 
-    public boolean equals(Madeable m){
-        return hashCode() == m.hashCode();
+    public boolean equals(Object o){
+        if (this.getClass() != o.getClass() || o == null){
+            return false;
+        }
+
+        return o.material == this.material;
     }
 } 
