@@ -1,0 +1,45 @@
+\documentclass{beamer}
+\usepackage[english, russian]{babel}
+\begin{document}
+\hspace*{\fill} \Large{\color{blue}П\color{black}еревод из одной СС в другую. Пример 1 }
+\begin{center}
+    
+\begin{math}
+    231_{(10)} = ABC_{(10)} = ...HGFE_{(8)} = ...+ H*8^3 + G*8^2 F*8 + E
+\end{math}
+, при натуральных H, G, F, E < 8
+
+\color{teal}Как найти E, F, G, H&?
+
+\color{black}
+Решение: \begin{math}
+    (...+ H*8^3 + G*8^2 + F*8 + E)/8 = ...+ H*8^2 + G * 8^1 + F  
+\end{math}(плюс остаток E) 
+
+\begin{math}
+    => (...HGFE_{(8)}/8 = ...HGF_{(8)}
+\end{math}(с остатком Е)
+
+\hspace{10}
+
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    Номер шага (i) & 0 & 1 & 2 & 3 & 4 & ... \\
+    \hline
+    Частное от деления на 8  & 231 & 28 & 3 & 0 & 0 & 0\\
+    \hline
+    Остаток от деления на 8 & 0 & 7 & 4 & 2 & 0 & 0\\
+    \hline
+\end{tabular}}
+
+\hspace{10}
+
+
+\color{teal}Ответ: \color{black} E=7, F=4, G=3, H=0.
+
+\begin{math}
+    231_{(10)} = 347_{(8)}
+\end{math}
+\end{center}
+\end{document}
