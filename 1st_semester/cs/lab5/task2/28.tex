@@ -1,0 +1,31 @@
+\documentclass{beamer}
+\usepackage[english, russian]{babel}
+\usepackage{makecell}
+
+\begin{document}
+\hspace*{\fill} \Large{\color{blue}П\color{black}еревод из одной СС в другую. Пример 4 }
+    \textbf{Задача:} \begin{math} 0,8125_{(10)} = ?_{(2)}\end{math}
+    
+    \textbf{Ход решения:}
+    \begin{center}
+    \resizebox{75}{55}{
+     
+        \begin{tabular}{|c|c|}
+         \hline
+         0 & \makecell{0,8125 \\ \hspace*{\fill}2} \\
+         \hline
+         1 & \makecell{0,625 \\ \hspace*{\fill}2} \\
+         \hline
+         1 & \makecell{0,25 \\ \hspace*{\fill}2} \\
+         \hline
+         0 & \makecell{0,5 \\ \hspace*{\fill}2} \\
+         \hline
+         1 & 0 \\
+         \hline
+        \end{tabular}}
+    \end{center}
+
+    \textbf{Ответ:} \begin{math}
+            0,8125_{(10)} = 1 * 2^{-1} + 1 * 2^{-2} + 1 * 2^{-4} = 0,1101_{(2)}
+    \end{math}
+\end{document}
