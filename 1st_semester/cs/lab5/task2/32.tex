@@ -1,0 +1,37 @@
+\documentclass{beamer}
+\usepackage[english, russian]{babel}
+
+\begin{document}
+\hspace*{\fill} \Large{\color{blue}П\color{black}реобразование из  СС-\emph{N} в СС-$N^k$ и обратно
+
+\vspace{10}
+\small{
+\color{teal}Из  СС-\emph{N} в СС-$N^k$
+
+\scalebox{0.9}{%
+\vbox{%
+\color{black}\begin{itemize}
+    \item дополнить число, записанное в СС с основанием \emph{N}, незначащими нулями так, чтобы количество цифр было равно \emph{k};
+    \item разбить полученное число на группы по \emph{k} цифр, начиная с нуля;
+    \item заменить каждую такую группу эквивалентным числом, записанным в СС в основанием $N^k$
+\end{itemize}}}
+
+\color{black}
+\hspace{20}\textbf{Задача}: $1020101_{(3)} = ?_{(27)}$
+
+\hspace{20}\textbf{Решение}: $1020101_{(3)} = 001 020 101_{(3)} = 16А_{(27)}$
+}
+\vspace{10}
+
+\color{teal} Из CC-$N^k$ в СС-\emph{N}
+\scalebox{0.9}{%
+\vbox{%
+\color{black}\begin{itemize}
+    \item заменить каждую цифру числа, записанного в СС с основанием $N^k$, эквивалентным набором из \emph{k} цифр СС с основанием N
+\end{itemize}}}
+
+\color{black}
+\hspace{20}\textbf{Задача}: $2345_{(125)} = ?_{(5)}$
+
+\hspace{20}\textbf{Решение}: $2345_{(125)} = 002 003 004 010_{(5)} = 2003004010_{(5)}$
+\end{document}
