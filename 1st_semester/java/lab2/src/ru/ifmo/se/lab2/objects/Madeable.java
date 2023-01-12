@@ -27,6 +27,8 @@ public abstract class Madeable{
             return false;
         }
 
-        return o.material == this.material;
+        Madeable m = (Madeable) o;
+
+        return m.material == this.material;
     }
 } 

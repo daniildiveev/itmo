@@ -35,7 +35,10 @@ public class Flowers{
             return false;
         }
 
-        return o.growPlace == this.growPlace;
+        Flowers f = (Flowers) o;
+
+        return f.growPlace == this.growPlace;
+    }
 
     @Override
     public String toString(){
