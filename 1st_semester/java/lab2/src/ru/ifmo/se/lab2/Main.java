@@ -32,7 +32,7 @@ class Main {
         output = output + z.getTheIdea(ball) + z.getTheIdea(boots) + z.tell(b);
         output = output + b.gather(juice);
         juice.specifyType(JuiceParams.RUBBER);
-        output = juice.getType() + person.carry(juice);
+        output = output + juice.getType() + person.carry(juice);
         output = output + z.prepare(barrel);
         output = output + nz.gather(juice);
         output = output + nz.meet(g, Place.STREET) + g.playPrigalki(b, 2); 
