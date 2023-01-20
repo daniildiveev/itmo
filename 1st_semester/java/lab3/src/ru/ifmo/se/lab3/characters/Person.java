@@ -1,5 +1,5 @@
 package ru.ifmo.se.lab3.characters;
-import ru.ifmo.se.lab3.objects.Carriable;
+import ru.ifmo.se.lab3.objects.*;
 
 public class Person{ 
     public String carry(Carriable с){
@@ -23,5 +23,9 @@ public class Person{
             return false;
         }
         return true;
+    }
+
+    public String like(Likeable l){
+        return l.toString() + " понравилось" + toString();
     }
 }
