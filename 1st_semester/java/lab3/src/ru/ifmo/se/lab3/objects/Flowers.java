@@ -4,14 +4,11 @@ import ru.ifmo.se.lab3.enums.Place;
 public class Flowers{
     private String growPlace;
 
-    class Stem{
-        @Override
-        public String toString(){
+    public static class Stem{
+        public static String string(){
             return " стебель";
         }
-    } // non-static nested class
-
-    final Stem stem = new Stem(); 
+    } //static nested class
 
     public void grow(Place p){
         switch (p){
@@ -50,6 +47,6 @@ public class Flowers{
     }
 
     public String makeACut(){
-        return " сделать надрез" + stem.toString();
+        return " сделать надрез" + Stem.string();
     }
 }
