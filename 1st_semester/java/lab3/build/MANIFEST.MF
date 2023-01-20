@@ -1,0 +1,2 @@
+Main-Class: ru.ifmo.se.lab3.Main
+Class-Path: ../src/
