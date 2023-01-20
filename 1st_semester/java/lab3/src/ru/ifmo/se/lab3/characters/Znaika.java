@@ -2,7 +2,7 @@ package ru.ifmo.se.lab3.characters;
 import ru.ifmo.se.lab3.enums.PartOfDay;
 import ru.ifmo.se.lab3.objects.*;
 
-public class Znaika extends Person{
+public class Znaika extends Person implements PersonWhoCanSpeak{
     public class Barrel{
         public final String SIZE = " большая";
 
@@ -44,10 +44,6 @@ public class Znaika extends Person{
 
     public String tell(Person p){
         return toString() + " велел" + p.toString();
-    }
-
-    public String say(){
-        return toString() + " сказал что";
     }
 
     public String thinkOver(){
