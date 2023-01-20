@@ -10,7 +10,7 @@ public class Znaika extends Person{
         public String toString(){
             return SIZE + " бочка";
         }
-    }
+    } //non-static nested class
 
     private Barrel barrel;
 
