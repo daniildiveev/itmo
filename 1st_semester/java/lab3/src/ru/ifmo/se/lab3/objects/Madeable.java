@@ -15,6 +15,10 @@ public abstract class Madeable{
         return " можно сделать" + toString();
     }
 
+    public String howToMake(){
+        return " как сделать" + toString();
+    }
+
     @Override
     public int hashCode(){
         String stringToHash = this.getClass().getSimpleName() + this.material;
