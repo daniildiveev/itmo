@@ -9,7 +9,7 @@ public class Flowers{
         public String toString(){
             return " стебель";
         }
-    }
+    } // non-static nested class
 
     final Stem stem = new Stem(); 
 
