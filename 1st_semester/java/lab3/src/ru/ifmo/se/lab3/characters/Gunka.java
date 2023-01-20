@@ -1,6 +1,6 @@
 package ru.ifmo.se.lab3.characters;
 
-public class Gunka extends Person{
+public class Gunka extends PersonWithEmotions{
     @Override
     public String toString(){
         return " Гунька";

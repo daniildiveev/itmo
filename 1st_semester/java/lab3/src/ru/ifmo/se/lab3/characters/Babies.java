@@ -1,7 +1,7 @@
 package ru.ifmo.se.lab3.characters;
 import ru.ifmo.se.lab3.objects.Gatherable;
 
-public class Babies extends Person{
+public class Babies extends PersonWithEmotions{
     @Override
     public String toString(){
         return " малышки";
