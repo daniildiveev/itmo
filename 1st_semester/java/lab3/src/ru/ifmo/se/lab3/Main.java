@@ -41,6 +41,7 @@ class Main {
         String output = person.like(i) + s.neverFly(aerostat);
         b.expressEmotion(Emotions.INTERESTING);
         output = output + b.getEmotion() + nobody.notToKnow() + aerostat.howToMake();
+        output = output + z.say() + z.thinkOver() + z.explain();
         output = output + z.think(PartOfDay.NONE, 0) + z.think(PartOfDay.DAY, 3) + z.think(PartOfDay.NIGHT, 3);
         output = output + z.getTheIdea(sphere) + sphere.getMaterial();
         output = output + s.toString() + s.mine(rubber);
@@ -57,7 +58,9 @@ class Main {
         output = output + juice.getType() + person.carry(juice);
         output = output + z.prepareBarrel();
         output = output + nz.gather(juice);
-        output = output + nz.meet(g, Place.STREET) + g.playPrigalki(b, 2); 
+        output = output + nz.meet(g, Place.STREET) + g.playPrigalki(b, 2);
+        g.expressEmotion(Emotions.JEALOUS);
+        output = output + g.getEmotion() + g.toShowOff() + g.say();
 
         System.out.println(output);
     }
