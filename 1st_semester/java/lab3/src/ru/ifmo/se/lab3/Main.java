@@ -5,6 +5,17 @@ import ru.ifmo.se.lab3.enums.*;
 
 class Main {
     public static void main(String [] args){
+        class Aerostat extends Sphere implements Flyable{
+            public Aerostat(Mineable m){
+                super(m);
+            }
+
+            @Override
+            public String toString(){
+                return " Воздушный шар";
+            }
+        }
+
         Idea i = new Idea();
         Znaika z = new Znaika();
         NeZnaika nz = new NeZnaika();
@@ -19,8 +30,10 @@ class Main {
         Ball ball = new Ball(rubber);
         Person person = new Person();
         Barrel barrel = new Barrel();
+        Aerostat aerostat = new Aerostat(rubber);
 
-        String output = person.like(i);
+        String output = person.like(i) + s.neverFly(aerostat);
+        b.expressEmotions(Emotions.INTERESTING);
         output = output + z.think(PartOfDay.NONE, 0) + z.think(PartOfDay.DAY, 3) + z.think(PartOfDay.NIGHT, 3);
         output = output + z.getTheIdea(sphere) + sphere.getMaterial();
         output = output + s.toString() + s.mine(rubber);
