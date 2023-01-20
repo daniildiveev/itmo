@@ -1,5 +1,5 @@
 package ru.ifmo.se.lab3.characters;
-import ru.ifmo.se.lab3.objects.Mineable;
+import ru.ifmo.se.lab3.objects.*;
 
 public class Shorties extends Person{
     public String mine(Mineable m){
@@ -9,5 +9,9 @@ public class Shorties extends Person{
     @Override
     public String toString(){
         return " Коротышки";
+    }
+
+    public String neverFly(Flyable f){
+        return toString() + " никогда не летали на" + f.toString();
     }
 }
