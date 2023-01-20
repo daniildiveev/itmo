@@ -12,6 +12,6 @@ public class Shorties extends Person{
     }
 
     public String neverFly(Flyable f){
-        return toString() + " никогда не летали на" + f.toString();
+        return toString() + " никогда не летали на " + f.toString();
     }
 }
