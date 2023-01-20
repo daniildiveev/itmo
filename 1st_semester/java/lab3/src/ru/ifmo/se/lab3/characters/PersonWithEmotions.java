@@ -4,7 +4,7 @@ import ru.ifmo.se.lab3.enums.Emotions;
 public class PersonWithEmotions extends Person{
     private String emotion;
 
-    public String expressEmotion(Emotion e){
+    public void expressEmotion(Emotions e){
         switch (e){
             case INTERESTING -> this.emotion = " интересно";
             case JEALOUS -> this.emotion = " завидно";
