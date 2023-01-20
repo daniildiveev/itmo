@@ -28,4 +28,8 @@ public class Person{
     public String like(Likeable l){
         return l.toString() + " понравилось" + toString();
     }
+
+    public String notToKnow(){
+        return toString() + " не знал";
+    }
 }
