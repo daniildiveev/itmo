@@ -3,6 +3,21 @@ import ru.ifmo.se.lab3.enums.PartOfDay;
 import ru.ifmo.se.lab3.objects.*;
 
 public class Znaika extends Person{
+    public class Barrel{
+        public final String SIZE = " большая";
+
+        @Override
+        public String toString(){
+            return SIZE + " бочка";
+        }
+    }
+
+    private Barrel barrel;
+
+    public Znaika(){
+        this.barrel = new Barrel();
+    }
+
     public String think(PartOfDay p, int howLong){
         String output = toString() + " думал ";
 
@@ -31,7 +46,7 @@ public class Znaika extends Person{
         return toString() + " велел" + p.toString();
     }
 
-    public String prepare(Preparable p){
-        return toString() + " приготовил" + p.toString();
+    public String prepareBarrel(){
+        return toString() + " приготовил" + this.barrel.toString();
     }
 }
