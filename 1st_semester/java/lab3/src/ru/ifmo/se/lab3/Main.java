@@ -14,7 +14,7 @@ class Main {
             public String toString(){
                 return " Воздушный шар";
             }
-        }
+        } //local class
 
         Idea i = new Idea();
         Znaika z = new Znaika();
@@ -29,11 +29,18 @@ class Main {
         Juice juice = new Juice();
         Ball ball = new Ball(rubber);
         Person person = new Person();
-        Barrel barrel = new Barrel();
         Aerostat aerostat = new Aerostat(rubber);
 
+        Person nobody = new Person(){
+            @Override
+            public String toString(){
+                return " Никто";
+            }
+        }; //anonymous class
+
         String output = person.like(i) + s.neverFly(aerostat);
-        b.expressEmotions(Emotions.INTERESTING);
+        b.expressEmotion(Emotions.INTERESTING);
+        output = output + b.getEmotion() + nobody.notToKnow() + aerostat.howToMake();
         output = output + z.think(PartOfDay.NONE, 0) + z.think(PartOfDay.DAY, 3) + z.think(PartOfDay.NIGHT, 3);
         output = output + z.getTheIdea(sphere) + sphere.getMaterial();
         output = output + s.toString() + s.mine(rubber);
@@ -48,7 +55,7 @@ class Main {
         output = output + b.gather(juice);
         juice.specifyType(JuiceParams.RUBBER);
         output = output + juice.getType() + person.carry(juice);
-        output = output + z.prepare(barrel);
+        output = output + z.prepareBarrel();
         output = output + nz.gather(juice);
         output = output + nz.meet(g, Place.STREET) + g.playPrigalki(b, 2); 
 
