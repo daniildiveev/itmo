@@ -13,7 +13,7 @@ public class PersonWithEmotions extends Person{
     }
 
     public String getEmotion(){
-        return this.emotion;
+        return toString() + " это было очень" + this.emotion;
     }
 
     @Override
