@@ -46,6 +46,18 @@ public class Znaika extends Person{
         return toString() + " велел" + p.toString();
     }
 
+    public String say(){
+        return toString() + " сказал что";
+    }
+
+    public String thinkOver(){
+        return toString() + " обдумает";
+    }
+
+    public String explain(){
+        return toString() + " объяснит";
+    }
+
     public String prepareBarrel(){
         return toString() + " приготовил" + this.barrel.toString();
     }
