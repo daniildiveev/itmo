@@ -37,8 +37,4 @@ public class Person{
 
         return idea.toString() + " понравилось" + toString();
     }
-
-    public String notToKnow(){
-        return toString() + " не знал";
-    }
 }
