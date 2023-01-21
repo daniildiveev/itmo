@@ -1,4 +1,5 @@
 package ru.ifmo.se.lab3.characters;
+import ru.ifmo.se.lab3.exceptions.AmountOfPlayersException;
 
 public class Gunka extends PersonWithEmotions implements PersonWhoCanSpeak{
     @Override
@@ -6,7 +7,10 @@ public class Gunka extends PersonWithEmotions implements PersonWhoCanSpeak{
         return " Гунька";
     }
 
-    public String playPrigalki(Person p, int amountOfPlayers){
+    public String playPrigalki(Person p, int amountOfPlayers) throws AmountOfPlayersException{
+        if (amountOfPlayers < 1){
+            throw new AmountOfPlayersException("not enough players!");
+        }
         return toString() + " играть в прыгалки с " + Integer.toString(amountOfPlayers) + p.toString();
     }
 
