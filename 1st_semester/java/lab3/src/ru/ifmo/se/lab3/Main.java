@@ -16,7 +16,6 @@ class Main {
             }
         } //local class
 
-        Idea i = new Idea();
         Znaika z = new Znaika();
         NeZnaika nz = new NeZnaika();
         Shorties s = new Shorties();
@@ -38,9 +37,9 @@ class Main {
             }
         }; //anonymous class
 
-        String output = person.like(i) + s.neverFly(aerostat);
+        String output = person.likeTheIdea() + s.neverFly(aerostat);
         b.expressEmotion(Emotions.INTERESTING);
-        output = output + b.getEmotion() + nobody.notToKnow() + aerostat.howToMake();
+        output = output + b.getEmotion() + aerostat.nobodyKnewHowToMake();
         output = output + z.say() + z.thinkOver() + z.explain();
         output = output + z.think(PartOfDay.NONE, 0) + z.think(PartOfDay.DAY, 3) + z.think(PartOfDay.NIGHT, 3);
         output = output + z.getTheIdea(sphere) + sphere.getMaterial();
