@@ -1,6 +1,6 @@
 package ru.ifmo.se.lab3.objects;
 
-class Aerostat extends Sphere implements Flyable{
+public class Aerostat extends Sphere implements Flyable{
     public Aerostat(Mineable m){
         super(m);
     }
