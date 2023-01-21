@@ -2,6 +2,7 @@ package ru.ifmo.se.lab3;
 import ru.ifmo.se.lab3.characters.*;
 import ru.ifmo.se.lab3.objects.*;
 import ru.ifmo.se.lab3.enums.*;
+import ru.ifmo.se.lab3.exceptions.*;
 
 class Main {
     public static void main(String [] args){
@@ -50,7 +51,15 @@ class Main {
         output = output + juice.getType() + person.carry(juice);
         output = output + z.prepareBarrel();
         output = output + nz.gather(juice);
-        output = output + nz.meet(g, Place.STREET) + g.playPrigalki(b, 2);
+        output = output + nz.meet(g, Place.STREET);
+        
+        try{
+            output = output + g.playPrigalki(b, 2);
+        }
+        catch (AmountOfPlayersException e){
+            System.out.println(e.getMessage());
+        }
+
         g.expressEmotion(Emotions.JEALOUS);
         output = output + g.getEmotion() + g.toShowOff() + g.say();
 
