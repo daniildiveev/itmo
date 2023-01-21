@@ -30,13 +30,6 @@ class Main {
         Person person = new Person();
         Aerostat aerostat = new Aerostat(rubber);
 
-        Person nobody = new Person(){
-            @Override
-            public String toString(){
-                return " Никто";
-            }
-        }; //anonymous class
-
         String output = person.likeTheIdea() + s.neverFly(aerostat);
         b.expressEmotion(Emotions.INTERESTING);
         output = output + b.getEmotion() + aerostat.nobodyKnewHowToMake();
