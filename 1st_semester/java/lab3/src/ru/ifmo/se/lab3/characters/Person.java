@@ -1,5 +1,5 @@
 package ru.ifmo.se.lab3.characters;
-import ru.ifmo.se.lab3.objects.*;
+import ru.ifmo.se.lab3.objects.Carriable;
 
 public class Person{ 
     public String carry(Carriable с){
