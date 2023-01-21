@@ -1,4 +1,5 @@
 package ru.ifmo.se.lab3.objects;
+import ru.ifmo.se.lab3.characters.Person;
 
 public abstract class Madeable{
     private String material;
@@ -15,8 +16,15 @@ public abstract class Madeable{
         return " можно сделать" + toString();
     }
 
-    public String howToMake(){
-        return " как сделать" + toString();
+    public String nobodyKnewHowToMake(){
+        Person nobody = new Person(){
+            @Override
+            public String toString(){
+                return " Никто";
+            }
+        }; //anonymous class
+
+        return nobody.toString() + " не знал как сделать" + toString();
     }
 
     @Override
