@@ -6,17 +6,6 @@ import ru.ifmo.se.lab3.exceptions.*;
 
 class Main {
     public static void main(String [] args){
-        class Aerostat extends Sphere implements Flyable{
-            public Aerostat(Mineable m){
-                super(m);
-            }
-
-            @Override
-            public String toString(){
-                return " Воздушный шар";
-            }
-        } //local class
-
         Znaika z = new Znaika();
         NeZnaika nz = new NeZnaika();
         Shorties s = new Shorties();
