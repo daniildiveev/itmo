@@ -31,7 +31,7 @@ public class Person{
             public String toString(){
                 return " Затея";
             }   
-        };
+        }; // local class
 
         Idea idea = new Idea();
 
