@@ -1,8 +1,9 @@
 package ru.ifmo.se.lab3.characters;
 import ru.ifmo.se.lab3.enums.Emotions;
+import ru.ifmo.se.lab3.exceptions.NoEmotionException;
 
 public class PersonWithEmotions extends Person{
-    private String emotion;
+    private String emotion = null;
 
     public void expressEmotion(Emotions e){
         switch (e){
@@ -12,7 +13,11 @@ public class PersonWithEmotions extends Person{
         }
     }
 
-    public String getEmotion(){
+    public String getEmotion() throws NoEmotionException{
+        if (this.emotion == null){
+            throw new NoEmotionException("emotion hasn't been specified yet!");
+        }
+
         return toString() + " это было очень" + this.emotion;
     }
 
@@ -32,4 +37,4 @@ public class PersonWithEmotions extends Person{
         String stringToHash = this.getClass().getSimpleName() + this.emotion;
         return stringToHash.hashCode();
     }
-}
+}   
