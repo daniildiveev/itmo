@@ -25,8 +25,17 @@ public class Person{
         return true;
     }
 
-    public String like(Likeable l){
-        return l.toString() + " понравилось" + toString();
+    public String likeTheIdea(){
+        class Idea{
+            @Override
+            public String toString(){
+                return " Затея";
+            }   
+        };
+
+        Idea idea = new Idea();
+
+        return idea.toString() + " понравилось" + toString();
     }
 
     public String notToKnow(){
