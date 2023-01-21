@@ -4,3 +4,5 @@ javac -cp ".:../src" -d classes/ ../src/ru/ifmo/se/lab3/objects/*
 javac -cp ".:../src" -d classes/ ../src/ru/ifmo/se/lab3/characters/*
 
 jar cvmf MANIFEST.MF lab3.jar -C classes/ .
+
+java -jar lab3.jar
