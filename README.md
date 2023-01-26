@@ -1,17 +1,19 @@
-## Java:
-- [Introduction to Java (1st lab)](https://github.com/daniildiveev/itmo/tree/main/1st_semester/java/lab0)
-- [Pokemons (2nd lab)](https://github.com/daniildiveev/itmo/tree/main/1st_semester/java/lab1)
-- [Subject domains (3rd lab)](https://github.com/daniildiveev/itmo/tree/main/1st_semester/java/lab2)
-- [Subject domains upgrading(4th lab)](https://github.com/daniildiveev/itmo/tree/main/1st_semester/java/lab3)
+# Labs
 
-## CS Basics (Fundamentals of Professional Activity):
-- [Linux terminal basics (1st lab)](https://github.com/daniildiveev/itmo/tree/main/1st_semester/csbasics/lab0)
-- [Basic computer elaboration (2nd lab)](https://github.com/daniildiveev/itmo/tree/main/1st_semester/csbasics/lab1)
+## Java:
+1. [Introduction to Java](https://github.com/daniildiveev/itmo/tree/main/1st_semester/java/lab0)
+2. [Pokemons](https://github.com/daniildiveev/itmo/tree/main/1st_semester/java/lab1)
+3. [Subject domains](https://github.com/daniildiveev/itmo/tree/main/1st_semester/java/lab2)
+4. [Subject domains upgrading](https://github.com/daniildiveev/itmo/tree/main/1st_semester/java/lab3)
+
+## CS Basics:
+1. [Linux terminal basics](https://github.com/daniildiveev/itmo/tree/main/1st_semester/csbasics/lab0)
+2. [Basic computer elaboration](https://github.com/daniildiveev/itmo/tree/main/1st_semester/csbasics/lab1)
 
 ## Computer science:
-- [Numeral systems (1st lab)](https://github.com/daniildiveev/itmo/tree/main/1st_semester/cs/lab0)
-- [Noise-resitant code synthesis (2nd lab)](https://github.com/daniildiveev/itmo/tree/main/1st_semester/cs/lab1)
-- [Regular expressions (3rd lab)](https://github.com/daniildiveev/itmo/tree/main/1st_semester/cs/lab2)
-- [Parsing (4th lab)](https://github.com/daniildiveev/itmo/tree/main/1st_semester/cs/lab3)
-- [Tables (5th lab)](https://github.com/daniildiveev/itmo/tree/main/1st_semester/cs/lab4)
-- [LaTex (6th lab)](https://github.com/daniildiveev/itmo/tree/main/1st_semester/cs/lab5)
+1. [Numeral systems](https://github.com/daniildiveev/itmo/tree/main/1st_semester/cs/lab0)
+2. [Noise-resitant code synthesis](https://github.com/daniildiveev/itmo/tree/main/1st_semester/cs/lab1)
+3. [Regular expressions](https://github.com/daniildiveev/itmo/tree/main/1st_semester/cs/lab2)
+4. [Parsing](https://github.com/daniildiveev/itmo/tree/main/1st_semester/cs/lab3)
+5. [Tables](https://github.com/daniildiveev/itmo/tree/main/1st_semester/cs/lab4)
+6. [LaTex](https://github.com/daniildiveev/itmo/tree/main/1st_semester/cs/lab5)
