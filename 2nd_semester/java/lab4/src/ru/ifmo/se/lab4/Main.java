@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+import ru.ifmo.se.lab4.handlers.CommandHandler;
+
 class Main{
     public static void main(String [] args) throws IOException{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -16,7 +18,7 @@ class Main{
                 break;
             }
 
-            System.out.println(command);
+            CommandHandler.process(command);
         }
     }
 }
