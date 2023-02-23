@@ -1,4 +1,4 @@
-package ru.ifmo.se.lab4.handlers;
+package ru.ifmo.se.lab4.handler;
 
 public class IOHandler {
     public static void println(Object o){
