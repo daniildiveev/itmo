@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+import ru.ifmo.se.lab4.handler.IOHandler;
+
 public class Location{
     private Integer x; //Поле не может быть null
     private float y;
@@ -12,18 +14,23 @@ public class Location{
     private BufferedReader reader;
 
     public Location(){
-        System.out.println("Input now for parameters of Location class..");
-        BufferedReader this.reader = new BufferedReader(new InputStreamReader(System.in));
+        IOHandler.println("Input now for parameters of Location class..");
+        this.reader = new BufferedReader(new InputStreamReader(System.in));
+
+        inputX();
+        inputY();
+        inputZ();
+        inputName();
     }
 
     private void inputX(){
-        System.out.println("Please input the x parameter of Location");
+        IOHandler.println("Please input the x parameter of Location");
 
         try{
             String input = this.reader.readLine();
 
-            if(input == null){
-                System.out.println("x parameter cannot be null");
+            if(input.equals("")){
+                IOHandler.println("x parameter cannot be null");
                 inputX();
             }
 
@@ -31,8 +38,59 @@ public class Location{
         }
 
         catch (Exception e){
-            System.out.println("Invalid x value, please try again...");
+            IOHandler.println("Invalid x value, please try again...");
             inputX();
+        }
+    }
+
+    private void inputY(){
+        IOHandler.println("Please input the y parameter of Location");
+
+        try{
+            String input = this.reader.readLine();
+
+            if (!input.equals("")){
+                this.z = Double.parseDouble(input);
+            }
+        }
+
+        catch (Exception e){
+            IOHandler.println("Invalid y value, please try again...");
+            inputY();
+        }
+    }
+
+    private void inputZ(){
+        IOHandler.println("Please input the z parameter of Location");
+
+        try{
+            String input = this.reader.readLine();
+
+            if (!input.equals("")){
+                this.z = Double.parseDouble(input);
+            }
+        }
+
+        catch (Exception e){
+            IOHandler.println("Invalid z value, please try again...");
+            inputZ();
+        }
+    }
+
+    private void inputName(){
+        IOHandler.println("Please input the name parameter of Location");
+
+        try{
+            String input = this.reader.readLine();
+
+            if (input.equals("") || input == null){
+                this.name = input;
+            }
+        }
+
+        catch (Exception e){
+            IOHandler.println("Invalid name value, please try again...");
+            inputName();
         }
     }
 }
