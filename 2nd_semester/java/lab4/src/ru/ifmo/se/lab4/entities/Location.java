@@ -44,7 +44,7 @@ public class Location{
     }
 
     private void inputY(){
-        IOHandler.println("Please input the y parameter of Location");
+        IOHandler.print("Please input the y parameter of Location");
 
         try{
             String input = this.reader.readLine();
@@ -61,7 +61,7 @@ public class Location{
     }
 
     private void inputZ(){
-        IOHandler.println("Please input the z parameter of Location");
+        IOHandler.print("Please input the z parameter of Location");
 
         try{
             String input = this.reader.readLine();
@@ -78,7 +78,7 @@ public class Location{
     }
 
     private void inputName(){
-        IOHandler.println("Please input the name parameter of Location");
+        IOHandler.print("Please input the name parameter of Location");
 
         try{
             String input = this.reader.readLine();
