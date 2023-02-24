@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 import ru.ifmo.se.lab4.handler.IOHandler;
+import ru.ifmo.se.lab4.exceptions.InvalidParameterException;
 
 public class Coordinates {
     private Long x; //Поле не может быть null
@@ -26,8 +27,7 @@ public class Coordinates {
             String input = this.reader.readLine();
 
             if(input.equals("")){
-                IOHandler.println("x parameter cannot be null");
-                inputX();
+                throw new InvalidParameterException("x parameter cannot be null");
             }
 
             if (this.x == null){
@@ -36,6 +36,7 @@ public class Coordinates {
         }
 
         catch (Exception e){
+            IOHandler.println(e.getMessage());
             IOHandler.println("Invalid x value, please try again...");
             inputX();
         }
@@ -48,8 +49,7 @@ public class Coordinates {
             String input = this.reader.readLine();
 
             if(input.equals("") || Integer.parseInt(input) >= 781){
-                IOHandler.println("y parameter cannot be null or greater than 781");
-                inputY();
+                throw new InvalidParameterException("y parameter cannot be null or greater than 781");
             }
 
             if (this.y == null){
@@ -58,6 +58,7 @@ public class Coordinates {
         }
 
         catch (Exception e){
+            IOHandler.println(e.getMessage());
             IOHandler.println("Invalid y value, please try again...");
             inputY();
         }
