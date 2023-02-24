@@ -9,8 +9,8 @@ import ru.ifmo.se.lab4.exceptions.InvalidParameterException;
 
 public class Location{
     private Integer x; //Поле не может быть null
-    private float y;
-    private double z;
+    private Float y;
+    private Double z;
     private String name; //Строка не может быть пустой, Поле не может быть null
     private BufferedReader reader;
 
@@ -100,5 +100,21 @@ public class Location{
             IOHandler.println("Invalid name value, please try again...");
             inputName();
         }
+    }
+
+    public String toXml(){
+        String xmlRepresentation = "\t\t\t<x>" + Integer.toString(this.x) + "</x>\n";
+
+        if (this.y != null){
+            xmlRepresentation += "\t\t\t<y>" + Float.toString(this.y) + "</y>\n";
+        }
+
+        if (this.x != null){
+            xmlRepresentation += "\t\t\t<z>" + Double.toString(this.z) + "</z>\n";
+        }
+
+        xmlRepresentation += "\t\t\t<name>" + this.name + "</name>\n";
+        
+        return xmlRepresentation;
     }
 }

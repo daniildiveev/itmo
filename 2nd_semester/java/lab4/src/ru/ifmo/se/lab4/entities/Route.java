@@ -79,4 +79,21 @@ public class Route implements Comparable<Route>{
     public int compareTo(Route r){
         return (int) (r.distance - this.distance);        
     }
+
+    public int getId(){
+        return this.id;
+    }
+
+    public String toXml(){
+        String xmlRepresentation = "\t<route id=\"" + Integer.toString(this.id) + "\"> \n";
+        xmlRepresentation += "\t\t<name>" + this.name + "\t\t</name>\n";
+        xmlRepresentation += this.coordinates.toXml();
+        xmlRepresentation += "\t\t<creationDate>" + this.creationDate.toString() + "\t\t</creationDate>";
+        xmlRepresentation += "\t\t<from>\n" + this.from.toXml() + "\t\t</from>\n";
+        xmlRepresentation += "\t\t<to>\n" + this.to.toXml() + "\t\t</to>\n";
+        xmlRepresentation += "\t\t<distance>" + Long.toString(this.distance) + "</distance>\n";
+        xmlRepresentation += "\t</route>\n";
+
+        return xmlRepresentation;
+    }
 }

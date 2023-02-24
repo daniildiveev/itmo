@@ -21,7 +21,7 @@ public class Coordinates {
     }
 
     private void inputX(){
-        IOHandler.print("Please input the x parameter of Location");
+        IOHandler.print("Please input the x parameter of Coordinates >>");
 
         try{
             String input = this.reader.readLine();
@@ -43,7 +43,7 @@ public class Coordinates {
     }
 
     private void inputY(){
-        IOHandler.print("Please input the y parameter of Location");
+        IOHandler.print("Please input the y parameter of Coordinates >>");
 
         try{
             String input = this.reader.readLine();
@@ -62,5 +62,14 @@ public class Coordinates {
             IOHandler.println("Invalid y value, please try again...");
             inputY();
         }
+    }
+
+    public String toXml(){
+        String xmlRepresentation = "\t\t<coordinates>\n";
+        xmlRepresentation += "\t\t\t<x>" + Long.toString(this.x) + "</x>\n";
+        xmlRepresentation += "\t\t\t<y>" + Integer.toString(this.y) + "</y>\n";
+        xmlRepresentation += "\t\t</coordinates>\n";
+
+        return xmlRepresentation;
     }
 }
