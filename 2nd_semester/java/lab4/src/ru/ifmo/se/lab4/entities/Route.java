@@ -88,7 +88,7 @@ public class Route implements Comparable<Route>{
         String xmlRepresentation = "\t<route id=\"" + Integer.toString(this.id) + "\"> \n";
         xmlRepresentation += "\t\t<name>" + this.name + "\t\t</name>\n";
         xmlRepresentation += this.coordinates.toXml();
-        xmlRepresentation += "\t\t<creationDate>" + this.creationDate.toString() + "\t\t</creationDate>";
+        xmlRepresentation += "\t\t<creationDate>\n" + this.creationDate.toString() + "\t\t</creationDate>\n";
         xmlRepresentation += "\t\t<from>\n" + this.from.toXml() + "\t\t</from>\n";
         xmlRepresentation += "\t\t<to>\n" + this.to.toXml() + "\t\t</to>\n";
         xmlRepresentation += "\t\t<distance>" + Long.toString(this.distance) + "</distance>\n";
