@@ -24,7 +24,7 @@ public class Location{
     }
 
     private void inputX(){
-        IOHandler.println("Please input the x parameter of Location");
+        IOHandler.print("Please input the x parameter of Location >>");
 
         try{
             String input = this.reader.readLine();
@@ -34,7 +34,9 @@ public class Location{
                 inputX();
             }
 
-            this.x = Integer.parseInt(input);
+            if (this.x == null){
+                this.x = Integer.parseInt(input);
+            }
         }
 
         catch (Exception e){
@@ -44,7 +46,7 @@ public class Location{
     }
 
     private void inputY(){
-        IOHandler.print("Please input the y parameter of Location");
+        IOHandler.print("Please input the y parameter of Location >>");
 
         try{
             String input = this.reader.readLine();
@@ -61,7 +63,7 @@ public class Location{
     }
 
     private void inputZ(){
-        IOHandler.print("Please input the z parameter of Location");
+        IOHandler.print("Please input the z parameter of Location >>");
 
         try{
             String input = this.reader.readLine();
@@ -78,7 +80,7 @@ public class Location{
     }
 
     private void inputName(){
-        IOHandler.print("Please input the name parameter of Location");
+        IOHandler.print("Please input the name parameter of Location >>");
 
         try{
             String input = this.reader.readLine();
