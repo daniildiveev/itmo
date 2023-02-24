@@ -86,6 +86,11 @@ public class Location{
             String input = this.reader.readLine();
 
             if (input.equals("") || input == null){
+                IOHandler.println("name parameter cannot be null");
+                inputName();
+            }
+
+            if (this.name == null){
                 this.name = input;
             }
         }
