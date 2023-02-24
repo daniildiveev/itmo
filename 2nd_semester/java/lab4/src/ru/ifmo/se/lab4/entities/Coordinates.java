@@ -30,7 +30,9 @@ public class Coordinates {
                 inputX();
             }
 
-            this.x = Long.parseLong(input);
+            if (this.x == null){
+                this.x = Long.parseLong(input);
+            }
         }
 
         catch (Exception e){
@@ -47,15 +49,17 @@ public class Coordinates {
 
             if(input.equals("") || Integer.parseInt(input) >= 781){
                 IOHandler.println("y parameter cannot be null or greater than 781");
-                inputX();
+                inputY();
             }
 
-            this.x = Long.parseLong(input);
+            if (this.y == null){
+                this.y = Integer.parseInt(input);
+            }
         }
 
         catch (Exception e){
             IOHandler.println("Invalid y value, please try again...");
-            inputX();
+            inputY();
         }
     }
 }
