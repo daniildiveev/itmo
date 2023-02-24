@@ -77,7 +77,11 @@ public class Route implements Comparable<Route>{
     }
 
     public int compareTo(Route r){
-        return (int) (r.distance - this.distance);        
+        return (int) (r.getDistance() - this.distance);        
+    }
+
+    public long getDistance(){
+        return this.distance;
     }
 
     public int getId(){
