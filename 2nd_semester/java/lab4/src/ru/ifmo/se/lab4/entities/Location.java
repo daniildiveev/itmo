@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 import ru.ifmo.se.lab4.handler.IOHandler;
+import ru.ifmo.se.lab4.exceptions.InvalidParameterException;
 
 public class Location{
     private Integer x; //Поле не может быть null
@@ -30,8 +31,7 @@ public class Location{
             String input = this.reader.readLine();
 
             if(input.equals("")){
-                IOHandler.println("x parameter cannot be null");
-                inputX();
+                throw new InvalidParameterException("x cannot be null");
             }
 
             if (this.x == null){
@@ -40,6 +40,7 @@ public class Location{
         }
 
         catch (Exception e){
+            IOHandler.println(e.getMessage());
             IOHandler.println("Invalid x value, please try again...");
             inputX();
         }
@@ -86,8 +87,7 @@ public class Location{
             String input = this.reader.readLine();
 
             if (input.equals("") || input == null){
-                IOHandler.println("name parameter cannot be null");
-                inputName();
+                throw new InvalidParameterException("name cannot be null");
             }
 
             if (this.name == null){
@@ -96,6 +96,7 @@ public class Location{
         }
 
         catch (Exception e){
+            IOHandler.println(e.getMessage());
             IOHandler.println("Invalid name value, please try again...");
             inputName();
         }
