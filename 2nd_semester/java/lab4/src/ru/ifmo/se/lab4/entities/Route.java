@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.time.LocalDateTime;
 
-import ru.ifmo.se.lab4.exceptions.*;
+import ru.ifmo.se.lab4.exceptions.InvalidParameterException;
 import ru.ifmo.se.lab4.handler.IOHandler;
 
 public class Route implements Comparable<Route>{
@@ -19,7 +19,7 @@ public class Route implements Comparable<Route>{
     private long distance; //Значение поля должно быть больше 1
     private BufferedReader reader;
 
-    public Route() throws Exception{
+    public Route(){
         IOHandler.println("Input now parameters for Route class..");
         this.reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -43,7 +43,7 @@ public class Route implements Comparable<Route>{
             String input = this.reader.readLine();
 
             if (input.equals("") || input == null){
-                throw new InvalidNameException("name parameter cannot be null");
+                throw new InvalidParameterException("name parameter cannot be null");
             }
 
             if (this.name == null){
@@ -65,7 +65,7 @@ public class Route implements Comparable<Route>{
             String input = this.reader.readLine();
 
             if (Long.parseLong(input) <= 1){
-                throw new InvalidDistanceException("distance must be greater than 1");
+                throw new InvalidParameterException("distance must be greater than 1");
             }
         }
 
