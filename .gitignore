@@ -5,3 +5,5 @@
 */**/*.class
 .vscode
 */**/__pycache__
+/.idea
+*/**/*.iml
