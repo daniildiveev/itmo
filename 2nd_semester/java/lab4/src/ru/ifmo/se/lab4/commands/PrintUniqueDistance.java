@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Set;
 
-public class PrintUniqueDistance {
+public class PrintUniqueDistance implements Command{
     public String getName(){
         return "print_unique_distance";
     }
