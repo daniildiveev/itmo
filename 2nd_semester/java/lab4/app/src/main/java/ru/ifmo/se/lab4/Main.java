@@ -9,17 +9,16 @@ import java.io.InputStreamReader;
 import java.util.Set;
 
 class Main{
-    public static void main(String [] args) throws IOException{
+    public static void main(String [] args) throws Exception{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        CollectionHandler collectionHandler = new CollectionHandler();
 
         while (true){
             System.out.print("Shell >>");
             String command = reader.readLine();
-            System.out.print("Your command: " + command);
-
             command = command.strip();
 
-            CommandHandler.process(command);
+            CommandHandler.process(command, collectionHandler);
         }
     }
 }
