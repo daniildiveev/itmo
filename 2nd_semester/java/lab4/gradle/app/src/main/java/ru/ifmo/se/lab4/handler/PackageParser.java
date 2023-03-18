@@ -8,22 +8,23 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class PackageParser {
-    public static Set<Class> parsePackage(String packageName) {
+    public static Set<Class> parsePackage(String packageName, String commandInterfaceName) {
         Reflections reflections = new Reflections(packageName, new SubTypesScanner(false ));
 
         return reflections.getSubTypesOf(Object.class)
                 .stream()
+                .filter(klass -> !klass.getSimpleName().equalsIgnoreCase(commandInterfaceName))
                 .collect(Collectors.toSet());
     }
 
     public static Command getCommand(String packageName, String commandName, String commandInterfaceName){
-        Set<Class> classes = parsePackage(packageName);
+        Set<Class> classes = parsePackage(packageName, commandInterfaceName);
 
         for (Class klass: classes){
             try {
                 Command command = (Command) klass.getConstructor().newInstance();
 
-                if (!klass.getSimpleName().equalsIgnoreCase(commandInterfaceName) & command.getName().equals(commandName)) {
+                if (command.getName().equals(commandName)) {
                     return command;
                 }
             }
