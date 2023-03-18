@@ -20,6 +20,19 @@ public class Coordinates {
         inputY();
     }
 
+    public Coordinates(Long x, Integer y) throws InvalidParameterException{
+        if (x == null){
+            throw new InvalidParameterException("x parameter cannot be null");
+        }
+
+        if (y == null || y >= 781) {
+            throw new InvalidParameterException("x parameter cannot be null");
+        }
+
+        this.x = x;
+        this.y = y;
+    }
+
     private void inputX(){
         IOHandler.print("Please input the x parameter of Coordinates >>");
 
@@ -30,7 +43,7 @@ public class Coordinates {
                 throw new InvalidParameterException("x parameter cannot be null");
             }
 
-            if (this.x == null){
+            if (this.x != null){
                 this.x = Long.parseLong(input);
             }
         }
@@ -52,7 +65,7 @@ public class Coordinates {
                 throw new InvalidParameterException("y parameter cannot be null or greater than 781");
             }
 
-            if (this.y == null){
+            if (this.y != null){
                 this.y = Integer.parseInt(input);
             }
         }
@@ -66,8 +79,8 @@ public class Coordinates {
 
     public String toXml(){
         String xmlRepresentation = "\t\t<coordinates>\n";
-        xmlRepresentation += "\t\t\t<x>" + Long.toString(this.x) + "</x>\n";
-        xmlRepresentation += "\t\t\t<y>" + Integer.toString(this.y) + "</y>\n";
+        xmlRepresentation += "\t\t\t<x>" + this.x + "</x>\n";
+        xmlRepresentation += "\t\t\t<y>" + this.y + "</y>\n";
         xmlRepresentation += "\t\t</coordinates>\n";
 
         return xmlRepresentation;
