@@ -4,6 +4,7 @@ import java.util.PriorityQueue;
 import java.util.Set;
 
 import ru.ifmo.se.lab4.entities.Route;
+import ru.ifmo.se.lab4.handler.IOHandler;
 import ru.ifmo.se.lab4.handler.PackageParser;
 
 public class Help implements Command{
@@ -23,10 +24,11 @@ public class Help implements Command{
                 Command command = (Command) klass.getConstructor().newInstance();
                 output +=  command.getDescription();
             }
-            catch (Exception e){
+            catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-
         }
+
+        IOHandler.println(output);
     }
 }
