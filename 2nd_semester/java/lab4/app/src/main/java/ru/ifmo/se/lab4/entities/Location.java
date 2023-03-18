@@ -24,6 +24,22 @@ public class Location{
         inputName();
     }
 
+    public Location(Integer x, Float y, Double z, String name) throws InvalidParameterException{
+        if (x == null){
+            throw new InvalidParameterException("x cannot be null");
+        }
+
+        if (name == null){
+            throw new InvalidParameterException("name cannot be null");
+        }
+
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.name = name;
+
+    }
+
     private void inputX(){
         IOHandler.print("Please input the x parameter of Location >>");
 
