@@ -5,6 +5,7 @@
 */**/*.class
 .vscode
 */**/__pycache__
-/.idea
+*/**/.idea
+.idea
 */**/*.iml
 */**/*.xml
