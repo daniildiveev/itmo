@@ -26,7 +26,7 @@ public class Coordinates {
         }
 
         if (y == null || y >= 781) {
-            throw new InvalidParameterException("x parameter cannot be null");
+            throw new InvalidParameterException("y parameter cannot be null");
         }
 
         this.x = x;
