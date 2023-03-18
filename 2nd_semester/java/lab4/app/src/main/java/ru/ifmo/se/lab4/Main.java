@@ -1,10 +1,12 @@
 package ru.ifmo.se.lab4;
 
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import ru.ifmo.se.lab4.commands.Command;
+import ru.ifmo.se.lab4.handler.*;
 
-import ru.ifmo.se.lab4.handler.CommandHandler;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Set;
 
 class Main{
     public static void main(String [] args) throws IOException{
@@ -13,12 +15,9 @@ class Main{
         while (true){
             System.out.print("Shell >>");
             String command = reader.readLine();
+            System.out.print("Your command: " + command);
 
             command = command.strip();
-
-            if (command.equals("exit")){
-                break;
-            }
 
             CommandHandler.process(command);
         }
