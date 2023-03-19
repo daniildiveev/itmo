@@ -54,7 +54,7 @@ public class CollectionHandler {
         return output;
     }
 
-    void updateCollection(PriorityQueue<Route> collection){
+    public void updateCollection(PriorityQueue<Route> collection){
         this.collection = collection;
     }
     public PriorityQueue<Route> getCollection() {
