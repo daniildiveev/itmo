@@ -112,7 +112,8 @@ public class Route implements Comparable<Route>{
 
         for (String el : new String[] {"from", "to"}){
             Element xmlElement = (Element) doc.getDocumentElement()
-                                              .getElementsByTagName(el);
+                                              .getElementsByTagName(el)
+                                              .item(0);
 
             xValue = xmlElement.getElementsByTagName("x").item(0).getTextContent();
             yValue = xmlElement.getElementsByTagName("y").item(0).getTextContent();
@@ -164,7 +165,8 @@ public class Route implements Comparable<Route>{
 
         //Parsing Coordinates object
         Element xmlElement = (Element) doc.getDocumentElement()
-                .getElementsByTagName("coordinates");
+                .getElementsByTagName("coordinates")
+                .item(0);
 
         xValue = xmlElement.getElementsByTagName("x").item(0).getTextContent();
         yValue = xmlElement.getElementsByTagName("y").item(0).getTextContent();
