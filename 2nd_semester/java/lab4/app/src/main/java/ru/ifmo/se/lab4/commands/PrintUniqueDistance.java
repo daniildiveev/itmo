@@ -13,7 +13,7 @@ public class PrintUniqueDistance implements Command{
     }
 
     public String getDescription(){
-        return getName() + "           -- show unique distances";
+        return getName() + "           -- show unique distances\n";
     }
 
     public void execute(PriorityQueue<Route> collection, String [] args){
