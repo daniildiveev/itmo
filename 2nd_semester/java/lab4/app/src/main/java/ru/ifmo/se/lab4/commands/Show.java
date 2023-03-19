@@ -13,7 +13,7 @@ public class Show implements Command{
 
     @Override
     public String getDescription() {
-        return "                            -- show all elements of collection in String representation\n";
+        return getName() + "                            -- show all elements of collection in String representation\n";
     }
 
     @Override

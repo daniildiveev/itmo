@@ -12,7 +12,7 @@ public class Clear implements Command{
 
     @Override
     public String getDescription() {
-        return "                           -- clear the whole collection\n";
+        return getName() + "                           -- clear the whole collection\n";
     }
 
     @Override
