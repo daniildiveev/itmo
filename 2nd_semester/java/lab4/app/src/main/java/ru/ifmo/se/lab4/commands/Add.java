@@ -9,7 +9,7 @@ public class Add implements Command{
     }
 
     public String getDescription(){
-        return getName() + "                   -- add new element to collection\n";
+        return getName() + "                             -- add new element to collection\n";
     }
 
     public void execute(PriorityQueue<Route> collection, String[] args){
