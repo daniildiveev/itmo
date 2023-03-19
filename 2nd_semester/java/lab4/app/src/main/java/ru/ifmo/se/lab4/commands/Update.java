@@ -14,7 +14,7 @@ public class Update implements Command{
 
     @Override
     public String getDescription() {
-        return " id {element}             -- update collection element with respect to id\\n";
+        return getName() + " id {element}             -- update collection element with respect to id\n";
     }
 
     @Override
