@@ -46,8 +46,8 @@ public class CollectionHandler {
     }
 
     public String info(){
-        String output = "Collection " + collection.getClass().getSimpleName();
-        output += " containing " + collection.size() + " of object Route. \n";
+        String output = "Collection " + this.collection.getClass().getSimpleName();
+        output += " containing " + this.collection.size() + " of object Route. \n";
         output += "Collection created on " + dateCreated + ".\n";
         output += "Collection stored at " + pathToCollection + ".\n";
 
@@ -58,6 +58,6 @@ public class CollectionHandler {
         this.collection = collection;
     }
     public PriorityQueue<Route> getCollection() {
-        return collection;
+        return this.collection;
     }
 }
