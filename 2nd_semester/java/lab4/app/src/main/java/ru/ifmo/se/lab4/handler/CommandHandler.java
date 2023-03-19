@@ -24,9 +24,7 @@ public class CommandHandler{
             if (command == null) {
                 IOHandler.println("No such command: " + commandName);
             } else {
-                PriorityQueue<Route> collection = collectionHandler.getCollection();
-                command.execute(collection, args);
-                collectionHandler.updateCollection(collection);
+                command.execute(collectionHandler, args);
             }
         }
     }
