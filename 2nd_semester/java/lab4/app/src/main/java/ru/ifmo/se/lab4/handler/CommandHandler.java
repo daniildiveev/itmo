@@ -11,7 +11,7 @@ public class CommandHandler{
         String commandName = args[0].strip();
 
         if (commandName.equals("exit")) {
-            System.exit(1);
+            System.exit(0);
         }
 
         else if (commandName.equals("info")){
