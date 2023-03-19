@@ -1,6 +1,7 @@
 package ru.ifmo.se.lab4.commands;
 
 import ru.ifmo.se.lab4.entities.Route;
+import ru.ifmo.se.lab4.handler.CollectionHandler;
 
 import java.util.PriorityQueue;
 
@@ -16,7 +17,7 @@ public class Clear implements Command{
     }
 
     @Override
-    public void execute(PriorityQueue<Route> collection, String[] args) {
-        collection.clear();
+    public void execute(CollectionHandler collectionHandler, String[] args){
+        collectionHandler.updateCollection(new PriorityQueue<Route>());
     }
 }

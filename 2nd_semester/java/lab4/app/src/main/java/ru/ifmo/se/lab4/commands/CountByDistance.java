@@ -1,6 +1,7 @@
 package ru.ifmo.se.lab4.commands;
 
 import ru.ifmo.se.lab4.entities.Route;
+import ru.ifmo.se.lab4.handler.CollectionHandler;
 import ru.ifmo.se.lab4.handler.IOHandler;
 
 import java.util.PriorityQueue;
@@ -17,7 +18,9 @@ public class CountByDistance implements Command{
     }
 
     @Override
-    public void execute(PriorityQueue<Route> collection, String [] args){
+    public void execute(CollectionHandler collectionHandler, String [] args){
+        PriorityQueue<Route> collection = collectionHandler.getCollection();
+
         long distance = Long.parseLong(args[0]);
         int counter = 0;
 

@@ -4,6 +4,7 @@ import java.util.PriorityQueue;
 import java.util.Set;
 
 import ru.ifmo.se.lab4.entities.Route;
+import ru.ifmo.se.lab4.handler.CollectionHandler;
 import ru.ifmo.se.lab4.handler.IOHandler;
 import ru.ifmo.se.lab4.handler.PackageParser;
 
@@ -19,7 +20,7 @@ public class Help implements Command{
     }
 
     @Override
-    public void execute(PriorityQueue<Route> collection, String[] args){
+    public void execute(CollectionHandler collectionHandler, String[] args){
         Set<Class> commands = PackageParser.parsePackage("ru.ifmo.se.lab4.commands", "Command");
         String output = "";
 

@@ -1,6 +1,7 @@
 package ru.ifmo.se.lab4.commands;
 
 import ru.ifmo.se.lab4.entities.Route;
+import ru.ifmo.se.lab4.handler.CollectionHandler;
 
 import java.util.PriorityQueue;
 
@@ -16,7 +17,8 @@ public class RemoveFirst implements Command{
     }
 
     @Override
-    public void execute(PriorityQueue<Route> collection, String[] args) {
+    public void execute(CollectionHandler collectionHandler, String[] args) {
+        PriorityQueue<Route> collection = collectionHandler.getCollection();
         PriorityQueue<Route> new_collection = new PriorityQueue<>();
         int i = 0;
 
@@ -28,6 +30,6 @@ public class RemoveFirst implements Command{
             i++;
         }
 
-        collection = new_collection;
+        collectionHandler.updateCollection(new_collection);
     }
 }

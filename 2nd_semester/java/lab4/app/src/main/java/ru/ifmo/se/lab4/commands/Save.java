@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.PriorityQueue;
 import java.io.FileOutputStream;
 import ru.ifmo.se.lab4.entities.Route;
+import ru.ifmo.se.lab4.handler.CollectionHandler;
 import ru.ifmo.se.lab4.handler.IOHandler;
 
 public class Save implements Command{
@@ -19,7 +20,9 @@ public class Save implements Command{
     }
 
     @Override
-    public void execute(PriorityQueue<Route> collection, String[] args) {
+    public void execute(CollectionHandler collectionHandler, String[] args) {
+        PriorityQueue<Route> collection = collectionHandler.getCollection();
+
         String savePath = System.getenv("LABA5_SOURCE_FILE");
         String output = "";
 

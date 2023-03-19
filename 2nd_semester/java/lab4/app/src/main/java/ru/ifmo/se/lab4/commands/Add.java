@@ -1,7 +1,9 @@
 package ru.ifmo.se.lab4.commands;
 
-import java.util.PriorityQueue;
 import ru.ifmo.se.lab4.entities.Route;
+import ru.ifmo.se.lab4.handler.CollectionHandler;
+
+import java.util.PriorityQueue;
 
 public class Add implements Command{
     @Override
@@ -15,8 +17,12 @@ public class Add implements Command{
     }
 
     @Override
-    public void execute(PriorityQueue<Route> collection, String[] args){
+    public void execute(CollectionHandler collectionHandler, String[] args){
+        PriorityQueue<Route> collection = collectionHandler.getCollection();
+
         Route route = new Route();
         collection.add(route);
+
+        collectionHandler.updateCollection(collection);
     }
 }

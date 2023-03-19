@@ -1,10 +1,9 @@
 package ru.ifmo.se.lab4.commands;
 
-import java.util.PriorityQueue;
-import ru.ifmo.se.lab4.entities.Route;
+import ru.ifmo.se.lab4.handler.CollectionHandler;
 
 public interface Command{
     String getName();
     String getDescription();
-    void execute(PriorityQueue<Route> collection, String[] args);
+    void execute(CollectionHandler collectionHandler, String[] args);
 }
