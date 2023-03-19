@@ -29,7 +29,7 @@ public class Route implements Comparable<Route>{
         IOHandler.println("Input now parameters for Route class..");
         this.reader = new BufferedReader(new InputStreamReader(System.in));
 
-        this.id = id_next++;
+        this.id = id_next++; //TODO: fix id generation
 
         inputName();
 
@@ -47,20 +47,7 @@ public class Route implements Comparable<Route>{
         InputSource is = new InputSource(new StringReader(sourceXml));
         Document doc = builder.parse(is);
 
-        //Parsing id
-        Element idElement = (Element) doc.getElementsByTagName("route").item(0);
-        String id = idElement.getAttribute("id");
-
-        try{
-            this.id = Integer.parseInt(id);
-
-            if (this.id < 1){
-                 throw new InvalidParameterException("invalid id");
-            }
-        }
-        catch (Exception e){
-            this.id = id_next++;
-        }
+        this.id = id_next++; //TODO: fix id generation
 
         //Parsing fields
         String name = doc.getElementsByTagName("name").item(0).getTextContent();
@@ -255,5 +242,17 @@ public class Route implements Comparable<Route>{
         xmlRepresentation += "</route>\n";
 
         return xmlRepresentation;
+    }
+
+    public String toString(){
+        String output = "Route: " + this.id + "\n";
+        output += "Name: " + this.name + "\n";
+        output += this.coordinates.toString() + "\n";
+        output += "Date: " + this.creationDate + "\n";
+        output += "From " + this.from.toString() + "\n";
+        output += "To" + this.to.toString() + "\n";
+        output += "Distance: " + this.distance;
+
+        return output;
     }
 }
