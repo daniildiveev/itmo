@@ -125,4 +125,8 @@ public class Location{
         
         return xmlRepresentation;
     }
+
+    public String toString(){
+        return "Location " + this.name + ": x:" + this.x + " y:" + this.y + " z:" + this.z;
+    }
 }
