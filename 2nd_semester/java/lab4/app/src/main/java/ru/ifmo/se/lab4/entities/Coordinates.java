@@ -1,6 +1,5 @@
 package ru.ifmo.se.lab4.entities;
 
-import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
@@ -43,9 +42,7 @@ public class Coordinates {
                 throw new InvalidParameterException("x parameter cannot be null");
             }
 
-            if (this.x != null){
-                this.x = Long.parseLong(input);
-            }
+            this.x = Long.parseLong(input);
         }
 
         catch (Exception e){
@@ -65,9 +62,7 @@ public class Coordinates {
                 throw new InvalidParameterException("y parameter cannot be null or greater than 781");
             }
 
-            if (this.y != null){
-                this.y = Integer.parseInt(input);
-            }
+            this.y = Integer.parseInt(input);
         }
 
         catch (Exception e){
