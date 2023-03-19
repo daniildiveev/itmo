@@ -14,7 +14,7 @@ public class RemoveByID implements Command{
 
     @Override
     public String getDescription() {
-        return " id                 -- remove element with respect to id\n";
+        return getName() + " id                 -- remove element with respect to id\n";
     }
 
     @Override
