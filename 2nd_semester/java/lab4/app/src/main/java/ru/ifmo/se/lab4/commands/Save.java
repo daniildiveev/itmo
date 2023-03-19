@@ -24,11 +24,13 @@ public class Save implements Command{
         PriorityQueue<Route> collection = collectionHandler.getCollection();
 
         String savePath = System.getenv("LABA5_SOURCE_FILE");
-        String output = "";
+        String output = "<routes>";
 
         for (Route route : collection){
             output += route.toXml();
         }
+
+        output += "</routes>";
 
         try {
             FileOutputStream fout = new FileOutputStream(savePath, false);
