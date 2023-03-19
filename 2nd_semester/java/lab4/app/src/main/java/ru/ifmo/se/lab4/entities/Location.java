@@ -1,6 +1,5 @@
 package ru.ifmo.se.lab4.entities;
 
-import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
@@ -24,12 +23,12 @@ public class Location{
         inputName();
     }
 
-    public Location(Integer x, Float y, Double z, String name) throws InvalidParameterException{
-        if (x == null){
+    public Location(Integer x, Float y, Double z, String name) throws InvalidParameterException {
+        if (x == null) {
             throw new InvalidParameterException("x cannot be null");
         }
 
-        if (name == null){
+        if (name == null) {
             throw new InvalidParameterException("name cannot be null");
         }
 
@@ -102,7 +101,7 @@ public class Location{
         try{
             String input = this.reader.readLine();
 
-            if (input.equals("") || input == null){
+            if (input.equals("")){
                 throw new InvalidParameterException("name cannot be null");
             }
 
@@ -119,16 +118,9 @@ public class Location{
     }
 
     public String toXml(){
-        String xmlRepresentation = "\t\t\t<x>" + Integer.toString(this.x) + "</x>\n";
-
-        if (this.y != null){
-            xmlRepresentation += "\t\t\t<y>" + Float.toString(this.y) + "</y>\n";
-        }
-
-        if (this.x != null){
-            xmlRepresentation += "\t\t\t<z>" + Double.toString(this.z) + "</z>\n";
-        }
-
+        String xmlRepresentation = "\t\t\t<x>" + this.x + "</x>\n";
+        xmlRepresentation += "\t\t\t<y>" + this.y + "</y>\n";
+        xmlRepresentation += "\t\t\t<z>" + this.z + "</z>\n";
         xmlRepresentation += "\t\t\t<name>" + this.name + "</name>\n";
         
         return xmlRepresentation;
