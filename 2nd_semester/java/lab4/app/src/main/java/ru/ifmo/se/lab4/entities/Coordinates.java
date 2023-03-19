@@ -80,4 +80,8 @@ public class Coordinates {
 
         return xmlRepresentation;
     }
+
+    public String toString(){
+        return "Coordinates x:" + this.x + " y:" + this.y;
+    }
 }
