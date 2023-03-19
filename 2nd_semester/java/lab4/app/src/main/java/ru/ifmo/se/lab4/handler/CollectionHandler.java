@@ -35,7 +35,13 @@ public class CollectionHandler {
 
         //Creating collection
         for (String routeXml: routesXml){
-            this.collection.add(new Route(routeXml));
+            try{
+                this.collection.add(new Route(routeXml));
+            }
+            catch (Exception e){
+                IOHandler.println(e.getMessage());
+                IOHandler.println("Skipping this Route...");
+            }
         }
     }
 
