@@ -8,13 +8,17 @@ import ru.ifmo.se.lab4.entities.Route;
 import ru.ifmo.se.lab4.handler.IOHandler;
 
 public class Save implements Command{
+    @Override
     public String getName(){
         return "save";
     }
+
+    @Override
     public String getDescription(){
         return getName() + "                            -- save collection to file\n";
     }
 
+    @Override
     public void execute(PriorityQueue<Route> collection, String[] args) {
         String savePath = System.getenv("LABA5_SOURCE_FILE");
         String output = "";

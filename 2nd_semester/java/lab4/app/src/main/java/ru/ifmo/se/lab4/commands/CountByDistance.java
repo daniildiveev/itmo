@@ -6,14 +6,17 @@ import ru.ifmo.se.lab4.handler.IOHandler;
 import java.util.PriorityQueue;
 
 public class CountByDistance implements Command{
+    @Override
     public String getName(){
         return "count_by_distance";
     }
 
+    @Override
     public String getDescription(){
         return getName() + " distance      -- count all elements from collection which distance is equal to the given\n";
     }
 
+    @Override
     public void execute(PriorityQueue<Route> collection, String [] args){
         long distance = Long.parseLong(args[0]);
         int counter = 0;

@@ -8,14 +8,17 @@ import java.util.PriorityQueue;
 import java.util.Set;
 
 public class PrintUniqueDistance implements Command{
+    @Override
     public String getName(){
         return "print_unique_distance";
     }
 
+    @Override
     public String getDescription(){
         return getName() + "           -- show unique distances\n";
     }
 
+    @Override
     public void execute(PriorityQueue<Route> collection, String [] args){
         Set<Long> distances = new HashSet<>();
         String output = "";

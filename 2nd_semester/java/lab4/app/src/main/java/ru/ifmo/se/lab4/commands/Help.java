@@ -8,13 +8,17 @@ import ru.ifmo.se.lab4.handler.IOHandler;
 import ru.ifmo.se.lab4.handler.PackageParser;
 
 public class Help implements Command{
+    @Override
     public String getName(){
         return "help";
     }
 
+    @Override
     public String getDescription(){
         return getName() + "                            -- show information about available commands\n";
     }
+
+    @Override
     public void execute(PriorityQueue<Route> collection, String[] args){
         Set<Class> commands = PackageParser.parsePackage("ru.ifmo.se.lab4.commands", "Command");
         String output = "";
