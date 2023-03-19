@@ -245,14 +245,14 @@ public class Route implements Comparable<Route>{
     }
 
     public String toXml(){
-        String xmlRepresentation = "\t<route id=\"" + this.id + "\"> \n";
-        xmlRepresentation += "\t\t<name>" + this.name + "</name>\n";
+        String xmlRepresentation = "<route id=\"" + this.id + "\"> \n";
+        xmlRepresentation += "\t<name>" + this.name + "</name>\n";
         xmlRepresentation += this.coordinates.toXml();
-        xmlRepresentation += "\t\t<creationDate>" + this.creationDate + " </creationDate>\n";
-        xmlRepresentation += "\t\t<from>\n" + this.from.toXml() + "\t\t</from>\n";
-        xmlRepresentation += "\t\t<to>\n" + this.to.toXml() + "\t\t</to>\n";
-        xmlRepresentation += "\t\t<distance>" + this.distance + "</distance>\n";
-        xmlRepresentation += "\t</route>\n";
+        xmlRepresentation += "\t<creationDate>" + this.creationDate + " </creationDate>\n";
+        xmlRepresentation += "\t<from>\n" + this.from.toXml() + "\t\t</from>\n";
+        xmlRepresentation += "\t<to>\n" + this.to.toXml() + "\t\t</to>\n";
+        xmlRepresentation += "\t<distance>" + this.distance + "</distance>\n";
+        xmlRepresentation += "</route>\n";
 
         return xmlRepresentation;
     }
