@@ -19,7 +19,7 @@ public class ExecuteScript implements Command{
 
     @Override
     public String getDescription() {
-        return getName() + "";
+        return getName() + " file_name        -- read and execute script from provided file\n";
     }
 
     @Override
