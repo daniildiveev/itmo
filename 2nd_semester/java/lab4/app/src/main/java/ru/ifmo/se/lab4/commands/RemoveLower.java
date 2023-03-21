@@ -27,6 +27,9 @@ public class RemoveLower implements Command{
             if (r.compareTo(routeToCompare) < 0){
                 new_collection.add(r);
             }
+            else {
+                Route.removeId(r.getId());
+            }
         }
 
         collectionHandler.updateCollection(new_collection);

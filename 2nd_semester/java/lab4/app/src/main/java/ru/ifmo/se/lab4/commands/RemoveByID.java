@@ -31,6 +31,9 @@ public class RemoveByID implements Command{
                 if (id != targetId){
                     new_collection.add(r);
                 }
+                else {
+                    Route.removeId(id);
+                }
             }
 
             collectionHandler.updateCollection(new_collection);

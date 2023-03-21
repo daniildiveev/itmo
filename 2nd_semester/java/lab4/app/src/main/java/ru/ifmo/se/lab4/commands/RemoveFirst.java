@@ -26,6 +26,9 @@ public class RemoveFirst implements Command{
             if (i != 0){
                 new_collection.add(r);
             }
+            else {
+                Route.removeId(r.getId());
+            }
 
             i++;
         }
