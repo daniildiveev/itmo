@@ -18,7 +18,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 public class Route implements Comparable<Route>{
-    private static int idNext =1;
 
     private static final List<Integer> usedIds  = new ArrayList<>();
     private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
@@ -242,12 +241,12 @@ public class Route implements Comparable<Route>{
 
     @Override
     public int compareTo(Route r){
-        return Long.compare(r.getDistance(), this.distance);
+        return -Long.compare(r.getDistance(), this.distance);
     }
 
     private int generateValidId(){
         Collections.sort(usedIds);
-        int i = 0;
+        int i = 1;
 
         while(usedIds.contains(i)){
             i++;
