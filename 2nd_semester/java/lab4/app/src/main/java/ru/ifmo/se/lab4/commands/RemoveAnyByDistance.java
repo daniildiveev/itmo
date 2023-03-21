@@ -29,7 +29,7 @@ public class RemoveAnyByDistance implements Command{
             for (Route r:collection){
                 long distance = r.getDistance();
 
-                if (targetDistance != distance & !elementRemoved){
+                if (targetDistance != distance | elementRemoved){
                     new_collection.add(r);
                 }
                 else{
