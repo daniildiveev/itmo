@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -15,7 +17,9 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 public class Route implements Comparable<Route>{
-    private static int id_next=1;
+    private static int idNext =1;
+
+    private static final List<Integer> usedIds  = new ArrayList<>();
     private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
@@ -29,7 +33,7 @@ public class Route implements Comparable<Route>{
         IOHandler.println("Input now parameters for Route class..");
         this.reader = new BufferedReader(new InputStreamReader(System.in));
 
-        this.id = id_next++; //TODO: fix id generation
+        this.id = idNext++; //TODO: fix id generation
 
         inputName();
 
@@ -47,7 +51,7 @@ public class Route implements Comparable<Route>{
         InputSource is = new InputSource(new StringReader(sourceXml));
         Document doc = builder.parse(is);
 
-        this.id = id_next++; //TODO: fix id generation
+        this.id = idNext++; //TODO: fix id generation
 
         //Parsing fields
         String name = doc.getElementsByTagName("name").item(0).getTextContent();
@@ -221,7 +225,7 @@ public class Route implements Comparable<Route>{
 
     @Override
     public int compareTo(Route r){
-        return (int) (r.getDistance() - this.distance);        
+        return Long.compare(r.getDistance(), this.distance);
     }
 
     public long getDistance(){
