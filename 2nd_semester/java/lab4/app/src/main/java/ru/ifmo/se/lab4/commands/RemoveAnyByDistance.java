@@ -33,6 +33,7 @@ public class RemoveAnyByDistance implements Command{
                     new_collection.add(r);
                 }
                 else{
+                    Route.removeId(r.getId());
                     elementRemoved = true;
                 }
             }
