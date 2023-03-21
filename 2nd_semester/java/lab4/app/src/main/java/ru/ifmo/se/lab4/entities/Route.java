@@ -241,7 +241,7 @@ public class Route implements Comparable<Route>{
 
     @Override
     public int compareTo(Route r){
-        return -Long.compare(r.getDistance(), this.distance);
+        return Long.compare(r.getDistance(), this.distance);
     }
 
     private int generateValidId(){
