@@ -23,18 +23,16 @@ public class Route implements Comparable<Route>{
     private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
-    private final LocalDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    private LocalDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private Location from; //Поле может быть null
     private Location to; //Поле не может быть null
     private long distance; //Значение поля должно быть больше 1
     private BufferedReader reader;
 
-    public Route(){
+    private void fillFields(){
         IOHandler.println("Input now parameters for Route class..");
+
         this.reader = new BufferedReader(new InputStreamReader(System.in));
-
-        this.id = generateValidId();
-
         inputName();
 
         this.coordinates = new Coordinates();
@@ -43,6 +41,26 @@ public class Route implements Comparable<Route>{
         this.to = new Location();
 
         inputDistance();
+    }
+
+    public Route(){
+        this.id = generateValidId();
+        fillFields();
+    }
+
+    public Route(int id){
+        if(usedIds.contains(id)){
+            IOHandler.println("Route with id " + id + " already exists");
+            return;
+        }
+
+        if(id < 1){
+            IOHandler.println("Id must be greater or equal to 1");
+            return;
+        }
+
+        this.id = id;
+        fillFields();
     }
 
     public Route(String sourceXml) throws Exception{
