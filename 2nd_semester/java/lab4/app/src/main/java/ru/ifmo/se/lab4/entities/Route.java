@@ -294,6 +294,10 @@ public class Route implements Comparable<Route>{
         return xmlRepresentation;
     }
 
+    public static void removeId(int id){
+        usedIds.remove(id);
+    }
+
     public String toString(){
         String output = "Route: " + this.id + "\n";
         output += "Name: " + this.name + "\n";
