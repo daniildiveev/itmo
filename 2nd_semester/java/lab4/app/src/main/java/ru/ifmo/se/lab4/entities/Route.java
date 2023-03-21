@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.w3c.dom.Document;
@@ -33,7 +34,7 @@ public class Route implements Comparable<Route>{
         IOHandler.println("Input now parameters for Route class..");
         this.reader = new BufferedReader(new InputStreamReader(System.in));
 
-        this.id = idNext++; //TODO: fix id generation
+        this.id = generateValidId();
 
         inputName();
 
@@ -51,7 +52,23 @@ public class Route implements Comparable<Route>{
         InputSource is = new InputSource(new StringReader(sourceXml));
         Document doc = builder.parse(is);
 
-        this.id = idNext++; //TODO: fix id generation
+        Element idElement = (Element) doc.getElementsByTagName("route").item(0);
+
+        try{
+            String idValue = idElement.getAttribute("id");
+
+            int id = Integer.parseInt(idValue);
+
+            if (id < 1){
+                throw new InvalidParameterException("id parameter must be greater than zero");
+            }
+
+            this.id = id;
+            usedIds.add(id);
+        }
+        catch (Exception e){
+            IOHandler.println("Id is whether not present or invalid");
+        }
 
         //Parsing fields
         String name = doc.getElementsByTagName("name").item(0).getTextContent();
@@ -226,6 +243,17 @@ public class Route implements Comparable<Route>{
     @Override
     public int compareTo(Route r){
         return Long.compare(r.getDistance(), this.distance);
+    }
+
+    private int generateValidId(){
+        Collections.sort(usedIds);
+        int i = 0;
+
+        while(usedIds.contains(i)){
+            i++;
+        }
+
+        return i;
     }
 
     public long getDistance(){
