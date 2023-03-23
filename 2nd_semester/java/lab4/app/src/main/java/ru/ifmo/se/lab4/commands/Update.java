@@ -28,11 +28,12 @@ public class Update implements Command{
             for (Route r:collection){
                 int id = r.getId();
 
-                if (id == targetId){
+                if (id != targetId){
                     new_collection.add(r);
                 }
                 else{
-                    Route new_route = new Route();
+                    Route.removeId(id);
+                    Route new_route = new Route(id);
                     new_collection.add(new_route);
                 }
             }
