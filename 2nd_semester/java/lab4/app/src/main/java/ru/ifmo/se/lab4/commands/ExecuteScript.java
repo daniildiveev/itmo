@@ -56,9 +56,11 @@ public class ExecuteScript implements Command{
                 commandsInFile = tmpCommandsInFile;
             }
 
-            for(String rawInput: commandsInFile.split("\n")){
+            for(String rawInput: commandsInFile.split("\n")) {
                 CommandHandler.process(rawInput, collectionHandler);
             }
+
+            handledScripts.remove(scriptName);
         }
         catch (ArrayIndexOutOfBoundsException e){
             IOHandler.println("no script name provided");
