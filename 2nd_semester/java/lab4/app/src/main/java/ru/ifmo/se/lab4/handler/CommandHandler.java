@@ -7,6 +7,11 @@ public class CommandHandler{
         String[] args = rawInput.split("\\s+");
         String commandName = args[0].strip();
 
+        if (commandName.equals("")){
+            IOHandler.println("Command cannot be empty!");
+            return;
+        }
+
         Command command = PackageParser.getCommand("ru.ifmo.se.lab4.commands", commandName, "Command");
 
         if (command == null) {
