@@ -6,6 +6,7 @@ import ru.ifmo.se.lab4.handler.IOHandler;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,12 +37,14 @@ public class ExecuteScript implements Command{
 
             try {
                 FileInputStream fis = new FileInputStream(scriptName);
+                InputStreamReader isr = new InputStreamReader(fis);
                 handledScripts.add(scriptName);
 
-                int i;
+                int data = isr.read();
 
-                while ((i=fis.read()) != -1){
-                    tmpCommandsInFile += (char) i;
+                while(data != -1){
+                    tmpCommandsInFile += (char) data;
+                    data = isr.read();
                 }
 
                 if (tmpCommandsInFile.equals("")){
