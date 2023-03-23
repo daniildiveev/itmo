@@ -17,31 +17,37 @@ public class CollectionHandler {
 
     public CollectionHandler() throws Exception {
         //Loading file and storing information in string
-        FileInputStream fis = new FileInputStream(pathToCollection);
-        String xml = "";
-        int i;
 
-        while ((i=fis.read()) != -1) {
-            xml += (char) i;
-        }
+        try{
+            FileInputStream fis = new FileInputStream(pathToCollection);
+            String xml = "";
+            int i;
 
-        //Matching XML regex
-        List<String> routesXml = new ArrayList<String>();
-        Matcher m = Pattern.compile("<route(?:\sid=\"\\d+\")*>[\\s\\S]*?</route>").matcher(xml);
-
-        while (m.find()){
-            routesXml.add(m.group());
-        }
-
-        //Creating collection
-        for (String routeXml: routesXml){
-            try{
-                this.collection.add(new Route(routeXml));
+            while ((i=fis.read()) != -1) {
+                xml += (char) i;
             }
-            catch (Exception e){
-                IOHandler.println(e.getMessage());
-                IOHandler.println("Skipping this Route...");
+
+            //Matching XML regex
+            List<String> routesXml = new ArrayList<String>();
+            Matcher m = Pattern.compile("<route(?:\sid=\"\\d+\")*>[\\s\\S]*?</route>").matcher(xml);
+
+            while (m.find()){
+                routesXml.add(m.group());
             }
+
+            //Creating collection
+            for (String routeXml: routesXml){
+                try{
+                    this.collection.add(new Route(routeXml));
+                }
+                catch (Exception e){
+                    IOHandler.println(e.getMessage());
+                    IOHandler.println("Skipping this Route...");
+                }
+            }
+        }
+        catch (NullPointerException e){
+            IOHandler.println("collection file does not exist");
         }
     }
 
