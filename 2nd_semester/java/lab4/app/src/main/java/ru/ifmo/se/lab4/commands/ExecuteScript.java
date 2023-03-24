@@ -5,13 +5,14 @@ import ru.ifmo.se.lab4.handler.CommandHandler;
 import ru.ifmo.se.lab4.handler.IOHandler;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ExecuteScript implements Command{
-    private static List<String> handledScripts = new ArrayList<>();
+    private static final List<String> handledScripts = new ArrayList<>();
 
     @Override
     public String getName() {
@@ -51,6 +52,11 @@ public class ExecuteScript implements Command{
                     IOHandler.println("File is empty");
                     return;
                 }
+            }
+            catch (FileNotFoundException e){
+                IOHandler.println("There is either no script or user has no rights to read it");
+                handledScripts.remove(scriptName);
+                return;
             }
             catch (IOException e){
                 IOHandler.println(e.getMessage());
