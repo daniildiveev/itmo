@@ -24,6 +24,12 @@ public class Save implements Command{
         PriorityQueue<Route> collection = collectionHandler.getCollection();
 
         String savePath = System.getenv("LABA5_SOURCE_FILE");
+
+        if(savePath == null){
+            IOHandler.println("There is no environment variable with collection file path");
+            return;
+        }
+
         String output = "<routes>";
 
         for (Route route : collection){
