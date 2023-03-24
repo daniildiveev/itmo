@@ -3,6 +3,7 @@ package ru.ifmo.se.lab4.handler;
 import ru.ifmo.se.lab4.entities.Route;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -18,6 +19,11 @@ public class CollectionHandler {
 
     public CollectionHandler() throws Exception {
         //Loading file and storing information in string
+
+        if(pathToCollection == null){
+            IOHandler.println("There is no environment variable with collection file path");
+            return;
+        }
 
         try{
             FileInputStream fis = new FileInputStream(pathToCollection);
@@ -49,8 +55,8 @@ public class CollectionHandler {
                 }
             }
         }
-        catch (NullPointerException e){
-            IOHandler.println("collection file does not exist");
+        catch (FileNotFoundException e){
+            IOHandler.println("Collection file either does not exist or user has no rights to read it");
         }
     }
 
