@@ -21,6 +21,10 @@ public class Show implements Command{
     public void execute(CollectionHandler collectionHandler, String[] args) {
         PriorityQueue<Route> collection = collectionHandler.getCollection();
 
+        if (collection.isEmpty()){
+            IOHandler.println("Collection is empty!");
+        }
+
         for(Route r: collection){
             IOHandler.println(r.toString());
             IOHandler.println("");
