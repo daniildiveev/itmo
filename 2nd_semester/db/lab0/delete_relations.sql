@@ -10,4 +10,4 @@ DROP TABLE IF EXISTS location;
 DROP TABLE IF EXISTS health_status;
 DROP TABLE IF EXISTS profession;
 DROP TABLE IF EXISTS education_level;
-DROP TABLE IF EXISTS spheres_of_work    ;
+DROP TABLE IF EXISTS spheres_of_work;
