@@ -29,7 +29,9 @@ INSERT INTO location VALUES
 INSERT INTO person (id, name, location, age, sphere, physical_condition, profession, education_level) VALUES
     (1, 'Хардинг', 2, 37, 1, 1, 1, 4),
     (2, 'Оуэнз', 2, 34, 1, 2, 1, 4),
-    (3, 'Эд Реджис', 1, 40, 2, 1, 2, 4);
+    (3, 'Эд Реджис', 1, 40, 2, 1, 2, 4),
+    (4, 'Вадик', 3, 7, null, 1, null, 3),
+    (5, 'Костик', 1, 8, null, 1, null, 3);
 
 INSERT INTO person_location VALUES
     (3, 1, make_interval(0, 7)),
@@ -60,3 +62,14 @@ INSERT INTO problem_person VALUES
     (2, 2),
     (3, 2);
 
+INSERT INTO limbs VALUES
+    (1, 'голова'),
+    (2, 'нога'),
+    (3, 'рука');
+
+INSERT INTO limbs_person VALUES
+    (4, 1),
+    (4, 2),
+    (4, 3),
+    (5, 2),
+    (5, 3);
