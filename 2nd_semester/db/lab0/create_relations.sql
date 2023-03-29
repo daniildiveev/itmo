@@ -1,30 +1,30 @@
 CREATE TABLE IF NOT EXISTS spheres_of_work(
-    id INT PRIMARY KEY,
+    id SERIAL primary key,
     name VARCHAR(30)
 );
 
 CREATE TABLE IF NOT EXISTS education_level(
-    id INT PRIMARY KEY,
+    id SERIAL primary key,
     name VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS profession(
-    id INT PRIMARY KEY,
+    id SERIAL primary key,
     name VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS health_status(
-    id INT PRIMARY KEY,
+    id SERIAL primary key,
     status VARCHAR(10) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS location(
-    id INT PRIMARY KEY,
+    id SERIAL primary key,
     name VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS person(
-    id INT PRIMARY KEY,
+    id SERIAL primary key,
     name VARCHAR(40) NOT NULL,
     location INT REFERENCES LOCATION(ID),
     age INT,
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS person_location(
 );
 
 CREATE TABLE IF NOT EXISTS tasks(
-    id INT PRIMARY KEY,
+    id SERIAL primary key,
     date DATE,
     description VARCHAR(200)
 );
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS person_task(
 );
 
 CREATE TABLE IF NOT EXISTS problems(
-    id INT PRIMARY KEY,
+    id SERIAL primary key,
     description VARCHAR(50) NOT NULL
 );
 
@@ -62,11 +62,11 @@ CREATE TABLE IF NOT EXISTS problem_person(
 );
 
 CREATE TABLE IF NOT EXISTS limbs(
-    id INT PRIMARY KEY,
+    id SERIAL primary key,
     name VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS limbs_person(
     person INT REFERENCES person(ID),
     limb INT REFERENCES limbs(ID)
-)
+);
