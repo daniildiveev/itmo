@@ -4,9 +4,10 @@ import ru.ifmo.se.lab4.entities.Route;
 import ru.ifmo.se.lab4.handler.CollectionHandler;
 import ru.ifmo.se.lab4.handler.IOHandler;
 
+import java.util.List;
 import java.util.PriorityQueue;
 
-public class Update implements Command{
+public class Update implements CommandWithElement{
     @Override
     public String getName() {
         return "update";
@@ -20,7 +21,7 @@ public class Update implements Command{
     @Override
     public void execute(CollectionHandler collectionHandler, String[] args) {
         PriorityQueue<Route> collection = collectionHandler.getCollection();
-        PriorityQueue<Route> new_collection = new PriorityQueue<>();
+        PriorityQueue<Route> newCollection = new PriorityQueue<>();
 
         try{
             int targetId = Integer.parseInt(args[1]);
@@ -29,16 +30,48 @@ public class Update implements Command{
                 int id = r.getId();
 
                 if (id != targetId){
-                    new_collection.add(r);
+                    newCollection.add(r);
                 }
                 else{
                     Route.removeId(id);
                     Route new_route = new Route(id);
-                    new_collection.add(new_route);
+                    newCollection.add(new_route);
                 }
             }
 
-            collectionHandler.updateCollection(new_collection);
+            collectionHandler.updateCollection(newCollection);
+        }
+        catch (Exception e){
+            IOHandler.println("Invalid id provided");
+        }
+    }
+
+    @Override
+    public void executeFromFile(CollectionHandler collectionHandler, String[] args) {
+        String argsString = String.join(" ", args);
+        List<String> routeArgs = parseRoute(argsString);
+        validateArgs(routeArgs);
+
+        PriorityQueue<Route> collection = collectionHandler.getCollection();
+        PriorityQueue<Route> newCollection = new PriorityQueue<>();
+
+        try{
+            int targetId = Integer.parseInt(args[1]);
+
+            for (Route r:collection){
+                int id = r.getId();
+
+                if (id != targetId){
+                    newCollection.add(r);
+                }
+                else{
+                    Route.removeId(id);
+                    Route new_route = new Route(routeArgs, id);
+                    newCollection.add(new_route);
+                }
+            }
+
+            collectionHandler.updateCollection(newCollection);
         }
         catch (Exception e){
             IOHandler.println("Invalid id provided");
