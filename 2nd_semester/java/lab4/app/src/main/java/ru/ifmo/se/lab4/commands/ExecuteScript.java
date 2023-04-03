@@ -66,7 +66,7 @@ public class ExecuteScript implements Command{
             }
 
             for(String rawInput: commandsInFile.split("\n")) {
-                CommandHandler.process(rawInput, collectionHandler);
+                CommandHandler.process(rawInput, collectionHandler, true);
             }
 
             handledScripts.remove(scriptName);
