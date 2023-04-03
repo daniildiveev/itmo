@@ -45,7 +45,7 @@ public class Location{
         try{
             String input = this.reader.readLine();
 
-            if(input.equals("")){
+            if(input.isEmpty()){
                 throw new InvalidParameterException("x cannot be null");
             }
 
@@ -67,7 +67,7 @@ public class Location{
         try{
             String input = this.reader.readLine();
 
-            if (!input.equals("")){
+            if (!input.isEmpty()){
                 this.z = Double.parseDouble(input);
             }
         }
@@ -84,7 +84,7 @@ public class Location{
         try{
             String input = this.reader.readLine();
 
-            if (!input.equals("")){
+            if (!input.isEmpty()){
                 this.z = Double.parseDouble(input);
             }
         }
@@ -101,7 +101,7 @@ public class Location{
         try{
             String input = this.reader.readLine();
 
-            if (input.equals("")){
+            if (input.isEmpty()){
                 throw new InvalidParameterException("name cannot be null");
             }
 

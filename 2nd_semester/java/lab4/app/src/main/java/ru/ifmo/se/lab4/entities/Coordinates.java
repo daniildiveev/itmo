@@ -38,7 +38,7 @@ public class Coordinates {
         try{
             String input = this.reader.readLine();
 
-            if(input.equals("")){
+            if(input.isEmpty()){
                 throw new InvalidParameterException("x parameter cannot be null");
             }
 
@@ -58,7 +58,7 @@ public class Coordinates {
         try{
             String input = this.reader.readLine();
 
-            if(input.equals("") || Integer.parseInt(input) >= 781){
+            if(input.isEmpty() || Integer.parseInt(input) >= 781){
                 throw new InvalidParameterException("y parameter cannot be null or greater than 781");
             }
 
