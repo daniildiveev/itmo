@@ -88,9 +88,9 @@ public class Route implements Comparable<Route>{
         }
 
         //Parsing fields
-        String name = doc.getElementsByTagName("name").item(0).getTextContent();
+        String name = doc.getElementsByTagName("name").item(0).getTextContent().strip();
 
-        if (name.equals("")){
+        if (name.isEmpty()){
             throw new InvalidParameterException("name parameter cannot be null");
         }
 
@@ -101,7 +101,7 @@ public class Route implements Comparable<Route>{
                              .getTextContent()
                              .strip();
 
-        if (datetime.equals("") || datetime.equals("null")){
+        if (datetime.isEmpty() || datetime.equals("null")){
             throw new InvalidParameterException("creationDate parameter cannot be null");
         }
 
@@ -116,11 +116,14 @@ public class Route implements Comparable<Route>{
 
         String distance = doc.getElementsByTagName("distance").item(0).getTextContent();
 
-        if (distance.equals("") || distance.equals("null")){
+        if (distance.isEmpty() || distance.equals("null")){
             throw new InvalidParameterException("distance parameter cannot be null");
         }
 
         try {
+            if(Long.parseLong(distance) < 1){
+                throw new InvalidParameterException("distance must be greater than 1");
+            }
             this.distance = Long.parseLong(distance);
         }
 
@@ -145,11 +148,11 @@ public class Route implements Comparable<Route>{
             zValue = xmlElement.getElementsByTagName("z").item(0).getTextContent();
             nameValue = xmlElement.getElementsByTagName("name").item(0).getTextContent();
 
-            if (nameValue.equals("") || nameValue.equals("null")){
+            if (nameValue.isEmpty() || nameValue.equals("null")){
                 throw new InvalidParameterException("name cannot be null");
             }
 
-            if (xValue.equals("null") || xValue.equals("")){
+            if (xValue.equals("null") || xValue.isEmpty()){
                 throw new InvalidParameterException("x cannot be null");
             }
 
@@ -215,13 +218,74 @@ public class Route implements Comparable<Route>{
         this.coordinates = new Coordinates(coordinatesX, coordinatesY);
     }
 
+    public Route(List<String> elements, int id) throws Exception{
+        if(id == -1){
+            this.id = generateValidId();
+        }
+        else{
+            this.id = id;
+        }
+
+        this.creationDate = LocalDateTime.now();
+
+        String name = elements.get(0);
+
+        if (name.isEmpty()){
+            throw new InvalidParameterException("name cannot be null");
+        }
+
+        try {
+            this.coordinates = new Coordinates(Long.parseLong(elements.get(1)),
+                                               Integer.parseInt(elements.get(2)));
+        }
+        catch (Exception e){
+            throw new InvalidParameterException("invalid values for coordinates parameter");
+        }
+
+        try {
+            this.from = new Location(Integer.parseInt(elements.get(3)),
+                                   Float.parseFloat(elements.get(4)),
+                                   Double.parseDouble(elements.get(5)),
+                                   elements.get(6));
+        }
+        catch (Exception e){
+            throw new InvalidParameterException("invalid values for From parameter");
+        }
+
+        try {
+            this.to = new Location(Integer.parseInt(elements.get(7)),
+                                   Float.parseFloat(elements.get(8)),
+                                   Double.parseDouble(elements.get(9)),
+                                   elements.get(10));
+        }
+        catch (Exception e){
+            throw new InvalidParameterException("invalid values for To parameter");
+        }
+
+        String distance = elements.get(11);
+
+        if(distance.strip().isEmpty()){
+            throw new InvalidParameterException("distance cannot be null");
+        }
+
+        try{
+            if (Long.parseLong(distance) < 1){
+                throw new InvalidParameterException("distance must be greater than 1");
+            }
+
+            this.distance = Long.parseLong(distance);
+        } catch (Exception e){
+            IOHandler.println(e.getMessage());
+        }
+    }
+
     private void inputName(){
         IOHandler.print("Please input the name parameter of Route >>");
 
         try{
             String input = this.reader.readLine();
 
-            if (input == null || input.equals("")){
+            if (input == null || input.isEmpty()){
                 throw new InvalidParameterException("name parameter cannot be null");
             }
 
