@@ -2,12 +2,10 @@ package ru.ifmo.se.lab4.commands;
 
 import ru.ifmo.se.lab4.handler.CollectionHandler;
 import ru.ifmo.se.lab4.handler.CommandHandler;
+import ru.ifmo.se.lab4.handler.FileHandler;
 import ru.ifmo.se.lab4.handler.IOHandler;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,26 +35,30 @@ public class ExecuteScript implements Command{
             }
 
             try {
-                FileInputStream fis = new FileInputStream(scriptName);
-                InputStreamReader isr = new InputStreamReader(fis);
-                handledScripts.add(scriptName);
+                File file = FileHandler.process(scriptName);
 
-                int data = isr.read();
+                if (file != null){
+                    FileInputStream fis = new FileInputStream(scriptName);
+                    InputStreamReader isr = new InputStreamReader(fis);
+                    handledScripts.add(scriptName);
 
-                while(data != -1){
-                    tmpCommandsInFile += (char) data;
-                    data = isr.read();
+                    int data = isr.read();
+
+                    while(data != -1){
+                        tmpCommandsInFile += (char) data;
+                        data = isr.read();
+                    }
+
+                    if (tmpCommandsInFile.equals("")){
+                        IOHandler.println("File is empty");
+                        return;
+                    }
                 }
 
-                if (tmpCommandsInFile.equals("")){
-                    IOHandler.println("File is empty");
+                else{
+                    handledScripts.remove(scriptName);
                     return;
                 }
-            }
-            catch (FileNotFoundException e){
-                IOHandler.println("There is either no script or user has no rights to read it");
-                handledScripts.remove(scriptName);
-                return;
             }
             catch (IOException e){
                 IOHandler.println(e.getMessage());
