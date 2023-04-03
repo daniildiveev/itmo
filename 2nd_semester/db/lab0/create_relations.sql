@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS person_location(
 
 CREATE TABLE IF NOT EXISTS tasks(
     id SERIAL primary key,
-    date DATE,
+    task_date DATE,
     description VARCHAR(200)
 );
 
