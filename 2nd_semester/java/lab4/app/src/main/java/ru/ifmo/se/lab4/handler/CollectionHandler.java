@@ -2,6 +2,7 @@ package ru.ifmo.se.lab4.handler;
 
 import ru.ifmo.se.lab4.entities.Route;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
@@ -25,13 +26,15 @@ public class CollectionHandler {
             return;
         }
 
-        try{
+        File file = FileHandler.process(pathToCollection);
+
+        if (file != null) {
             FileInputStream fis = new FileInputStream(pathToCollection);
             InputStreamReader isr = new InputStreamReader(fis);
             String xml = "";
             int data = isr.read();
 
-            while(data != -1){
+            while (data != -1) {
                 xml += (char) data;
                 data = isr.read();
             }
@@ -40,23 +43,19 @@ public class CollectionHandler {
             List<String> routesXml = new ArrayList<String>();
             Matcher m = Pattern.compile("<route(?:\sid=\"\\d+\")*>[\\s\\S]*?</route>").matcher(xml);
 
-            while (m.find()){
+            while (m.find()) {
                 routesXml.add(m.group());
             }
 
             //Creating collection
-            for (String routeXml: routesXml){
-                try{
+            for (String routeXml : routesXml) {
+                try {
                     this.collection.add(new Route(routeXml));
-                }
-                catch (Exception e){
+                } catch (Exception e) {
                     IOHandler.println(e.getMessage());
                     IOHandler.println("Skipping this Route...");
                 }
             }
-        }
-        catch (FileNotFoundException e){
-            IOHandler.println("Collection file either does not exist or user has no rights to read it");
         }
     }
 
