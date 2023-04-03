@@ -20,7 +20,7 @@ public class RemoveByID implements Command{
     @Override
     public void execute(CollectionHandler collectionHandler, String[] args) {
         PriorityQueue<Route> collection = collectionHandler.getCollection();
-        PriorityQueue<Route> new_collection = new PriorityQueue<>();
+        PriorityQueue<Route> newCollection = new PriorityQueue<>();
 
         try{
             int targetId = Integer.parseInt(args[1]);
@@ -29,14 +29,14 @@ public class RemoveByID implements Command{
                 int id = r.getId();
 
                 if (id != targetId){
-                    new_collection.add(r);
+                    newCollection.add(r);
                 }
                 else {
                     Route.removeId(id);
                 }
             }
 
-            collectionHandler.updateCollection(new_collection);
+            collectionHandler.updateCollection(newCollection);
         }
         catch (Exception e){
             IOHandler.println("Invalid id provided");

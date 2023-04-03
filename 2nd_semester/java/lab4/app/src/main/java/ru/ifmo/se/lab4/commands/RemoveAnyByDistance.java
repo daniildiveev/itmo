@@ -20,7 +20,7 @@ public class RemoveAnyByDistance implements Command{
     @Override
     public void execute(CollectionHandler collectionHandler, String[] args) {
         PriorityQueue<Route> collection = collectionHandler.getCollection();
-        PriorityQueue<Route> new_collection = new PriorityQueue<>();
+        PriorityQueue<Route> newCollection = new PriorityQueue<>();
 
         try{
             long targetDistance = Long.parseLong(args[1]);
@@ -30,7 +30,7 @@ public class RemoveAnyByDistance implements Command{
                 long distance = r.getDistance();
 
                 if (targetDistance != distance | elementRemoved){
-                    new_collection.add(r);
+                    newCollection.add(r);
                 }
                 else{
                     Route.removeId(r.getId());
@@ -38,7 +38,7 @@ public class RemoveAnyByDistance implements Command{
                 }
             }
 
-            collectionHandler.updateCollection(new_collection);
+            collectionHandler.updateCollection(newCollection);
         }
         catch (Exception e){
             IOHandler.println("Invalid distance provided");

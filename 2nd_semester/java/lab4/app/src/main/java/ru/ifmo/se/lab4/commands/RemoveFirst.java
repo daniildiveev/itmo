@@ -19,12 +19,12 @@ public class RemoveFirst implements Command{
     @Override
     public void execute(CollectionHandler collectionHandler, String[] args) {
         PriorityQueue<Route> collection = collectionHandler.getCollection();
-        PriorityQueue<Route> new_collection = new PriorityQueue<>();
+        PriorityQueue<Route> newCollection = new PriorityQueue<>();
         int i = 0;
 
         for (Route r: collection){
             if (i != 0){
-                new_collection.add(r);
+                newCollection.add(r);
             }
             else {
                 Route.removeId(r.getId());
@@ -33,6 +33,6 @@ public class RemoveFirst implements Command{
             i++;
         }
 
-        collectionHandler.updateCollection(new_collection);
+        collectionHandler.updateCollection(newCollection);
     }
 }
