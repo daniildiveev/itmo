@@ -21,7 +21,7 @@ public class Help implements Command{
 
     @Override
     public void execute(CollectionHandler collectionHandler, String[] args){
-        Set<Class> commands = PackageParser.parsePackage("ru.ifmo.se.lab4.commands", "Command");
+        Set<Class> commands = PackageParser.parsePackage("ru.ifmo.se.lab4.commands", new String []{"Command", "CommandWithElement"});
         String output = "";
 
         for(Class klass: commands){
