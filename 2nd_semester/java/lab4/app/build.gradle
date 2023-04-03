@@ -5,10 +5,28 @@
  * For more details take a look at the 'Building Java & JVM projects' chapter in the Gradle
  * User Manual available at https://docs.gradle.org/8.0.2/userguide/building_java_projects.html
  */
+//file:noinspection GroovyUnusedAssignment
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'java-library'
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.0'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'ru.ifmo.se.lab4.Main'
+    }
+}
+
+shadowJar {
+    archiveBaseName = 'lab4'
+    version = '1.0.0'
+    manifest {
+        attributes 'Main-Class': 'ru.ifmo.se.lab4.Main'
+    }
 }
 
 repositories {
@@ -23,15 +41,17 @@ dependencies {
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:31.1-jre'
     implementation 'org.reflections:reflections:0.10.2'
-    implementation 'org.slf4j:slf4j-log4j12:1.7.29'
+    implementation 'log4j:log4j:1.2.17'
+    implementation 'org.slf4j:slf4j-api:1.7.32'
 }
 
 application {
-    // Define the main class for the application.
     mainClass = 'ru.ifmo.se.lab4.Main'
 }
 
 run {
+    main = 'ru.ifmo.se.lab4.Main'
+    classpath = sourceSets.main.runtimeClasspath
     standardInput = System.in
 }
 
