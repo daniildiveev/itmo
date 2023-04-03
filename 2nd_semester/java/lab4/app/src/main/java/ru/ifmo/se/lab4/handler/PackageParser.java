@@ -8,17 +8,20 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class PackageParser {
-    public static Set<Class> parsePackage(String packageName, String commandInterfaceName) {
+    public static Set<Class> parsePackage(String packageName, String[] commandsInterfacesNames) {
         Reflections reflections = new Reflections(packageName, new SubTypesScanner(false ));
 
         return reflections.getSubTypesOf(Object.class)
                 .stream()
-                .filter(klass -> !klass.getSimpleName().equalsIgnoreCase(commandInterfaceName))
+                .filter(klass -> !klass.getSimpleName().equalsIgnoreCase(commandsInterfacesNames[0]))
+                .filter(klass -> !klass.getSimpleName().equalsIgnoreCase(commandsInterfacesNames[1]))
                 .collect(Collectors.toSet());
     }
 
-    public static Command getCommand(String packageName, String commandName, String commandInterfaceName){
-        Set<Class> classes = parsePackage(packageName, commandInterfaceName);
+    public static Command getCommand(String packageName,
+                                     String commandName,
+                                     String[] commandsInterfacesName){
+        Set<Class> classes = parsePackage(packageName, commandsInterfacesName);
 
         for (Class klass: classes){
             try {
