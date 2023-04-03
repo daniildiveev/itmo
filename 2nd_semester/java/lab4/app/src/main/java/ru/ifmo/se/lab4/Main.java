@@ -18,7 +18,7 @@ class Main{
             String command = reader.readLine();
             command = command.strip();
 
-            CommandHandler.process(command, collectionHandler);;
+            CommandHandler.process(command, collectionHandler, false);;
         }
     }
 }
