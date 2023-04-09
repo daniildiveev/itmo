@@ -61,3 +61,17 @@ HAVING avg(CASE r."ОЦЕНКА" WHEN 'зачет' THEN 5 WHEN 'незач' THEN
                     INNER JOIN "Н_ВЕДОМОСТИ" r ON p."ИД" = r."ЧЛВК_ИД"
     WHERE st."ГРУППА" = '3100'
 )) AS id_avg_score RIGHT JOIN "Н_ЛЮДИ" p ON p."ИД" = id_avg_score."ИД";
+
+/*
+7. Сформировать запрос для получения числа в СПбГУ ИТМО хорошистов.
+*/
+
+SELECT count("ИД") AS num_middle_learners
+FROM
+(SELECT p."ИД"
+FROM "Н_УЧЕНИКИ" st INNER JOIN "Н_ОБУЧЕНИЯ" ed ON ed."ЧЛВК_ИД"=st."ЧЛВК_ИД"
+                    INNER JOIN "Н_ЛЮДИ" p ON ed."ЧЛВК_ИД" = p."ИД"
+                    INNER JOIN "Н_ВЕДОМОСТИ" r ON p."ИД" = r."ЧЛВК_ИД"
+GROUP BY p."ИД"
+HAVING 4.5 > avg(CASE r."ОЦЕНКА" WHEN 'зачет' THEN 5 WHEN 'незач' THEN 2 END) AND
+             avg(CASE r."ОЦЕНКА" WHEN 'зачет' THEN 5 WHEN 'незач' THEN 2 END) >= 3.5) AS middle_learners_ids;
