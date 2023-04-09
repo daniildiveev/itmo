@@ -40,3 +40,24 @@ FROM "Н_УЧЕНИКИ" st INNER JOIN "Н_ПЛАНЫ" pl ON st."ПЛАН_ИД" 
                     INNER JOIN "Н_ОБУЧЕНИЯ" ed on st."ЧЛВК_ИД" = ed."ЧЛВК_ИД"
                     INNER JOIN "Н_ЛЮДИ" p on ed."ЧЛВК_ИД" = p."ИД"
 WHERE ef."ИМЯ_В_ИМИН_ПАДЕЖЕ" = 'вечерняя' AND  p."ОТЧЕСТВО" = '.';
+
+
+/*
+Выведите таблицу со средними оценками студентов группы 4100 (Номер, ФИО, Ср_оценка),
+у которых средняя оценка не меньше минимальной оценк(е|и) в группе 3100
+*/
+
+SELECT id_avg_score."ИД", concat(p."ФАМИЛИЯ", ' ', p."ИМЯ", ' ', p."ОТЧЕСТВО") as "ФИО", id_avg_score.avg_score
+FROM (SELECT p."ИД",  avg(CASE r."ОЦЕНКА" WHEN 'зачет' THEN 5 WHEN 'незач' THEN 2 END) AS avg_score
+FROM "Н_УЧЕНИКИ" st INNER JOIN "Н_ОБУЧЕНИЯ" ed ON ed."ЧЛВК_ИД"=st."ЧЛВК_ИД"
+                    INNER JOIN "Н_ЛЮДИ" p ON ed."ЧЛВК_ИД" = p."ИД"
+                    INNER JOIN "Н_ВЕДОМОСТИ" r ON p."ИД" = r."ЧЛВК_ИД"
+WHERE st."ГРУППА" = '4100'
+GROUP BY p."ИД"
+HAVING avg(CASE r."ОЦЕНКА" WHEN 'зачет' THEN 5 WHEN 'незач' THEN 2 END) >= (
+    SELECT MIN(CASE r."ОЦЕНКА" WHEN 'зачет' THEN 5 WHEN 'незач' THEN 2 END)
+    FROM "Н_УЧЕНИКИ" st INNER JOIN "Н_ОБУЧЕНИЯ" ed ON ed."ЧЛВК_ИД"=st."ЧЛВК_ИД"
+                    INNER JOIN "Н_ЛЮДИ" p ON ed."ЧЛВК_ИД" = p."ИД"
+                    INNER JOIN "Н_ВЕДОМОСТИ" r ON p."ИД" = r."ЧЛВК_ИД"
+    WHERE st."ГРУППА" = '3100'
+)) AS id_avg_score RIGHT JOIN "Н_ЛЮДИ" p ON p."ИД" = id_avg_score."ИД";
