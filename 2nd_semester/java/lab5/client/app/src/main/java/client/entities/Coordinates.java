@@ -8,4 +8,17 @@ public class Coordinates {
         this.x = x;
         this.y = y;
     }
+
+    public String toXml(){
+        String xmlRepresentation = "\t\t<coordinates>\n";
+        xmlRepresentation += "\t\t\t<x>" + this.x + "</x>\n";
+        xmlRepresentation += "\t\t\t<y>" + this.y + "</y>\n";
+        xmlRepresentation += "\t\t</coordinates>\n";
+
+        return xmlRepresentation;
+    }
+
+    public String toString(){
+        return "Coordinates x:" + this.x + " y:" + this.y;
+    }
 }
