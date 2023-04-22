@@ -1,6 +1,8 @@
 package client.entities;
 
-public class Location {
+import java.io.Serializable;
+
+public class Location implements Serializable {
     private Integer x; //Поле не может быть null
     private Float y;
     private Double z;

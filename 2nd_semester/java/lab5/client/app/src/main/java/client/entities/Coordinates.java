@@ -1,6 +1,8 @@
 package client.entities;
 
-public class Coordinates {
+import java.io.Serializable;
+
+public class Coordinates implements Serializable {
     private Long x; //Поле не может быть null
     private Integer y; //Максимальное значение поля: 781, Поле не может быть null
 
