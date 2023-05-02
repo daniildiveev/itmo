@@ -14,10 +14,7 @@ plugins {
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
-
-    flatDir {
-        dirs 'libs'
-    }
+    mavenLocal()
 }
 
 dependencies {
@@ -26,10 +23,8 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:31.1-jre'
-    implementation files('libs/lab5_common.jar')
-    implementation fileTree(dir: 'libs', include: 'lab5_common.jar')
+    implementation 'ru.ifmo.se.lab5:common:1.0.0'
 
-    implementation(':lab5_common:')
 }
 
 application {
