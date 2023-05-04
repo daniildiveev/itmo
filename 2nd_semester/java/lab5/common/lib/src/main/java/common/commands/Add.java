@@ -22,22 +22,7 @@ public class Add extends CommandWithElement {
     public void execute(CollectionHandler collectionHandler){
         PriorityQueue<Route> collection = collectionHandler.getCollection();
 
-        Scanner scanner = new Scanner(System.in);
-        String input;
-        String[] args = new String[12];
-
-        for(int i=0;i<numStringsToRead;i++){
-            input = scanner.nextLine();
-            args[i] = input;
-        }
-
-        try {
-            Route route = new Route(args);
-            collection.add(route);
-        } catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-
+        collection.add(this.route);
         collectionHandler.updateCollection(collection);
     }
 }
