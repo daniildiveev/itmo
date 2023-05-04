@@ -17,4 +17,8 @@ public abstract class Command implements Serializable {
     public void setArgs(String[] args){
         this.args = args;
     }
+
+    public static int getNumStringsToRead() {
+        return numStringsToRead;
+    }
 }
