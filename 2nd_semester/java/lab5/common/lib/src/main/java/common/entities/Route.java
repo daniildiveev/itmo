@@ -1,15 +1,22 @@
 package common.entities;
 
+import common.exceptions.InvalidParameterValueException;
+import common.handler.IOHandler;
 import common.validator.RouteValidator;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
 
 public class Route implements Comparable<Route>, Serializable {
+    private static final List<Integer> usedIds  = new ArrayList<>();
     private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
-    private Coordinates coordinates; //Поле не может быть null
-    private LocalDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    private final Coordinates coordinates; //Поле не может быть null
+    private final LocalDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private Location from; //Поле может быть null
     private Location to; //Поле не может быть null
     private long distance; //Значение поля должно быть больше 1
@@ -17,6 +24,7 @@ public class Route implements Comparable<Route>, Serializable {
     public Route(String[] args) throws Exception{
         RouteValidator.validate(args);
 
+        this.id = generateValidId();
         this.name = args[0];
         this.coordinates = new Coordinates(Long.parseLong(args[1]),
                                             Integer.parseInt(args[2]));
@@ -34,6 +42,73 @@ public class Route implements Comparable<Route>, Serializable {
                                  args[10]);
 
         this.distance = Long.parseLong(args[11]);
+    }
+
+    public Route(){
+        Scanner s = new Scanner(System.in);
+        this.id = generateValidId();
+
+        inputName(s);
+
+        this.coordinates = new Coordinates();
+        this.to = new Location();
+        this.from = new Location();
+        this.creationDate = LocalDateTime.now();
+
+        inputDistance(s);
+    }
+
+    private void inputName(Scanner s){
+        IOHandler.print("Please input the name parameter of Route >>");
+
+        try{
+            String input = s.nextLine();
+
+            if (input == null || input.isEmpty()){
+                throw new InvalidParameterValueException("name parameter cannot be null");
+            }
+
+            if (this.name == null){
+                this.name = input;
+            }
+        }
+
+        catch (Exception e){
+            IOHandler.println(e.getMessage());
+            IOHandler.println("Invalid name value, please try again...");
+            inputName(s);
+        }
+    }
+
+    private void inputDistance(Scanner s){
+        IOHandler.print("Please input the distance parameter of Route >>");
+
+        try{
+            String input = s.nextLine();
+
+            if (Long.parseLong(input) <= 1){
+                throw new InvalidParameterValueException("distance must be greater than 1");
+            }
+
+            this.distance = Long.parseLong(input);
+        }
+
+        catch (Exception e){
+            IOHandler.println(e.getMessage());
+            IOHandler.println("Invalid distance provided, please try again...");
+            inputDistance(s);
+        }
+    }
+
+    private int generateValidId(){
+        Collections.sort(usedIds);
+        int i = 1;
+
+        while(usedIds.contains(i)){
+            i++;
+        }
+
+        return i;
     }
 
     public void setId(int id){
@@ -55,6 +130,26 @@ public class Route implements Comparable<Route>, Serializable {
         xmlRepresentation += "</route>\n";
 
         return xmlRepresentation;
+    }
+
+    public int getId(){
+        return this.id;
+    }
+
+    public static void removeId(int id){
+        usedIds.remove(id);
+    }
+
+    public String toString(){
+        String output = "Route: " + this.id + "\n";
+        output += "Name: " + this.name + "\n";
+        output += this.coordinates.toString() + "\n";
+        output += "Date: " + this.creationDate + "\n";
+        output += "From " + this.from.toString() + "\n";
+        output += "To" + this.to.toString() + "\n";
+        output += "Distance: " + this.distance;
+
+        return output;
     }
 
     @Override

@@ -1,6 +1,10 @@
 package common.entities;
 
+import common.exceptions.InvalidParameterValueException;
+import common.handler.IOHandler;
+
 import java.io.Serializable;
+import java.util.Scanner;
 
 public class Coordinates implements Serializable {
     private Long x; //Поле не может быть null
@@ -9,6 +13,53 @@ public class Coordinates implements Serializable {
     public Coordinates(Long x, Integer y){
         this.x = x;
         this.y = y;
+    }
+
+    public Coordinates(){
+        Scanner s = new Scanner(System.in);
+
+        inputX(s);
+        inputY(s);
+    }
+
+    private void inputX(Scanner s){
+        IOHandler.print("Please input the x parameter of Coordinates >>");
+
+        try{
+            String input = s.nextLine();
+
+            if(input.isEmpty()){
+                throw new InvalidParameterValueException("x parameter cannot be null");
+            }
+
+            this.x = Long.parseLong(input);
+        }
+
+        catch (Exception e){
+            IOHandler.println(e.getMessage());
+            IOHandler.println("Invalid x value, please try again...");
+            inputX(s);
+        }
+    }
+
+    private void inputY(Scanner s){
+        IOHandler.print("Please input the y parameter of Coordinates >>");
+
+        try{
+            String input = s.nextLine();
+
+            if(input.isEmpty() || Integer.parseInt(input) >= 781){
+                throw new InvalidParameterValueException("y parameter cannot be null or greater than 781");
+            }
+
+            this.y = Integer.parseInt(input);
+        }
+
+        catch (Exception e){
+            IOHandler.println(e.getMessage());
+            IOHandler.println("Invalid y value, please try again...");
+            inputY(s);
+        }
     }
 
     public String toXml(){
