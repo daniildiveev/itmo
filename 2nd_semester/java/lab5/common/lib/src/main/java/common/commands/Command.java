@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 public abstract class Command implements Serializable {
     protected static final int numStringsToRead = 12;
-    private String[] args = null;
+    protected String[] args = null;
     public String getName(){
         return null;
     };
@@ -15,9 +15,7 @@ public abstract class Command implements Serializable {
         return null;
     };
     public void execute(CollectionHandler collectionHandler, PrintWriter output){};
-    public void setArgs(String[] args){
-        this.args = args;
-    }
+    public void setArgs(String[] args){ this.args = args; }
 
     public static int getNumStringsToRead() {
         return numStringsToRead;
