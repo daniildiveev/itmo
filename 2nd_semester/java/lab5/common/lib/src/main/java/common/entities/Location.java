@@ -55,7 +55,7 @@ public class Location implements Serializable {
             String input = s.nextLine();
 
             if (!input.isEmpty()){
-                this.z = Double.parseDouble(input);
+                this.y = Float.parseFloat(input);
             }
         }
 
