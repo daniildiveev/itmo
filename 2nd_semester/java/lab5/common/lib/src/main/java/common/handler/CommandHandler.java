@@ -23,11 +23,6 @@ public class CommandHandler{
             throw new InvalidCommandNameException("no such command: " + commandName);
         }
 
-        if(command instanceof CommandWithElement){
-            Route r = new Route();
-            ((CommandWithElement) command).setRoute(r);
-        }
-
         command.setArgs(Arrays.copyOfRange(args, 1, args.length));
 
         return command;
