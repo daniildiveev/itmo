@@ -25,6 +25,8 @@ public class Route implements Comparable<Route>, Serializable {
         RouteValidator.validate(args);
 
         this.id = generateValidId();
+        usedIds.add(this.id);
+
         this.name = args[0];
         this.coordinates = new Coordinates(Long.parseLong(args[1]),
                                             Integer.parseInt(args[2]));
@@ -36,7 +38,7 @@ public class Route implements Comparable<Route>, Serializable {
                                  Double.parseDouble(args[5]),
                                  args[6]);
 
-        this.from = new Location(Integer.parseInt(args[7]),
+        this.to = new Location(Integer.parseInt(args[7]),
                                  Float.parseFloat(args[8]),
                                  Double.parseDouble(args[9]),
                                  args[10]);
@@ -47,6 +49,7 @@ public class Route implements Comparable<Route>, Serializable {
     public Route(){
         Scanner s = new Scanner(System.in);
         this.id = generateValidId();
+        usedIds.add(this.id);
 
         inputName(s);
 
