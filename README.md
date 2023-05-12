@@ -5,7 +5,8 @@
 2. [Pokemons](https://github.com/daniildiveev/itmo/tree/main/1st_semester/java/lab1)
 3. [Subject domains](https://github.com/daniildiveev/itmo/tree/main/1st_semester/java/lab2)
 4. [Subject domains upgrading](https://github.com/daniildiveev/itmo/tree/main/1st_semester/java/lab3)
-5. [Creating command line application](https://github.com/daniildiveev/itmo/tree/main/2nd_semester/java/lab4)
+5. [Creating command line application that works with collection of entities](https://github.com/daniildiveev/itmo/tree/main/2nd_semester/java/lab4)
+6. [Splitting appliction from lab 5 into client and server parts](https://github.com/daniildiveev/itmo/tree/main/2nd_semester/java/lab5)
 
 ## CS Basics:
 1. [Linux terminal basics](https://github.com/daniildiveev/itmo/tree/main/1st_semester/csbasics/lab0)
