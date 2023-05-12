@@ -3,11 +3,24 @@
  */
 package server;
 
+import common.handler.CollectionHandler;
 import server.network.TCPServer;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main {
     public static void main(String[] args) {
         TCPServer server = new TCPServer();
-        server.getMessage();
+        Logger logger = Logger.getLogger("logger");
+
+        try{
+            CollectionHandler collectionHandler = new CollectionHandler();
+
+            new Thread(() -> server.start(collectionHandler)).start();
+
+        } catch (Exception e){
+            logger.log(Level.SEVERE, e.getMessage());
+        }
     }
 }
