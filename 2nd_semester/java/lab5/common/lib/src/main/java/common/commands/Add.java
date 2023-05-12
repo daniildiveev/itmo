@@ -16,7 +16,7 @@ public class Add extends CommandWithElement {
 
     @Override
     public String getDescription(){
-        return getName() + "                             -- add new element to collection\n";
+        return getName() + "                             -- add new element to collection";
     }
 
     @Override

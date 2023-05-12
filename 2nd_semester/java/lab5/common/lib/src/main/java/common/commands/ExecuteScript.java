@@ -22,7 +22,7 @@ public class ExecuteScript extends Command{
 
     @Override
     public String getDescription() {
-        return getName() + " file_name        -- read and execute script from provided file\n";
+        return getName() + " file_name        -- read and execute script from provided file";
     }
 
     public List<Command> retrieveCommands(){

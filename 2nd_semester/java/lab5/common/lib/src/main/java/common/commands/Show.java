@@ -14,7 +14,7 @@ public class Show extends Command {
 
     @Override
     public String getDescription() {
-        return getName() + "                            -- show all elements of collection in String representation\n";
+        return getName() + "                            -- show all elements of collection in String representation";
     }
 
     @Override
