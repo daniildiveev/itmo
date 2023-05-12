@@ -1,5 +1,6 @@
 package common.handler;
 
+import java.util.Arrays;
 import java.util.Set;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
@@ -13,8 +14,7 @@ public class PackageParser {
 
         return reflections.getSubTypesOf(Object.class)
                 .stream()
-                .filter(klass -> !klass.getSimpleName().equalsIgnoreCase(commandsInterfacesNames[0]))
-                .filter(klass -> !klass.getSimpleName().equalsIgnoreCase(commandsInterfacesNames[1]))
+                .filter(klass -> !Arrays.asList(commandsInterfacesNames).contains(klass.getSimpleName()))
                 .collect(Collectors.toSet());
     }
 
