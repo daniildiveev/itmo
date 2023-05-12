@@ -2,7 +2,6 @@ package common.commands;
 
 import common.entities.Route;
 import common.handler.CollectionHandler;
-import common.handler.IOHandler;
 
 import java.io.PrintWriter;
 import java.util.PriorityQueue;
@@ -24,11 +23,8 @@ public class Show extends Command {
 
         if (collection.isEmpty()){
             output.println("Collection is empty!");
-        }
-
-        for(Route r: collection){
-            output.println(r.toString());
-            output.println("");
+        } else {
+            collection.forEach(route -> output.println(route.toString()));
         }
     }
 }
