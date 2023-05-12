@@ -4,6 +4,7 @@ import common.exceptions.InvalidParameterValueException;
 import common.handler.IOHandler;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Coordinates implements Serializable {
@@ -71,6 +72,30 @@ public class Coordinates implements Serializable {
         return xmlRepresentation;
     }
 
+    public Long getX() {
+        return x;
+    }
+
+    public Integer getY() {
+        return y;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || o.getClass() != this.getClass()) return false;
+        if (o == this) return true;
+
+        Coordinates coordinates = (Coordinates) o;
+
+        return Objects.equals(this.x, coordinates.getX()) && Objects.equals(this.y, coordinates.getY());
+    }
+
+    @Override
+    public int hashCode() {
+        return ("@" + this.getClass().getSimpleName() + this.x + this.y).hashCode();
+    }
+
+    @Override
     public String toString(){
         return "Coordinates x:" + this.x + " y:" + this.y;
     }

@@ -6,10 +6,7 @@ import common.validator.RouteValidator;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Route implements Comparable<Route>, Serializable {
     private static final List<Integer> usedIds  = new ArrayList<>();
@@ -143,6 +140,40 @@ public class Route implements Comparable<Route>, Serializable {
         usedIds.remove(id);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public Coordinates getCoordinates() {
+        return coordinates;
+    }
+
+    public Location getFrom() {
+        return from;
+    }
+
+    public Location getTo() {
+        return to;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o == null || o.getClass() != this.getClass()) return false;
+        if(o == this) return true;
+
+        Route route = (Route) o;
+
+        return Objects.equals(this.name, route.getName()) && this.coordinates.equals(route.getCoordinates()) &&
+                this.from.equals(route.getFrom()) && this.to.equals(route.getTo()) && Objects.equals(this.distance, route.getDistance());
+    }
+
+    @Override
+    public int hashCode() {
+        return ("@" + this.getClass().getSimpleName() + this.name + this.coordinates.hashCode()
+                + this.to.hashCode() + this.from.hashCode() + this.distance).hashCode();
+    }
+
+    @Override
     public String toString(){
         String output = "Route: " + this.id + "\n";
         output += "Name: " + this.name + "\n";

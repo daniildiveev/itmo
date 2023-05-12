@@ -4,6 +4,7 @@ import common.exceptions.InvalidParameterValueException;
 import common.handler.IOHandler;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Location implements Serializable {
@@ -113,6 +114,45 @@ public class Location implements Serializable {
         return xmlRepresentation;
     }
 
+    public Integer getX() {
+        return x;
+    }
+
+    public Float getY() {
+        return y;
+    }
+
+    public Double getZ() {
+        return z;
+    }
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o == null || this.getClass() != o.getClass()){
+            return false;
+        }
+
+        if(o == this){
+            return true;
+        }
+
+        Location location = (Location) o;
+
+        return Objects.equals(this.x, location.getX()) && Objects.equals(this.y, location.getY())
+                && Objects.equals(this.z, location.getZ()) && Objects.equals(this.locationName, location.getLocationName());
+
+    }
+
+    @Override
+    public int hashCode() {
+        return ("@" + this.getClass().getSimpleName() + this.z + this.y + this.z + this.locationName).hashCode();
+    }
+
+    @Override
     public String toString(){
         return "Location " + this.locationName + ": x:" + this.x + " y:" + this.y + " z:" + this.z;
     }
