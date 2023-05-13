@@ -16,16 +16,20 @@ public class LocationValidator extends Validator{
             throw new InvalidParameterValueException(e.getMessage());
         }
 
-        try{
-            Float y = Float.parseFloat(locationX);
-        } catch (Exception e){
-            throw new InvalidParameterValueException(e.getMessage());
+        if(!checkIfNull(locationY)){
+            try {
+                Float y = Float.parseFloat(locationY);
+            } catch (Exception e) {
+                throw new InvalidParameterValueException(e.getMessage());
+            }
         }
 
-        try{
-            Double y = Double.parseDouble(locationX);
-        } catch (Exception e){
-            throw new InvalidParameterValueException(e.getMessage());
+        if(!checkIfNull(locationZ)){
+            try {
+                Double y = Double.parseDouble(locationZ);
+            } catch (Exception e) {
+                throw new InvalidParameterValueException(e.getMessage());
+            }
         }
     }
 
