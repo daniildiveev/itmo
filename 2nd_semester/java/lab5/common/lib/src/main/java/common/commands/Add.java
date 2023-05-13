@@ -2,6 +2,7 @@ package common.commands;
 
 import common.entities.Route;
 import common.handler.CollectionHandler;
+import common.setter.RouteAutomaticFieldsSetter;
 
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -24,6 +25,9 @@ public class Add extends CommandWithElement {
         PriorityQueue<Route> collection = collectionHandler.getCollection();
 
         executionMessage(output);
+
+        this.route.setId(RouteAutomaticFieldsSetter.generateValidId(collectionHandler));
+        this.route.setCreationDate(RouteAutomaticFieldsSetter.generateTimestamp());
 
         collection.add(this.route);
         collectionHandler.updateCollection(collection);
