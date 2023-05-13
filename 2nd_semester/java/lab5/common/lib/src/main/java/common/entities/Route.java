@@ -13,7 +13,7 @@ public class Route implements Comparable<Route>, Serializable {
     private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private final Coordinates coordinates; //Поле не может быть null
-    private final LocalDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+    private LocalDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private Location from; //Поле может быть null
     private Location to; //Поле не может быть null
     private long distance; //Значение поля должно быть больше 1
@@ -21,14 +21,9 @@ public class Route implements Comparable<Route>, Serializable {
     public Route(String[] args) throws Exception{
         RouteValidator.validate(args);
 
-        this.id = generateValidId();
-        usedIds.add(this.id);
-
         this.name = args[0];
         this.coordinates = new Coordinates(Long.parseLong(args[1]),
                                             Integer.parseInt(args[2]));
-
-        this.creationDate = LocalDateTime.now();
 
         this.from = new Location(Integer.parseInt(args[3]),
                                  Float.parseFloat(args[4]),
@@ -45,8 +40,6 @@ public class Route implements Comparable<Route>, Serializable {
 
     public Route(){
         Scanner s = new Scanner(System.in);
-        this.id = generateValidId();
-        usedIds.add(this.id);
 
         inputName(s);
 
@@ -156,6 +149,10 @@ public class Route implements Comparable<Route>, Serializable {
         return to;
     }
 
+    public void setCreationDate(LocalDateTime timestamp){
+        this.creationDate = timestamp;
+    }
+
     @Override
     public boolean equals(Object o) {
         if(o == null || o.getClass() != this.getClass()) return false;
@@ -182,6 +179,7 @@ public class Route implements Comparable<Route>, Serializable {
         output += "From " + this.from.toString() + "\n";
         output += "To" + this.to.toString() + "\n";
         output += "Distance: " + this.distance;
+        output += "\n";
 
         return output;
     }
