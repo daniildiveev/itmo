@@ -112,7 +112,7 @@ public class CollectionHandler {
         r.setCreationDate(LocalDateTime.parse(datetime));
         r.setId(Integer.parseInt(idValue));
 
-        return new Route(args);
+        return r;
     }
 
 
