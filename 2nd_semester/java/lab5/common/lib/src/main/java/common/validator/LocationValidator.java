@@ -26,7 +26,7 @@ public class LocationValidator extends Validator{
 
         if(!checkIfNull(locationZ)){
             try {
-                Double y = Double.parseDouble(locationZ);
+                Double z = Double.parseDouble(locationZ);
             } catch (Exception e) {
                 throw new InvalidParameterValueException(e.getMessage());
             }
