@@ -25,14 +25,41 @@ public class Route implements Comparable<Route>, Serializable {
         this.coordinates = new Coordinates(Long.parseLong(args[1]),
                                             Integer.parseInt(args[2]));
 
+        Float locationY;
+        Double locationZ;
+
+        try{
+            locationY = Float.parseFloat(args[4]);
+        } catch (NumberFormatException e){
+            locationY = null;
+        }
+
+        try{
+            locationZ = Double.parseDouble(args[5]);
+        } catch (NumberFormatException e){
+            locationZ = null;
+        }
+
         this.from = new Location(Integer.parseInt(args[3]),
-                                 Float.parseFloat(args[4]),
-                                 Double.parseDouble(args[5]),
+                                 locationY,
+                                 locationZ,
                                  args[6]);
 
+        try{
+            locationY = Float.parseFloat(args[8]);
+        } catch (NumberFormatException e){
+            locationY = null;
+        }
+
+        try{
+            locationZ = Double.parseDouble(args[9]);
+        } catch (NumberFormatException e){
+            locationZ = null;
+        }
+
         this.to = new Location(Integer.parseInt(args[7]),
-                                 Float.parseFloat(args[8]),
-                                 Double.parseDouble(args[9]),
+                                 locationY,
+                                 locationZ,
                                  args[10]);
 
         this.distance = Long.parseLong(args[11]);
