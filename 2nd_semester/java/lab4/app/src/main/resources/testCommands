@@ -1,0 +1,19 @@
+info
+show
+add
+Input now parameters for Route class..
+Please input the name parameter of Route >>route980
+Input now for parameters of Coordinates class..
+Please input the x parameter of Coordinates >>56
+Please input the y parameter of Coordinates >>6
+Input now for parameters of Location class..
+Please input the x parameter of Location >>56
+Please input the y parameter of Location >>98
+Please input the z parameter of Location >>
+Please input the name parameter of Location >>location80
+Input now for parameters of Location class..
+Please input the x parameter of Location >>67
+Please input the y parameter of Location >>87
+Please input the z parameter of Location >>
+Please input the name parameter of Location >>location81
+Please input the distance parameter of Route >>78
