@@ -14,7 +14,7 @@ public class PrintUniqueDistance extends Command{
 
     @Override
     public String getDescription(){
-        return getName() + "           -- show unique distances\n";
+        return getName() + "           -- show unique distances";
     }
 
     @Override

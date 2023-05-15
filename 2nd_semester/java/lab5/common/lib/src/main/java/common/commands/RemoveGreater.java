@@ -15,7 +15,7 @@ public class RemoveGreater extends CommandWithElement{
 
     @Override
     public String getDescription() {
-        return getName() + " {element}        -- remove all elements from collection that is greater than given\n";
+        return getName() + " {element}        -- remove all elements from collection that is greater than given";
     }
 
     @Override

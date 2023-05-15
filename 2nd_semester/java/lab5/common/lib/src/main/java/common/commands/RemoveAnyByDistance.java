@@ -14,7 +14,7 @@ public class RemoveAnyByDistance extends Command{
 
     @Override
     public String getDescription() {
-        return getName() + " distance -- remove any element from collection which distance is equal to the given\n";
+        return getName() + " distance -- remove any element from collection which distance is equal to the given";
     }
 
     @Override

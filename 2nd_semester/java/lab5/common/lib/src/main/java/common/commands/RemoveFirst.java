@@ -14,7 +14,7 @@ public class RemoveFirst extends Command{
 
     @Override
     public String getDescription() {
-        return getName() + "                    -- remove first element from collection\n";
+        return getName() + "                    -- remove first element from collection";
     }
 
     @Override

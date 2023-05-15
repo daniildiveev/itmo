@@ -12,7 +12,7 @@ public class Info extends Command{
 
     @Override
     public String getDescription() {
-        return getName() + "                            -- show information about collection (type, initialization date, number of elements)\n";
+        return getName() + "                            -- show information about collection (type, initialization date, number of elements)";
     }
 
     @Override

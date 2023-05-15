@@ -16,7 +16,7 @@ public class Update extends CommandWithElement{
 
     @Override
     public String getDescription() {
-        return getName() + " id {element}             -- update collection element with respect to id\n";
+        return getName() + " id {element}             -- update collection element with respect to id";
     }
 
     @Override
