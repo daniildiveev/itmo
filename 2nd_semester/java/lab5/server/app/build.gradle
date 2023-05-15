@@ -9,6 +9,23 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'java-library'
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.0'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'server.Main'
+    }
+}
+
+shadowJar {
+    archiveBaseName = 'lab5'
+    version = '1.0.0'
+    manifest {
+        attributes 'Main-Class': 'server.Main'
+    }
 }
 
 repositories {

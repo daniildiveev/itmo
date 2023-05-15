@@ -9,12 +9,41 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'java-library'
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '8.1.0'
 }
 
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
     mavenLocal()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'server.Main'
+    }
+}
+
+shadowJar {
+    archiveBaseName = 'lab5'
+    version = '1.0.0'
+    manifest {
+        attributes 'Main-Class': 'server.Main'
+    }
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDir 'src/main/resources'
+        }
+    }
+}
+
+processResources {
+    duplicatesStrategy = 'include'
 }
 
 dependencies {
