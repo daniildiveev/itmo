@@ -5,6 +5,7 @@ import common.handler.CollectionHandler;
 
 import java.io.PrintWriter;
 import java.util.PriorityQueue;
+import java.util.stream.Collectors;
 
 public class RemoveGreater extends CommandWithElement{
     @Override
@@ -21,8 +22,10 @@ public class RemoveGreater extends CommandWithElement{
     public void execute(CollectionHandler collectionHandler, PrintWriter output) {
         PriorityQueue<Route> collection = collectionHandler.getCollection();
 
-        collection.stream()
-                .filter(route -> this.route.compareTo(route) > 0)
-                .forEach(collection::remove);
+        PriorityQueue<Route> updatedCollection = collection.stream()
+                .filter(route -> this.route.compareTo(route) <= 0)
+                .collect(Collectors.toCollection(PriorityQueue::new));
+
+        collectionHandler.updateCollection(updatedCollection);
     }
 }
