@@ -70,7 +70,6 @@ public class ExecuteScript extends Command{
                                 if(ok){
                                     try{
                                         Route r = new Route(routeArgs);
-                                        System.out.println(r.toString());
                                         ((CommandWithElement) command).setRoute(r);
                                         commands.add(command);
                                     } catch (Exception e) {
@@ -78,7 +77,15 @@ public class ExecuteScript extends Command{
                                     }
                                 }
                             } else {
-                                commands.add(command);
+                                if (command instanceof ExecuteScript){
+                                    List<Command> commandsFromScript = ((ExecuteScript) command).retrieveCommands();
+
+                                    if(commandsFromScript != null){
+                                        commands.addAll(commandsFromScript);
+                                    }
+                                } else{
+                                    commands.add(command);
+                                }
                             }
                         } catch (InvalidCommandNameException e){
                             IOHandler.println("Skipping command " + rawInput + " since it is not present in package");
