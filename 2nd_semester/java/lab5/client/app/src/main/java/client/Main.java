@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 import common.commands.CommandWithElement;
 import common.commands.ExecuteScript;
+import common.commands.Exit;
 import common.entities.Route;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -19,35 +20,15 @@ import common.handler.CommandHandler;
 
 public class Main {
     public static void main(String[] args) {
-        PropertyConfigurator.configure(Main.class.getClassLoader().getResource("log4j.properties"));
+        //PropertyConfigurator.configure(Main.class.getClassLoader().getResource("log4j.properties"));
         Logger logger = Logger.getLogger("logger");
 
         Scanner scanner = new Scanner(System.in);
         TCPClient client = new TCPClient();
 
-        System.out.println("ЗАПУСКАЕМ\n" +
-                "░ГУСЯ░▄▀▀▀▄░РАБОТЯГИ░░\n" +
-                "▄███▀░◐░░░▌░░░░░░░\n" +
-                "░░░░▌░░░░░▐░░░░░░░\n" +
-                "░░░░▐░░░░░▐░░░░░░░\n" +
-                "░░░░▌░░░░░▐▄▄░░░░░\n" +
-                "░░░░▌░░░░▄▀▒▒▀▀▀▀▄\n" +
-                "░░░▐░░░░▐▒▒▒▒▒▒▒▒▀▀▄\n" +
-                "░░░▐░░░░▐▄▒▒▒▒▒▒▒▒▒▒▀▄\n" +
-                "░░░░▀▄░░░░▀▄▒▒▒▒▒▒▒▒▒▒▀▄\n" +
-                "░░░░░░▀▄▄▄▄▄█▄▄▄▄▄▄▄▄▄▄▄▀▄\n" +
-                "░░░░░░░░░░░▌▌▌▌░░░░░\n" +
-                "░░░░░░░░░░░▌▌░▌▌░░░░░\n" +
-                "░░░░░░░░░▄▄▌▌▄▌▌░░░░░\n" +
-                "запускаем гуся работяги");
-
         while(true){
             System.out.print("Shell>>");
             String input = scanner.nextLine();
-
-            if(input.split("\\s+")[0].trim().equals("exit")){
-                System.exit(0);
-            }
 
             try {
                 Command command = CommandHandler.process(input);
@@ -74,6 +55,8 @@ public class Main {
                 } else {
                     client.sendRequest(command);
                 }
+
+                if (command instanceof Exit) System.exit(0);
             } catch (InvalidCommandNameException|IOException e){
                 IOHandler.println(e.getMessage());
             }

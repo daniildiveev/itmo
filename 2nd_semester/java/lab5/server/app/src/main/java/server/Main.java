@@ -3,9 +3,14 @@
  */
 package server;
 
+import common.commands.Command;
+import common.commands.Exit;
 import common.handler.CollectionHandler;
+import common.handler.PackageParser;
+import server.commands.Save;
 import server.network.TCPServer;
 
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,6 +23,23 @@ public class Main {
             CollectionHandler collectionHandler = new CollectionHandler();
 
             new Thread(() -> server.start(collectionHandler)).start();
+
+            new Thread(() -> {
+                Scanner s = new Scanner(System.in);
+                String input, commandName;
+
+                while(true){
+                    System.out.print("Server Shell>>");
+                    input = s.nextLine().trim();
+                    commandName = input.split("\\s+")[0].trim();
+
+                    if(commandName.equals("save")){
+                        Save saveCommand = new Save();
+                        saveCommand.save(collectionHandler);
+                        System.exit(0);
+                    }
+                }
+            }).start();
 
         } catch (Exception e){
             logger.log(Level.SEVERE, e.getMessage());
