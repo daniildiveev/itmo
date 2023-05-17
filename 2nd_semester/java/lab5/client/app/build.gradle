@@ -22,7 +22,7 @@ repositories {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'server.Main'
+        attributes 'Main-Class': 'client.Main'
     }
 }
 
@@ -30,7 +30,7 @@ shadowJar {
     archiveBaseName = 'lab5'
     version = '1.0.0'
     manifest {
-        attributes 'Main-Class': 'server.Main'
+        attributes 'Main-Class': 'client.Main'
     }
 }
 
