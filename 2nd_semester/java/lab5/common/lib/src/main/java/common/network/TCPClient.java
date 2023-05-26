@@ -1,11 +1,10 @@
-package client.network;
+package common.network;
 
 import common.commands.Command;
 import common.handler.IOHandler;
 
 import java.io.*;
 import java.net.InetSocketAddress;
-import java.nio.Buffer;
 import java.nio.channels.SocketChannel;
 import java.nio.charset.StandardCharsets;
 
@@ -46,4 +45,7 @@ public class TCPClient {
         return true;
     }
 
+    public ObjectOutputStream getOutputStream() throws IOException{
+        return new ObjectOutputStream(this.clientSocket.socket().getOutputStream());
+    }
 }

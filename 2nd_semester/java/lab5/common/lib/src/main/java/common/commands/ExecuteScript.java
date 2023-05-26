@@ -3,11 +3,9 @@ package common.commands;
 import common.entities.Route;
 import common.exceptions.InvalidCommandNameException;
 import common.handler.*;
+import common.network.TCPClient;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -25,7 +23,7 @@ public class ExecuteScript extends Command{
         return getName() + " file_name        -- read and execute script from provided file";
     }
 
-    public List<Command> retrieveCommands(){
+    public void retrieveCommands(TCPClient client){
         List<Command> commands = new ArrayList<>();
 
         try{
@@ -33,7 +31,7 @@ public class ExecuteScript extends Command{
 
             if (handledScripts.contains(scriptName)){
                 IOHandler.println("Script cannot call itself or have infinite loop");
-                return null;
+                return;
             }
 
             try {
@@ -70,21 +68,19 @@ public class ExecuteScript extends Command{
                                 if(ok){
                                     try{
                                         Route r = new Route(routeArgs);
+                                        System.out.println("Sending command" + command.getName());
                                         ((CommandWithElement) command).setRoute(r);
-                                        commands.add(command);
+                                        client.sendRequest(command);
                                     } catch (Exception e) {
                                         IOHandler.println(e.getMessage());
                                     }
                                 }
                             } else {
                                 if (command instanceof ExecuteScript){
-                                    List<Command> commandsFromScript = ((ExecuteScript) command).retrieveCommands();
-
-                                    if(commandsFromScript != null){
-                                        commands.addAll(commandsFromScript);
-                                    }
+                                    ((ExecuteScript) command).retrieveCommands(client);
                                 } else{
-                                    commands.add(command);
+                                    System.out.println("Sending command" + command.getName());
+                                    client.sendRequest(command);
                                 }
                             }
                         } catch (InvalidCommandNameException e){
@@ -93,7 +89,7 @@ public class ExecuteScript extends Command{
                     }
                 } else {
                     handledScripts.remove(scriptName);
-                    return null;
+                    return;
                 }
             } catch (IOException e) {
                 IOHandler.println(e.getMessage());
@@ -104,7 +100,5 @@ public class ExecuteScript extends Command{
         catch (ArrayIndexOutOfBoundsException e){
             IOHandler.println("no script name provided");
         }
-
-        return commands;
     }
 }
