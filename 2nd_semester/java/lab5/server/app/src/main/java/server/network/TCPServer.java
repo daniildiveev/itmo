@@ -22,6 +22,7 @@ public class TCPServer{
 
     public void start(CollectionHandler collectionHandler){
         openServerSocket();
+
         while(serverSocketChannel!=null){
             //logger.log(Level.INFO,"Ожидание подключения...");
             try{
@@ -31,7 +32,9 @@ public class TCPServer{
                     try{
                         this.clientSocket = serverSocketChannel.accept();
                         noConnection = false;
-                    } catch (IOException e){}
+                    } catch (IOException e){
+                        System.out.println(e.getClass().getSimpleName() + ": " + e.getMessage());
+                    }
                 }
 
                 logger.log(Level.INFO, "Подключение успешно");
@@ -42,6 +45,7 @@ public class TCPServer{
                 logger.log(Level.SEVERE, "Ошибка в полученном запросе: " + ioe.getMessage(), ioe.getMessage());
             }
         }
+
         closeServerSocket();
     }
 
@@ -50,7 +54,7 @@ public class TCPServer{
             serverSocketChannel = ServerSocketChannel.open();
             serverSocketChannel.bind(new InetSocketAddress("127.0.0.1", port));
         } catch (IOException e) {
-            logger.log(Level.SEVERE,"Ошибка при открытии соединения", e.getMessage());
+            logger.log(Level.SEVERE,"Ошибка при открытии соединения" + e.getMessage(), e.getMessage());
         }
     }
 
