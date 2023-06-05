@@ -24,3 +24,4 @@
 ## Data Bases
 1. [Subject domains](https://github.com/daniildiveev/itmo/tree/main/2nd_semester/db/lab0)
 2. [Joins](https://github.com/daniildiveev/itmo/tree/main/2nd_semester/db/lab1)
+3. [Database normal forms](https://github.com/daniildiveev/itmo/tree/main/2nd_semester/db/lab2)
