@@ -1,6 +1,6 @@
 package common.handler;
 
-import common.commands.CommandWithElement;
+import common.commands.collection.CommandWithElement;
 import common.entities.Route;
 import common.setter.RouteAutomaticFieldsSetter;
 import org.w3c.dom.Document;

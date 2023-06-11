@@ -1,10 +1,11 @@
-package common.commands;
+package common.commands.collection;
 
+import common.commands.collection.CollectionCommand;
 import common.handler.CollectionHandler;
 
 import java.io.PrintWriter;
 
-public class Info extends Command{
+public class Info extends CollectionCommand {
     @Override
     public String getName() {
         return "info";

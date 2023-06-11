@@ -1,4 +1,4 @@
-package common.commands;
+package common.commands.collection;
 
 import common.entities.Route;
 import common.handler.CollectionHandler;
@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.PriorityQueue;
 
-public class Exit extends Command{
+public class Exit extends CollectionCommand {
     @Override
     public String getName() {
         return "exit";
@@ -26,14 +26,14 @@ public class Exit extends Command{
 
         String savePath = System.getenv("LABA5_SOURCE_FILE");
 
-        if(savePath == null){
+        if (savePath == null) {
             output.println("There is no environment variable with collection file path");
             return;
         }
 
         String fileOutput = "<routes>";
 
-        for (Route route : collection){
+        for (Route route : collection) {
             fileOutput += route.toXml();
         }
 
@@ -44,9 +44,9 @@ public class Exit extends Command{
             byte[] b = fileOutput.getBytes();
             fout.write(b);
             fout.close();
-        } catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             output.println("No such file:" + savePath);
-        } catch (IOException e){
+        } catch (IOException e) {
             output.println(e.getMessage());
         }
     }

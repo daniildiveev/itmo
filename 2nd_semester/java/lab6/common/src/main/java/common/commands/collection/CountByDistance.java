@@ -1,20 +1,19 @@
-package common.commands;
+package common.commands.collection;
 
 import common.entities.Route;
 import common.handler.CollectionHandler;
-import common.handler.IOHandler;
 
 import java.io.PrintWriter;
 import java.util.PriorityQueue;
 
-public class CountByDistance extends Command{
+public class CountByDistance extends CollectionCommand {
     @Override
-    public String getName(){
+    public String getName() {
         return "count_by_distance";
     }
 
     @Override
-    public String getDescription(){
+    public String getDescription() {
         return getName() + " distance      -- count all elements from collection which distance is equal to the given";
     }
 
@@ -22,7 +21,7 @@ public class CountByDistance extends Command{
     public void execute(CollectionHandler collectionHandler, PrintWriter output) {
         PriorityQueue<Route> collection = collectionHandler.getCollection();
 
-        try{
+        try {
             long distance = Long.parseLong(this.args[0]);
 
             long matchingDistanceCounter = collection.stream()
@@ -31,7 +30,7 @@ public class CountByDistance extends Command{
 
             output.println("Number of Routes with distance " + distance + ": " + matchingDistanceCounter);
 
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             output.println("Invalid distance provided");
         }
     }

@@ -1,4 +1,4 @@
-package common.commands;
+package common.commands.collection;
 
 import common.entities.Route;
 import common.handler.CollectionHandler;
@@ -6,7 +6,7 @@ import common.handler.CollectionHandler;
 import java.io.PrintWriter;
 import java.util.PriorityQueue;
 
-public class RemoveById extends Command{
+public class RemoveById extends CollectionCommand {
     @Override
     public String getName() {
         return "remove_by_id";
@@ -21,7 +21,7 @@ public class RemoveById extends Command{
     public void execute(CollectionHandler collectionHandler, PrintWriter output) {
         PriorityQueue<Route> collection = collectionHandler.getCollection();
 
-        try{
+        try {
             int targetId = Integer.parseInt(this.args[0]);
 
             collection.stream()
@@ -29,7 +29,7 @@ public class RemoveById extends Command{
                     .findFirst()
                     .ifPresent(collection::remove);
 
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             output.println("Invalid id provided");
         }
     }

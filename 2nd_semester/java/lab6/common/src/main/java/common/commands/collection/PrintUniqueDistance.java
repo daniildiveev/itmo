@@ -1,4 +1,4 @@
-package common.commands;
+package common.commands.collection;
 
 import common.entities.Route;
 import common.handler.CollectionHandler;
@@ -6,14 +6,14 @@ import common.handler.CollectionHandler;
 import java.io.PrintWriter;
 import java.util.PriorityQueue;
 
-public class PrintUniqueDistance extends Command{
+public class PrintUniqueDistance extends CollectionCommand {
     @Override
-    public String getName(){
+    public String getName() {
         return "print_unique_distance";
     }
 
     @Override
-    public String getDescription(){
+    public String getDescription() {
         return getName() + "           -- show unique distances";
     }
 

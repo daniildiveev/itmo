@@ -1,4 +1,4 @@
-package common.commands;
+package common.commands.collection;
 
 import common.entities.Route;
 import common.handler.CollectionHandler;
@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.util.PriorityQueue;
 import java.util.stream.Collectors;
 
-public class RemoveLower extends CommandWithElement{
+public class RemoveLower extends CommandWithElement {
     @Override
     public String getName() {
         return "remove_lower";

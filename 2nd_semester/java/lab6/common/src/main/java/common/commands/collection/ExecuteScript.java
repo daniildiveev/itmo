@@ -1,16 +1,21 @@
-package common.commands;
+package common.commands.collection;
 
 import common.entities.Route;
 import common.exceptions.InvalidCommandNameException;
-import common.handler.*;
+import common.handler.CommandHandler;
+import common.handler.FileHandler;
+import common.handler.IOHandler;
 import common.network.TCPClient;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ExecuteScript extends Command{
+public class ExecuteScript extends CollectionCommand {
     private static final List<String> handledScripts = new ArrayList<>();
 
     @Override
@@ -23,13 +28,13 @@ public class ExecuteScript extends Command{
         return getName() + " file_name        -- read and execute script from provided file";
     }
 
-    public void retrieveCommands(TCPClient client){
-        List<Command> commands = new ArrayList<>();
+    public void retrieveCommands(TCPClient client) {
+        List<CollectionCommand> commands = new ArrayList<>();
 
-        try{
+        try {
             String scriptName = this.args[0];
 
-            if (handledScripts.contains(scriptName)){
+            if (handledScripts.contains(scriptName)) {
                 IOHandler.println("Script cannot call itself or have infinite loop");
                 return;
             }
@@ -45,28 +50,28 @@ public class ExecuteScript extends Command{
                     Scanner scanner = new Scanner(isr);
                     String rawInput;
 
-                    while(scanner.hasNextLine()){
+                    while (scanner.hasNextLine()) {
                         rawInput = scanner.nextLine();
 
-                        try{
-                            Command command = CommandHandler.process(rawInput);
+                        try {
+                            CollectionCommand command = CommandHandler.process(rawInput);
 
-                            if(command instanceof CommandWithElement){
+                            if (command instanceof CommandWithElement) {
                                 String[] routeArgs = new String[CommandWithElement.getNumStringsToRead()];
 
                                 boolean ok = true;
 
-                                for(int i=0;i < CommandWithElement.getNumStringsToRead(); i++){
-                                    if(i < CommandWithElement.getNumStringsToRead() - 1 && !scanner.hasNextLine()){
+                                for (int i = 0; i < CommandWithElement.getNumStringsToRead(); i++) {
+                                    if (i < CommandWithElement.getNumStringsToRead() - 1 && !scanner.hasNextLine()) {
                                         ok = false;
                                         break;
-                                    } else{
+                                    } else {
                                         routeArgs[i] = scanner.nextLine();
                                     }
                                 }
 
-                                if(ok){
-                                    try{
+                                if (ok) {
+                                    try {
                                         Route r = new Route(routeArgs);
                                         System.out.println("Sending command" + command.getName());
                                         ((CommandWithElement) command).setRoute(r);
@@ -76,14 +81,14 @@ public class ExecuteScript extends Command{
                                     }
                                 }
                             } else {
-                                if (command instanceof ExecuteScript){
+                                if (command instanceof ExecuteScript) {
                                     ((ExecuteScript) command).retrieveCommands(client);
-                                } else{
+                                } else {
                                     System.out.println("Sending command" + command.getName());
                                     client.sendRequest(command);
                                 }
                             }
-                        } catch (InvalidCommandNameException e){
+                        } catch (InvalidCommandNameException e) {
                             IOHandler.println("Skipping command " + rawInput + " since it is not present in package");
                         }
                     }
@@ -96,8 +101,7 @@ public class ExecuteScript extends Command{
             }
 
             handledScripts.remove(scriptName);
-        }
-        catch (ArrayIndexOutOfBoundsException e){
+        } catch (ArrayIndexOutOfBoundsException e) {
             IOHandler.println("no script name provided");
         }
     }

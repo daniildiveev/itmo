@@ -1,4 +1,4 @@
-package common.commands;
+package common.commands.collection;
 
 
 import common.entities.Route;
@@ -7,7 +7,7 @@ import common.handler.CollectionHandler;
 import java.io.PrintWriter;
 import java.util.PriorityQueue;
 
-public class Clear extends Command{
+public class Clear extends CollectionCommand {
     @Override
     public String getName() {
         return "clear";
@@ -19,7 +19,7 @@ public class Clear extends Command{
     }
 
     @Override
-    public void execute(CollectionHandler collectionHandler, PrintWriter output){
+    public void execute(CollectionHandler collectionHandler, PrintWriter output) {
         collectionHandler.updateCollection(new PriorityQueue<Route>());
     }
 }

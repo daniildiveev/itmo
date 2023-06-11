@@ -1,4 +1,4 @@
-package common.commands;
+package common.commands.collection;
 
 import common.entities.Route;
 import common.handler.CollectionHandler;
@@ -6,7 +6,7 @@ import common.handler.CollectionHandler;
 import java.io.PrintWriter;
 import java.util.PriorityQueue;
 
-public class Show extends Command {
+public class Show extends CollectionCommand {
     @Override
     public String getName() {
         return "show";
@@ -21,7 +21,7 @@ public class Show extends Command {
     public void execute(CollectionHandler collectionHandler, PrintWriter output) {
         PriorityQueue<Route> collection = collectionHandler.getCollection();
 
-        if (collection.isEmpty()){
+        if (collection.isEmpty()) {
             output.println("Collection is empty!");
         } else {
             collection.forEach(route -> output.println(route.toString()));

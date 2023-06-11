@@ -1,4 +1,4 @@
-package common.commands;
+package common.commands.collection;
 
 import common.entities.Route;
 import common.handler.CollectionHandler;
@@ -6,7 +6,7 @@ import common.handler.CollectionHandler;
 import java.io.PrintWriter;
 import java.util.PriorityQueue;
 
-public class RemoveAnyByDistance extends Command{
+public class RemoveAnyByDistance extends CollectionCommand {
     @Override
     public String getName() {
         return "remove_any_by_distance";
@@ -28,7 +28,7 @@ public class RemoveAnyByDistance extends Command{
                     .filter(route -> route.getDistance() == targetDistance)
                     .findAny()
                     .ifPresent(collection::remove);
-        } catch (Exception e){
+        } catch (Exception e) {
             output.println("Invalid distance provided");
         }
     }

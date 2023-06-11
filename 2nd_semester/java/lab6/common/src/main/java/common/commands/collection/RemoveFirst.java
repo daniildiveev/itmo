@@ -1,4 +1,4 @@
-package common.commands;
+package common.commands.collection;
 
 import common.entities.Route;
 import common.handler.CollectionHandler;
@@ -6,7 +6,7 @@ import common.handler.CollectionHandler;
 import java.io.PrintWriter;
 import java.util.PriorityQueue;
 
-public class RemoveFirst extends Command{
+public class RemoveFirst extends CollectionCommand {
     @Override
     public String getName() {
         return "remove_first";

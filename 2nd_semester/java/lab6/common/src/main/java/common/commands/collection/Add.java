@@ -1,27 +1,25 @@
-package common.commands;
+package common.commands.collection;
 
 import common.entities.Route;
 import common.handler.CollectionHandler;
 import common.setter.RouteAutomaticFieldsSetter;
 
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.PriorityQueue;
-import java.util.Scanner;
 
 public class Add extends CommandWithElement {
     @Override
-    public String getName(){
+    public String getName() {
         return "add";
     }
 
     @Override
-    public String getDescription(){
+    public String getDescription() {
         return getName() + "                             -- add new element to collection";
     }
 
     @Override
-    public void execute(CollectionHandler collectionHandler, PrintWriter output){
+    public void execute(CollectionHandler collectionHandler, PrintWriter output) {
         PriorityQueue<Route> collection = collectionHandler.getCollection();
 
         executionMessage(output);

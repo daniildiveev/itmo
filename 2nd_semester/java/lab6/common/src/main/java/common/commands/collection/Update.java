@@ -1,4 +1,4 @@
-package common.commands;
+package common.commands.collection;
 
 import common.entities.Route;
 import common.handler.CollectionHandler;
@@ -8,7 +8,7 @@ import java.io.PrintWriter;
 import java.util.Optional;
 import java.util.PriorityQueue;
 
-public class Update extends CommandWithElement{
+public class Update extends CommandWithElement {
     @Override
     public String getName() {
         return "update";
@@ -21,7 +21,7 @@ public class Update extends CommandWithElement{
 
     @Override
     public void execute(CollectionHandler collectionHandler, PrintWriter output) {
-        try{
+        try {
             int idToChange = Integer.parseInt(this.args[0]);
             PriorityQueue<Route> collection = collectionHandler.getCollection();
 
@@ -29,7 +29,7 @@ public class Update extends CommandWithElement{
                     .filter(r -> r.getId() == idToChange)
                     .findFirst();
 
-            if(route.isPresent()){
+            if (route.isPresent()) {
                 collection.remove(route.get());
                 this.route.setId(route.get().getId());
                 this.route.setCreationDate(RouteAutomaticFieldsSetter.generateTimestamp());
@@ -37,7 +37,7 @@ public class Update extends CommandWithElement{
             } else {
                 output.println("Element with provided id not found in collection");
             }
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             output.println("Invalid id provided");
         }
     }
