@@ -7,7 +7,7 @@ import common.exceptions.InvalidCommandNameException;
 import java.util.Arrays;
 
 public class CommandHandler{
-    public static CollectionCommand process(String rawInput) throws InvalidCommandNameException{
+    public static Command process(String rawInput) throws InvalidCommandNameException{
         String[] args = rawInput.split("\\s+");
         String commandName = args[0].trim();
 
