@@ -1,6 +1,5 @@
 package common.network;
 
-import common.exceptions.InvalidParameterValueException;
 import common.handler.IOHandler;
 import common.validator.UserValidator;
 
