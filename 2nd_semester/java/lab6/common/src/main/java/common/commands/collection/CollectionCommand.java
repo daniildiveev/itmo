@@ -6,7 +6,7 @@ import common.handler.CollectionHandler;
 import java.io.PrintWriter;
 import java.io.Serializable;
 
-public abstract class CollectionCommand implements Command, Serializable {
+public abstract class CollectionCommand implements Command {
     protected static final int numStringsToRead = 12;
     protected String[] args = null;
 
