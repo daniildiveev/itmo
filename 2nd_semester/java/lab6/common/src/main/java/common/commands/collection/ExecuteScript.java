@@ -31,7 +31,7 @@ public class ExecuteScript extends CollectionCommand {
         return getName() + " file_name        -- read and execute script from provided file";
     }
 
-    public void retrieveCommands(TCPClient client, User user) {
+    public void retrieveCommands(TCPClient client) {
         List<CollectionCommand> commands = new ArrayList<>();
 
         try {
@@ -85,7 +85,7 @@ public class ExecuteScript extends CollectionCommand {
                                     }
                                 } else {
                                     if (command instanceof ExecuteScript) {
-                                        ((ExecuteScript) command).retrieveCommands(client, user);
+                                        ((ExecuteScript) command).retrieveCommands(client);
                                     } else {
                                         System.out.println("Sending command" + command.getName());
                                     }
@@ -94,8 +94,7 @@ public class ExecuteScript extends CollectionCommand {
                                 IOHandler.println("Non-collection commands not allowed in script");
                             }
 
-                            Request request = new Request(command, user);
-                            client.sendRequest(request);
+                            client.sendRequest(command);
                         } catch (InvalidCommandNameException e) {
                             IOHandler.println("Skipping command " + rawInput + " since it is not present in package");
                         }
