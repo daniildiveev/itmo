@@ -1,6 +1,9 @@
 package common.network;
 
+
 import common.commands.Command;
+import common.commands.authentication.AuthenticationCommand;
+import common.commands.collection.CollectionCommand;
 import common.handler.IOHandler;
 
 import java.io.*;
@@ -13,6 +16,7 @@ public class TCPClient {
     private String host = "127.0.0.1";
     private int port = 3333;
     private SocketChannel clientSocket;
+    private User user = null;
 
     public boolean connectToServer() {
         try {
@@ -31,21 +35,48 @@ public class TCPClient {
     public boolean sendRequest(Command command) throws IOException {
         if(connectToServer()){
             ObjectOutput objectOutput = new ObjectOutputStream(this.clientSocket.socket().getOutputStream());
-            InputStream in = new BufferedInputStream(clientSocket.socket().getInputStream());
 
-            objectOutput.writeObject(command);
+            Request request = new Request(command, this.user);
+            objectOutput.writeObject(request);
 
-            String str_in = new String(in.readAllBytes(), StandardCharsets.UTF_8);
-            IOHandler.print(str_in);
-            in.close();
+            try{
+                if(request.getCommand() instanceof AuthenticationCommand){
+                    ObjectInput objectInput = new ObjectInputStream(this.clientSocket.socket().getInputStream());
 
-            objectOutput.close();
-            closeConnection();
+                    Response response = (Response) objectInput.readObject();
+
+                    if (response.getCode() != 201){
+                        IOHandler.println("Authentication error");
+                    } else {
+                        this.user = response.getUser();
+                        IOHandler.println("Authentication successful");
+                    }
+
+                    if (response.getOutput() != null) {
+                        IOHandler.println(response.getOutput());
+                    }
+                } else if (request.getCommand() instanceof CollectionCommand){
+                    InputStream in = new BufferedInputStream(clientSocket.socket().getInputStream());
+
+                    String strIn = new String(in.readAllBytes(), StandardCharsets.UTF_8);
+                    IOHandler.print(strIn);
+                    in.close();
+                }
+            } catch (ClassNotFoundException e){
+                IOHandler.println(e.getMessage());
+            } finally {
+                objectOutput.close();
+                closeConnection();
+            }
         }
         return true;
     }
 
-    public ObjectOutputStream getOutputStream() throws IOException{
-        return new ObjectOutputStream(this.clientSocket.socket().getOutputStream());
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
     }
 }
