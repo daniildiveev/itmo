@@ -6,9 +6,9 @@ import common.network.User;
 import java.sql.*;
 
 public class DBHandler {
-    private static final String jdbcUrl = "jdbc:postgresql://localhost:5432/lab7";
-    private static final String username = "postgres";
-    private static final String password = "N29EXFdw";
+    private static final String jdbcUrl = System.getenv("DATABASE_URL");
+    private static final String username = System.getenv("DATABASE_USERNAME");
+    private static final String password = System.getenv("DATABASE_PASSWORD");
 
     static {
         try(Connection connection = DriverManager.getConnection(jdbcUrl, username, password)){
@@ -50,14 +50,14 @@ public class DBHandler {
     public static User checkUserPresence(User user){
         Connection connection = getConnection();
 
-        String selectUserQuery = "SELECT * FROM users WHERE username = \"?\" LIMIT 1";
+        String selectUserQuery = "SELECT * FROM users WHERE username = ? LIMIT 1";
 
         try (PreparedStatement stmt = connection.prepareStatement(selectUserQuery)){
             stmt.setString(1, user.getUsername());
 
-            try (ResultSet resultSet = stmt.executeQuery(selectUserQuery)){
-                if (!resultSet.next()){
-                    return user;
+            try (ResultSet resultSet = stmt.executeQuery()){
+                if (resultSet.next()){
+                    return new User(resultSet.getString(1), resultSet.getString(2));
                 }
             }
         } catch (SQLException e){
@@ -67,7 +67,7 @@ public class DBHandler {
         return null;
     }
 
-    public static boolean createUser(User user) throws UserException {
+    public static User createUser(User user) throws UserException {
         if(checkUserPresence(user) != null){
             throw new UserException("user already exists");
         }
@@ -79,13 +79,13 @@ public class DBHandler {
                 stmt.setString(1, user.getUsername());
                 stmt.setString(2, user.getPassword());
 
-                stmt.executeUpdate(addUserQuery);
+                stmt.executeUpdate();
             }
         } catch (SQLException e){
-            return false;
+            return null;
         }
 
-        return true;
+        return user;
     }
 
     public static boolean checkUserPassword(User userToCheck) throws UserException{
