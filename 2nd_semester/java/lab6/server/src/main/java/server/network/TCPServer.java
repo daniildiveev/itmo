@@ -1,12 +1,12 @@
 package server.network;
 
+import common.commands.authentication.AuthenticationCommand;
+import common.commands.collection.CollectionCommand;
 import common.handler.CollectionHandler;
 import common.commands.Command;
+import common.network.Request;
 
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectInputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.nio.channels.ServerSocketChannel;
@@ -24,7 +24,6 @@ public class TCPServer{
         openServerSocket();
 
         while(serverSocketChannel!=null){
-            //logger.log(Level.INFO,"Ожидание подключения...");
             try{
                 boolean noConnection = true;
 
@@ -69,9 +68,16 @@ public class TCPServer{
     private boolean processRequest(CollectionHandler collectionHandler) throws IOException, ClassNotFoundException {
         ObjectInput objectInput = new ObjectInputStream(this.clientSocket.socket().getInputStream());
         PrintWriter in = new PrintWriter(this.clientSocket.socket().getOutputStream(), true);
+        ObjectOutput objectOutput = new ObjectOutputStream(this.clientSocket.socket().getOutputStream());
 
-        Command command = (Command) objectInput.readObject();
-        command.execute(collectionHandler, in);
+        Request request = (Request) objectInput.readObject();
+        Command command = request.getCommand();
+
+        if(command instanceof CollectionCommand){
+            ((CollectionCommand) command).execute(collectionHandler, in);
+        } else if (command instanceof AuthenticationCommand){
+            ((AuthenticationCommand) command).execute(objectOutput);
+        }
 
         in.close();
         objectInput.close();
