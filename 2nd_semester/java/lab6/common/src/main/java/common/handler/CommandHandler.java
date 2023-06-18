@@ -1,6 +1,7 @@
 package common.handler;
 
 import common.commands.Command;
+import common.commands.authentication.AuthenticationCommand;
 import common.commands.collection.CollectionCommand;
 import common.exceptions.InvalidCommandNameException;
 
@@ -30,8 +31,8 @@ public class CommandHandler{
 
         if (command == null) {
             throw new InvalidCommandNameException("no such command: " + commandName);
+        } else {
+            return (AuthenticationCommand) command;
         }
-
-        return null;
     }
 }
