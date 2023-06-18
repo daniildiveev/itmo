@@ -1,6 +1,6 @@
 package server.commands;
 
-import common.commands.Command;
+import common.commands.collection.CollectionCommand;
 import common.entities.Route;
 import common.handler.CollectionHandler;
 import common.handler.IOHandler;
@@ -10,7 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.PriorityQueue;
 
-public class Save extends Command {
+public class Save extends CollectionCommand {
     @Override
     public String getName(){
         return "save";
