@@ -34,6 +34,7 @@ public class Main {
                     if (command instanceof CommandWithElement) {
                         Route r = new Route();
                         ((CommandWithElement) command).setRoute(r);
+                        ((CommandWithElement) command).setUser(client.getUser());
                     }
 
                     if (command instanceof ExecuteScript) {
