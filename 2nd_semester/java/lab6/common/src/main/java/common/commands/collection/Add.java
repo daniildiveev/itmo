@@ -2,7 +2,7 @@ package common.commands.collection;
 
 import common.entities.Route;
 import common.handler.CollectionHandler;
-import common.setter.RouteAutomaticFieldsSetter;
+import common.handler.DBHandler;
 
 import java.io.PrintWriter;
 import java.util.PriorityQueue;
@@ -20,14 +20,12 @@ public class Add extends CommandWithElement {
 
     @Override
     public void execute(CollectionHandler collectionHandler, PrintWriter output) {
-        PriorityQueue<Route> collection = collectionHandler.getCollection();
+        Route route = DBHandler.createRoute(this.route, this.user);
 
-        executionMessage(output);
-
-        this.route.setId(RouteAutomaticFieldsSetter.generateValidId(collectionHandler));
-        this.route.setCreationDate(RouteAutomaticFieldsSetter.generateTimestamp());
-
-        collection.add(this.route);
-        collectionHandler.updateCollection(collection);
+        if(route != null){
+            PriorityQueue<Route> collection = collectionHandler.getCollection();
+            collection.add(route);
+            collectionHandler.updateCollection(collection);
+        }
     }
 }
