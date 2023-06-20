@@ -9,14 +9,36 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class Route implements Comparable<Route>, Serializable {
-    private static final List<Integer> usedIds  = new ArrayList<>();
     private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
-    private final Coordinates coordinates; //Поле не может быть null
+    private Coordinates coordinates; //Поле не может быть null
     private LocalDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
     private Location from; //Поле может быть null
     private Location to; //Поле не может быть null
     private long distance; //Значение поля должно быть больше 1
+
+    public Route(int id,
+                 String name,
+                 Long coordinatesX,
+                 Integer coordinatesY,
+                 LocalDateTime creationDate,
+                 Integer fromX,
+                 Float fromY,
+                 Double fromZ,
+                 String fromName,
+                 Integer toX,
+                 Float toY,
+                 Double toZ,
+                 String toName,
+                 long distance){
+        this.id = id;
+        this.name = name;
+        this.coordinates = new Coordinates(coordinatesX, coordinatesY);
+        this.creationDate = creationDate;
+        this.from = new Location(fromX, fromY, fromZ, fromName);
+        this.to = new Location(toX, toY, toZ, toName);
+        this.distance = distance;
+    }
 
     public Route(String[] args) throws Exception{
         RouteValidator.validate(args);
@@ -120,17 +142,6 @@ public class Route implements Comparable<Route>, Serializable {
         }
     }
 
-    private int generateValidId(){
-        Collections.sort(usedIds);
-        int i = 1;
-
-        while(usedIds.contains(i)){
-            i++;
-        }
-
-        return i;
-    }
-
     public void setId(int id){
         this.id = id;
     }
@@ -139,25 +150,8 @@ public class Route implements Comparable<Route>, Serializable {
         return this.distance;
     }
 
-    public String toXml(){
-        String xmlRepresentation = "<route id=\"" + this.id + "\"> \n";
-        xmlRepresentation += "\t<name>" + this.name + "</name>\n";
-        xmlRepresentation += this.coordinates.toXml();
-        xmlRepresentation += "\t<creationDate>" + this.creationDate + " </creationDate>\n";
-        xmlRepresentation += "\t<from>\n" + this.from.toXml() + "\t\t</from>\n";
-        xmlRepresentation += "\t<to>\n" + this.to.toXml() + "\t\t</to>\n";
-        xmlRepresentation += "\t<distance>" + this.distance + "</distance>\n";
-        xmlRepresentation += "</route>\n";
-
-        return xmlRepresentation;
-    }
-
     public int getId(){
         return this.id;
-    }
-
-    public static void removeId(int id){
-        usedIds.remove(id);
     }
 
     public String getName() {
