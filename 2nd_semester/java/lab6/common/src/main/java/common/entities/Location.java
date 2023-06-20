@@ -105,15 +105,6 @@ public class Location implements Serializable {
         }
     }
 
-    public String toXml(){
-        String xmlRepresentation = "\t\t\t<x>" + this.x + "</x>\n";
-        xmlRepresentation += "\t\t\t<y>" + this.y + "</y>\n";
-        xmlRepresentation += "\t\t\t<z>" + this.z + "</z>\n";
-        xmlRepresentation += "\t\t\t<name>" + this.locationName + "</name>\n";
-
-        return xmlRepresentation;
-    }
-
     public Integer getX() {
         return x;
     }
