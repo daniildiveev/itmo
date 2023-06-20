@@ -1,10 +1,9 @@
 package common.commands.collection;
 
-import common.commands.Command;
 import common.network.User;
 
-public abstract class CommandWithUser implements Command {
-    private User user;
+public abstract class CommandWithUser extends CollectionCommand {
+    protected User user;
 
     public void setUser(User user) {
         this.user = user;
