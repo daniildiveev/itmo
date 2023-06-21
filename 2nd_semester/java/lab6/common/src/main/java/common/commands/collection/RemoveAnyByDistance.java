@@ -4,9 +4,10 @@ import common.entities.Route;
 import common.handler.CollectionHandler;
 
 import java.io.PrintWriter;
+import java.util.Objects;
 import java.util.PriorityQueue;
 
-public class RemoveAnyByDistance extends CollectionCommand {
+public class RemoveAnyByDistance extends CommandWithUser {
     @Override
     public String getName() {
         return "remove_any_by_distance";
@@ -25,6 +26,7 @@ public class RemoveAnyByDistance extends CollectionCommand {
             long targetDistance = Long.parseLong(this.args[0]);
 
             collection.stream()
+                    .filter(route -> Objects.equals(this.user.getUsername(), route.getUser()))
                     .filter(route -> route.getDistance() == targetDistance)
                     .findAny()
                     .ifPresent(collection::remove);

@@ -4,9 +4,10 @@ import common.entities.Route;
 import common.handler.CollectionHandler;
 
 import java.io.PrintWriter;
+import java.util.Objects;
 import java.util.PriorityQueue;
 
-public class RemoveFirst extends CollectionCommand {
+public class RemoveFirst extends CommandWithUser {
     @Override
     public String getName() {
         return "remove_first";
@@ -22,6 +23,7 @@ public class RemoveFirst extends CollectionCommand {
         PriorityQueue<Route> collection = collectionHandler.getCollection();
 
         collection.stream()
+                .filter(route -> Objects.equals(this.user.getUsername(), route.getUser()))
                 .findFirst()
                 .ifPresent(collection::remove);
     }

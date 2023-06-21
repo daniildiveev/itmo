@@ -4,6 +4,7 @@ import common.entities.Route;
 import common.handler.CollectionHandler;
 
 import java.io.PrintWriter;
+import java.util.Objects;
 import java.util.PriorityQueue;
 import java.util.stream.Collectors;
 
@@ -23,6 +24,7 @@ public class RemoveGreater extends CommandWithElement {
         PriorityQueue<Route> collection = collectionHandler.getCollection();
 
         PriorityQueue<Route> updatedCollection = collection.stream()
+                .filter(route -> Objects.equals(this.user.getUsername(), route.getUser()))
                 .filter(route -> this.route.compareTo(route) <= 0)
                 .collect(Collectors.toCollection(PriorityQueue::new));
 
