@@ -2,17 +2,14 @@ package common.network;
 
 
 import common.commands.Command;
-import common.commands.authentication.AuthenticationCommand;
 import common.commands.collection.CollectionCommand;
 import common.handler.IOHandler;
 
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;
-import java.nio.charset.StandardCharsets;
 
 public class TCPClient {
-
     private String host = "127.0.0.1";
     private int port = 3333;
     private SocketChannel clientSocket;
@@ -32,35 +29,26 @@ public class TCPClient {
         this.clientSocket.close();
     }
 
-    public boolean sendRequest(Command command) throws IOException {
+    public boolean sendRequest(Command command) throws  IOException{
         if(connectToServer()){
             ObjectOutput objectOutput = new ObjectOutputStream(this.clientSocket.socket().getOutputStream());
 
-            Request request = new Request(command, this.user);
-            objectOutput.writeObject(request);
+            if (command instanceof CollectionCommand){
+                command.setUser(this.user);
+            }
+
+            objectOutput.writeObject(command);
 
             try{
-                if(request.getCommand() instanceof AuthenticationCommand){
-                    ObjectInput objectInput = new ObjectInputStream(this.clientSocket.socket().getInputStream());
+                ObjectInput objectInput = new ObjectInputStream(this.clientSocket.socket().getInputStream());
+                Response response = (Response) objectInput.readObject();
 
-                    Response response = (Response) objectInput.readObject();
+                if (this.user == null){
+                    this.user = response.getUser();
+                }
 
-                    if (response.getCode() != 201){
-                        IOHandler.println("Authentication error");
-                    } else {
-                        this.user = response.getUser();
-                        IOHandler.println("Authentication successful");
-                    }
-
-                    if (response.getOutput() != null) {
-                        IOHandler.println(response.getOutput());
-                    }
-                } else if (request.getCommand() instanceof CollectionCommand){
-                    InputStream in = new BufferedInputStream(clientSocket.socket().getInputStream());
-
-                    String strIn = new String(in.readAllBytes(), StandardCharsets.UTF_8);
-                    IOHandler.print(strIn);
-                    in.close();
+                if(response.getOutput() != null){
+                    IOHandler.println(response.getOutput());
                 }
             } catch (ClassNotFoundException e){
                 IOHandler.println(e.getMessage());
