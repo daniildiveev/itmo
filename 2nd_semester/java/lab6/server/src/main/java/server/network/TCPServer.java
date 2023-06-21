@@ -1,48 +1,57 @@
 package server.network;
 
-import common.commands.authentication.AuthenticationCommand;
-import common.commands.collection.CollectionCommand;
 import common.handler.CollectionHandler;
 import common.commands.Command;
-import common.network.Request;
+import common.handler.IOHandler;
+import common.network.Response;
+import common.threading.RequestExecutor;
+import common.threading.ResponseQueueOutput;
 
 import java.io.*;
 import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class TCPServer{
     private ServerSocketChannel serverSocketChannel;
-    private int port = 3333;
+    private final int port = 3333;
     protected SocketChannel clientSocket;
-    private Logger logger = Logger.getLogger("logger");
+    private final Logger logger = Logger.getLogger("logger");
+    private final int numberOfThreads = 10;
+    private final ExecutorService fixedThreadPool = Executors.newFixedThreadPool(numberOfThreads);
+    private final ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
+    BlockingQueue<Command> commandQueue = new LinkedBlockingQueue<>();
+    BlockingQueue<Response>  responseQueue = new LinkedBlockingQueue<>();
 
     public void start(CollectionHandler collectionHandler){
         openServerSocket();
 
         while(serverSocketChannel!=null){
-            try{
                 boolean noConnection = true;
 
                 while(noConnection){
                     try{
                         this.clientSocket = serverSocketChannel.accept();
                         noConnection = false;
+
+                        new Thread(new RequestHandler(this.clientSocket, this.commandQueue)).start();
+                        RequestExecutor requestExecutor = new RequestExecutor(this.commandQueue, this.responseQueue, collectionHandler);
+                        fixedThreadPool.submit(requestExecutor);
+                        collectionHandler = requestExecutor.getCollectionHandler();
+                        cachedThreadPool.submit(new ResponseQueueOutput(this.responseQueue, this.clientSocket.socket()));
+
                     } catch (IOException e){
                         System.out.println(e.getClass().getSimpleName() + ": " + e.getMessage());
                     }
                 }
 
                 logger.log(Level.INFO, "Подключение успешно");
-                processRequest(collectionHandler);
-            } catch (IOException ioe) {
-                logger.log(Level.SEVERE,"Не удалось подключиться к клиенту: " + ioe.getMessage(), ioe.getMessage());
-            } catch (ClassNotFoundException ioe) {
-                logger.log(Level.SEVERE, "Ошибка в полученном запросе: " + ioe.getMessage(), ioe.getMessage());
-            }
         }
 
         closeServerSocket();
@@ -65,26 +74,37 @@ public class TCPServer{
         }
     }
 
-    private boolean processRequest(CollectionHandler collectionHandler) throws IOException, ClassNotFoundException {
-        ObjectInput objectInput = new ObjectInputStream(this.clientSocket.socket().getInputStream());
-        PrintWriter in = new PrintWriter(this.clientSocket.socket().getOutputStream(), true);
-        ObjectOutput objectOutput = new ObjectOutputStream(this.clientSocket.socket().getOutputStream());
+    public static class RequestHandler implements Runnable{
+        private SocketChannel clientSocket;
+        BlockingQueue requestQueue;
 
-        Request request = (Request) objectInput.readObject();
-        Command command = request.getCommand();
 
-        if(command instanceof CollectionCommand){
-            ((CollectionCommand) command).execute(collectionHandler, in);
-        } else if (command instanceof AuthenticationCommand){
-            ((AuthenticationCommand) command).execute(objectOutput);
+        public RequestHandler(SocketChannel clientSocket,
+                              BlockingQueue<Command> blockingQueue){
+            this.clientSocket = clientSocket;
+            this.requestQueue = blockingQueue;
         }
 
-        in.close();
-        objectInput.close();
-        return true;
-    }
+        private boolean processRequest() throws IOException, ClassNotFoundException {
+            ObjectInput objectInput = new ObjectInputStream(this.clientSocket.socket().getInputStream());
+            Command command = (Command) objectInput.readObject();
 
-    public Socket getClientSocket(){
-        return clientSocket.socket();
+            try{
+                requestQueue.put(command);
+            } catch (InterruptedException e){
+                IOHandler.println("Request handling execution interrupted: " + e.getMessage());
+            }
+
+            return true;
+        }
+
+        @Override
+        public void run() {
+            try {
+                processRequest();
+            } catch (Exception e){
+                IOHandler.println(e.getClass().getSimpleName() + ": " + e.getMessage());
+            }
+        }
     }
 }
