@@ -147,6 +147,7 @@ public class DBHandler {
                     if(rs.next()){
                         route.setId(rs.getInt(1));
                         route.setCreationDate(rs.getTimestamp(2).toLocalDateTime());
+                        route.setUser(user);
 
                         return route;
                     }
@@ -182,7 +183,8 @@ public class DBHandler {
                                 rs.getFloat(11),
                                 rs.getDouble(12),
                                 rs.getString(13),
-                                rs.getLong(14)
+                                rs.getLong(14),
+                                rs.getString(15)
                         );
 
                         collection.add(route);
@@ -196,5 +198,20 @@ public class DBHandler {
         }
 
         return null;
+    }
+
+    public static boolean removeAllUserRoutes(User user){
+        String removeAllRoutesQuery = "DELETE FROM routes WHERE username = ?";
+
+        try(Connection connection = getConnection()){
+            try(PreparedStatement stmt = connection.prepareStatement(removeAllRoutesQuery)){
+                stmt.setString(1, user.getUsername());
+                stmt.execute();
+
+                return true;
+            }
+        } catch (SQLException e){
+            return false;
+        }
     }
 }
