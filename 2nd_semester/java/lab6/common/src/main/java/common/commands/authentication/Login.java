@@ -1,10 +1,11 @@
 package common.commands.authentication;
 
 import common.exceptions.UserException;
+import common.handler.CollectionHandler;
 import common.handler.DBHandler;
+import common.handler.IOHandler;
+import common.network.Response;
 import common.network.User;
-
-import java.io.ObjectOutput;
 
 public class Login extends AuthenticationCommand{
     @Override
@@ -13,7 +14,7 @@ public class Login extends AuthenticationCommand{
     }
 
     @Override
-    public void execute(ObjectOutput objectOut){
+    public Response execute(CollectionHandler collectionHandler){
         String info;
         int code = 301;
         User user = DBHandler.checkUserPresence(this.user);
@@ -33,6 +34,6 @@ public class Login extends AuthenticationCommand{
             info = "User does not exist";
         }
 
-        writeResponse(code, info, user, objectOut);
+        return new Response(code, info, this.user);
     }
 }
