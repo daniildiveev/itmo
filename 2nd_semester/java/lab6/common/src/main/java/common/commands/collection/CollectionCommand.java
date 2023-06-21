@@ -2,6 +2,7 @@ package common.commands.collection;
 
 import common.commands.Command;
 import common.handler.CollectionHandler;
+import common.network.Response;
 
 import java.io.PrintWriter;
 import java.io.Serializable;
@@ -16,7 +17,7 @@ public abstract class CollectionCommand implements Command {
     public String getDescription() {
         return null;
     }
-    public void execute(CollectionHandler collectionHandler, PrintWriter output) {
+    public Response execute(CollectionHandler collectionHandler) {
     }
 
     public void setArgs(String[] args) {
