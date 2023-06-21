@@ -2,6 +2,7 @@ package common.entities;
 
 import common.exceptions.InvalidParameterValueException;
 import common.handler.IOHandler;
+import common.network.User;
 import common.validator.RouteValidator;
 
 import java.io.Serializable;
@@ -16,6 +17,7 @@ public class Route implements Comparable<Route>, Serializable {
     private Location from; //Поле может быть null
     private Location to; //Поле не может быть null
     private long distance; //Значение поля должно быть больше 1
+    private String user;
 
     public Route(int id,
                  String name,
@@ -30,7 +32,8 @@ public class Route implements Comparable<Route>, Serializable {
                  Float toY,
                  Double toZ,
                  String toName,
-                 long distance){
+                 long distance,
+                 String username){
         this.id = id;
         this.name = name;
         this.coordinates = new Coordinates(coordinatesX, coordinatesY);
@@ -38,6 +41,7 @@ public class Route implements Comparable<Route>, Serializable {
         this.from = new Location(fromX, fromY, fromZ, fromName);
         this.to = new Location(toX, toY, toZ, toName);
         this.distance = distance;
+        this.user = username;
     }
 
     public Route(String[] args) throws Exception{
@@ -168,6 +172,14 @@ public class Route implements Comparable<Route>, Serializable {
 
     public Location getTo() {
         return to;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user.getUsername();
     }
 
     public void setCreationDate(LocalDateTime timestamp){
