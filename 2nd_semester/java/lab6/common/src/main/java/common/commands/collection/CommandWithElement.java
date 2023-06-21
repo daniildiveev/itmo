@@ -1,9 +1,9 @@
 package common.commands.collection;
 
+import common.commands.Command;
 import common.entities.Route;
-import common.network.User;
 
-public abstract class CommandWithElement extends CommandWithUser {
+public abstract class CommandWithElement extends Command {
     protected Route route;
 
     public Route getRoute() {

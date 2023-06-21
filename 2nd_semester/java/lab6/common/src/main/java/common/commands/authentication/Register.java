@@ -1,7 +1,9 @@
 package common.commands.authentication;
 
 import common.exceptions.UserException;
+import common.handler.CollectionHandler;
 import common.handler.DBHandler;
+import common.network.Response;
 import common.network.User;
 
 import java.io.ObjectOutput;
@@ -13,7 +15,7 @@ public class Register extends AuthenticationCommand {
     }
 
     @Override
-    public void execute(ObjectOutput objectOut) {
+    public Response execute(CollectionHandler collectionHandler) {
         String info;
         int code = 301;
         User user = null;
@@ -35,6 +37,6 @@ public class Register extends AuthenticationCommand {
             }
         }
 
-        writeResponse(code, info, user, objectOut);
+        return new Response(code, info, user);
     }
 }

@@ -3,6 +3,7 @@ package common.commands.collection;
 import common.entities.Route;
 import common.handler.CollectionHandler;
 import common.handler.DBHandler;
+import common.network.Response;
 
 import java.io.PrintWriter;
 import java.util.PriorityQueue;
@@ -19,7 +20,7 @@ public class Add extends CommandWithElement {
     }
 
     @Override
-    public void execute(CollectionHandler collectionHandler, PrintWriter output) {
+    public Response execute(CollectionHandler collectionHandler) {
         Route route = DBHandler.createRoute(this.route, this.user);
 
         if(route != null){
@@ -27,5 +28,7 @@ public class Add extends CommandWithElement {
             collection.add(route);
             collectionHandler.updateCollection(collection);
         }
+
+        return new Response(201, null, this.user);
     }
 }

@@ -5,10 +5,12 @@ import common.commands.collection.CollectionCommand;
 import common.handler.CollectionHandler;
 import common.handler.IOHandler;
 import common.handler.PackageParser;
+import common.network.Response;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Help extends CollectionCommand {
     @Override
@@ -22,21 +24,25 @@ public class Help extends CollectionCommand {
     }
 
     @Override
-    public void execute(CollectionHandler collectionHandler, PrintWriter output) {
+    public Response execute(CollectionHandler collectionHandler) {
         try{
             Set<Class> commands = PackageParser.parsePackage("common.commands", new String[]{"Command", "CommandWithElement"});
 
-            commands.forEach(klass -> {
+            String output = commands.stream().map(klass -> {
                 try {
                     Command command = (Command) klass.getConstructor().newInstance();
                     CollectionCommand collectionCommand = (CollectionCommand) command;
-                    output.println(collectionCommand.getDescription());
+
+                    return collectionCommand.getDescription();
                 } catch (Exception e) {
-                    output.println(e.getMessage());
+                    return "";
                 }
-            });
+            }).collect(Collectors.joining(""));
+
+            return new Response(201, output, this.user);
         } catch (IOException e){
             IOHandler.println(e.getMessage());
+            return null;
         }
     }
 }

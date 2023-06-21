@@ -2,6 +2,7 @@ package common.commands.collection;
 
 import common.commands.collection.CollectionCommand;
 import common.handler.CollectionHandler;
+import common.network.Response;
 
 import java.io.PrintWriter;
 
@@ -17,7 +18,7 @@ public class Info extends CollectionCommand {
     }
 
     @Override
-    public void execute(CollectionHandler collectionHandler, PrintWriter output) {
-        output.println(collectionHandler.info());
+    public Response execute(CollectionHandler collectionHandler) {
+        return new Response(201, collectionHandler.info(), this.user);
     }
 }

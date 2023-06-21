@@ -2,6 +2,7 @@ package common.commands.collection;
 
 import common.entities.Route;
 import common.handler.CollectionHandler;
+import common.network.Response;
 
 import java.io.PrintWriter;
 import java.util.Objects;
@@ -20,7 +21,7 @@ public class RemoveLower extends CommandWithElement {
     }
 
     @Override
-    public void execute(CollectionHandler collectionHandler, PrintWriter output) {
+    public Response execute(CollectionHandler collectionHandler) {
         PriorityQueue<Route> collection = collectionHandler.getCollection();
 
         PriorityQueue<Route> updatedCollection = collection.stream()
@@ -29,5 +30,7 @@ public class RemoveLower extends CommandWithElement {
                 .collect(Collectors.toCollection(PriorityQueue::new));
 
         collectionHandler.updateCollection(updatedCollection);
+
+        return new Response(201, null, this.user);
     }
 }

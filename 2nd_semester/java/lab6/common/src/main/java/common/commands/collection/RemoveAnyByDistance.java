@@ -2,12 +2,12 @@ package common.commands.collection;
 
 import common.entities.Route;
 import common.handler.CollectionHandler;
+import common.network.Response;
 
-import java.io.PrintWriter;
 import java.util.Objects;
 import java.util.PriorityQueue;
 
-public class RemoveAnyByDistance extends CommandWithUser {
+public class RemoveAnyByDistance extends CollectionCommand {
     @Override
     public String getName() {
         return "remove_any_by_distance";
@@ -19,8 +19,9 @@ public class RemoveAnyByDistance extends CommandWithUser {
     }
 
     @Override
-    public void execute(CollectionHandler collectionHandler, PrintWriter output) {
+    public Response execute(CollectionHandler collectionHandler) {
         PriorityQueue<Route> collection = collectionHandler.getCollection();
+        String output = null;
 
         try {
             long targetDistance = Long.parseLong(this.args[0]);
@@ -31,7 +32,9 @@ public class RemoveAnyByDistance extends CommandWithUser {
                     .findAny()
                     .ifPresent(collection::remove);
         } catch (Exception e) {
-            output.println("Invalid distance provided");
+            output = "Invalid distance provided";
         }
+
+        return new Response(201, output, this.user);
     }
 }

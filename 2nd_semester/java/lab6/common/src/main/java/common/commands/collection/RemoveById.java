@@ -2,12 +2,13 @@ package common.commands.collection;
 
 import common.entities.Route;
 import common.handler.CollectionHandler;
+import common.network.Response;
 
 import java.io.PrintWriter;
 import java.util.Objects;
 import java.util.PriorityQueue;
 
-public class RemoveById extends CommandWithUser {
+public class RemoveById extends CollectionCommand {
     @Override
     public String getName() {
         return "remove_by_id";
@@ -19,8 +20,9 @@ public class RemoveById extends CommandWithUser {
     }
 
     @Override
-    public void execute(CollectionHandler collectionHandler, PrintWriter output) {
+    public Response execute(CollectionHandler collectionHandler) {
         PriorityQueue<Route> collection = collectionHandler.getCollection();
+        String output = null;
 
         try {
             int targetId = Integer.parseInt(this.args[0]);
@@ -32,7 +34,9 @@ public class RemoveById extends CommandWithUser {
                     .ifPresent(collection::remove);
 
         } catch (NumberFormatException e) {
-            output.println("Invalid id provided");
+            output = "Invalid id provided";
         }
+
+        return new Response(201, output, this.user);
     }
 }

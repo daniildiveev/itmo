@@ -2,9 +2,11 @@ package common.commands.collection;
 
 import common.entities.Route;
 import common.handler.CollectionHandler;
+import common.network.Response;
 
 import java.io.PrintWriter;
 import java.util.PriorityQueue;
+import java.util.stream.Collectors;
 
 public class Show extends CollectionCommand {
     @Override
@@ -18,14 +20,17 @@ public class Show extends CollectionCommand {
     }
 
     @Override
-    public void execute(CollectionHandler collectionHandler, PrintWriter output) {
+    public Response execute(CollectionHandler collectionHandler) {
         PriorityQueue<Route> collection = collectionHandler.getCollection();
+        String output;
 
         if (collection.isEmpty()) {
-            output.println("Collection is empty!");
+            output = "Collection is empty!";
         } else {
-            collection.forEach(route -> output.println(route.toString()));
+            output = collection.stream().map(Route::toString).collect(Collectors.joining("\n"));
         }
+
+        return new Response(201, output, this.user);
     }
 }
 

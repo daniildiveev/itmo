@@ -2,6 +2,7 @@ package common.commands.collection;
 
 import common.entities.Route;
 import common.handler.CollectionHandler;
+import common.network.Response;
 
 import java.io.PrintWriter;
 import java.util.PriorityQueue;
@@ -18,8 +19,9 @@ public class CountByDistance extends CollectionCommand {
     }
 
     @Override
-    public void execute(CollectionHandler collectionHandler, PrintWriter output) {
+    public Response execute(CollectionHandler collectionHandler) {
         PriorityQueue<Route> collection = collectionHandler.getCollection();
+        String output;
 
         try {
             long distance = Long.parseLong(this.args[0]);
@@ -28,10 +30,12 @@ public class CountByDistance extends CollectionCommand {
                     .filter(route -> route.getDistance() == distance)
                     .count();
 
-            output.println("Number of Routes with distance " + distance + ": " + matchingDistanceCounter);
+            output = "Number of Routes with distance " + distance + ": " + matchingDistanceCounter;
 
         } catch (NumberFormatException e) {
-            output.println("Invalid distance provided");
+            output = "Invalid distance provided";
         }
+
+        return new Response(201, output, this.user);
     }
 }

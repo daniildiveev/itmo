@@ -2,9 +2,11 @@ package common.commands.collection;
 
 import common.entities.Route;
 import common.handler.CollectionHandler;
+import common.network.Response;
 
 import java.io.PrintWriter;
 import java.util.PriorityQueue;
+import java.util.stream.Collectors;
 
 public class PrintUniqueDistance extends CollectionCommand {
     @Override
@@ -18,12 +20,15 @@ public class PrintUniqueDistance extends CollectionCommand {
     }
 
     @Override
-    public void execute(CollectionHandler collectionHandler, PrintWriter output) {
+    public Response execute(CollectionHandler collectionHandler) {
         PriorityQueue<Route> collection = collectionHandler.getCollection();
 
-        collection.stream()
+        String output = collection.stream()
                 .map(Route::getDistance)
                 .distinct()
-                .forEach(output::println);
+                .map(distance -> Long.toString(distance))
+                .collect(Collectors.joining("\n"));
+
+        return new Response(201, output, this.user);
     }
 }
