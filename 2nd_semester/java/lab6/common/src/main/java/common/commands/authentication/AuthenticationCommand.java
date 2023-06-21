@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.io.ObjectOutput;
 
 public abstract class AuthenticationCommand extends Command {
-    protected User user;
-
     @Override
     public String getName() {
         return "authentication_command";
