@@ -3,7 +3,7 @@ package common.commands.collection;
 import common.commands.Command;
 import common.entities.Route;
 
-public abstract class CommandWithElement extends Command {
+public abstract class CommandWithElement extends CollectionCommand {
     protected Route route;
 
     public Route getRoute() {
