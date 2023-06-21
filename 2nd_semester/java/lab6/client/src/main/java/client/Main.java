@@ -2,10 +2,7 @@ package client;
 
 import common.commands.Command;
 import common.commands.authentication.AuthenticationCommand;
-import common.commands.collection.CollectionCommand;
-import common.commands.collection.CommandWithElement;
-import common.commands.collection.ExecuteScript;
-import common.commands.collection.Exit;
+import common.commands.collection.*;
 import common.entities.Route;
 import common.exceptions.*;
 import common.handler.CommandHandler;
@@ -34,7 +31,6 @@ public class Main {
                     if (command instanceof CommandWithElement) {
                         Route r = new Route();
                         ((CommandWithElement) command).setRoute(r);
-                        ((CommandWithElement) command).setUser(client.getUser());
                     }
 
                     if (command instanceof ExecuteScript) {
@@ -44,7 +40,8 @@ public class Main {
                         client.sendRequest(command);
                     }
                 } else if (command instanceof AuthenticationCommand){
-                    ((AuthenticationCommand) command).setUser(new User());
+                    User user = new User();
+                    command.setUser(user);
                     client.sendRequest(command);
                 } else {
                     throw new NotLoggedInException("not logged in yet");
