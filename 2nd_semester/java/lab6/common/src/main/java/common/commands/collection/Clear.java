@@ -7,6 +7,7 @@ import common.network.Response;
 
 import java.io.PrintWriter;
 import java.util.PriorityQueue;
+import java.util.stream.Collectors;
 
 public class Clear extends CollectionCommand {
     @Override
@@ -21,7 +22,13 @@ public class Clear extends CollectionCommand {
 
     @Override
     public Response execute(CollectionHandler collectionHandler) {
-        collectionHandler.updateCollection(new PriorityQueue<Route>());
+        PriorityQueue<Route> collection = collectionHandler.getCollection();
+
+        PriorityQueue<Route> newCollection = collection.stream()
+                .filter(route -> this.user.getUsername() != route.getUser())
+                .collect(Collectors.toCollection(PriorityQueue::new));
+
+        collectionHandler.updateCollection(newCollection);
 
         return new Response(201, null, this.user);
     }
