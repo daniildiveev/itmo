@@ -27,7 +27,7 @@ jar {
 }
 
 shadowJar {
-    archiveBaseName = 'lab5'
+    archiveBaseName = 'clientLab7'
     version = '1.0.0'
     manifest {
         attributes 'Main-Class': 'client.Main'
