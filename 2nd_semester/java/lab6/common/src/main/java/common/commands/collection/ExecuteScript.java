@@ -6,9 +6,7 @@ import common.exceptions.InvalidCommandNameException;
 import common.handler.CommandHandler;
 import common.handler.FileHandler;
 import common.handler.IOHandler;
-import common.network.Request;
 import common.network.TCPClient;
-import common.network.User;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -32,8 +30,6 @@ public class ExecuteScript extends CollectionCommand {
     }
 
     public void retrieveCommands(TCPClient client) {
-        List<CollectionCommand> commands = new ArrayList<>();
-
         try {
             String scriptName = this.args[0];
 
@@ -77,7 +73,7 @@ public class ExecuteScript extends CollectionCommand {
                                     if (ok) {
                                         try {
                                             Route r = new Route(routeArgs);
-                                            System.out.println("Sending command" + command.getName());
+                                            System.out.println("Sending command: " + command.getName());
                                             ((CommandWithElement) command).setRoute(r);
                                         } catch (Exception e) {
                                             IOHandler.println(e.getMessage());
@@ -87,7 +83,7 @@ public class ExecuteScript extends CollectionCommand {
                                     if (command instanceof ExecuteScript) {
                                         ((ExecuteScript) command).retrieveCommands(client);
                                     } else {
-                                        System.out.println("Sending command" + command.getName());
+                                        System.out.println("Sending command: " + command.getName());
                                     }
                                 }
                             } else {
