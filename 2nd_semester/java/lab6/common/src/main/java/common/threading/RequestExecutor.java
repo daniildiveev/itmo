@@ -27,7 +27,6 @@ public class RequestExecutor implements Runnable{
 
         try {
             command = this.requestQueue.take();
-            IOHandler.println(command.getUser());
             Response response = command.execute(this.collectionHandler);
             responseQueue.put(response);
         } catch (Throwable e) {
