@@ -33,7 +33,11 @@ public class Route implements Comparable<Route>, Serializable {
                  Double toZ,
                  String toName,
                  long distance,
-                 String username){
+                 String username) throws Exception{
+        RouteValidator.validateParams(id,
+                name, coordinatesX, coordinatesY,
+                fromX, fromName, toX, toName, distance);
+
         this.id = id;
         this.name = name;
         this.coordinates = new Coordinates(coordinatesX, coordinatesY);
@@ -176,6 +180,10 @@ public class Route implements Comparable<Route>, Serializable {
 
     public String getUser() {
         return user;
+    }
+
+    public LocalDateTime getCreationDate() {
+        return creationDate;
     }
 
     public void setUser(User user) {
