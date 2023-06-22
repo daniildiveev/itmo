@@ -24,8 +24,8 @@ public class DBHandler {
                                            "(id SERIAL PRIMARY KEY, route_name TEXT, " +
                                            "coordinates_x INT, coordinates_y INT," +
                                            "date_created TIMESTAMP, " +
-                                           "from_x INT, from_y FLOAT, from_z DOUBLE, from_name TEXT," +
-                                           "to_x INT, to_y FLOAT, to_z DOUBLE, to_name TEXT," +
+                                           "from_x INT, from_y FLOAT, from_z DOUBLE PRECISION, from_name TEXT," +
+                                           "to_x INT, to_y FLOAT, to_z DOUBLE PRECISION, to_name TEXT," +
                                            "distance INT, username TEXT);";
 
                 stmt.execute(createRoutesTable);
@@ -100,56 +100,108 @@ public class DBHandler {
         }
     }
 
-    public static Route createRoute(Route route, User user){
-        String addRouteQuery = "INSERT INTO routes(id, route_name, coordinates_x, coordinates_y, date_created, from_x, from_y, from_z, from_name," +
-                                "to_x, to_y, to_z, to_name, distance, username) VALUES (DEFAULT, ?,?,?, CURRENT_TIMESTAMP,?,?,?,?,?,?,?,?,?,?)" +
-                                "RETURNING id, date_created;";
+    public static Route createRoute(Route route, User user, boolean setFields){
+        String addRouteQuery;
+
+        if (setFields){
+            addRouteQuery = "INSERT INTO routes(id, route_name, coordinates_x, coordinates_y, date_created, from_x, from_y, from_z, from_name," +
+                    "to_x, to_y, to_z, to_name, distance, username) VALUES (DEFAULT, ?,?,?, CURRENT_TIMESTAMP,?,?,?,?,?,?,?,?,?,?)" +
+                    "RETURNING id, date_created;";
+        } else {
+            addRouteQuery = "INSERT INTO routes(id, route_name, coordinates_x, coordinates_y, date_created, from_x, from_y, from_z, from_name," +
+                    "to_x, to_y, to_z, to_name, distance, username) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)" +
+                    "RETURNING id, date_created;";
+        }
 
         try(Connection connection = getConnection()){
             try (PreparedStatement stmt = connection.prepareStatement(addRouteQuery)){
-                stmt.setString(1, route.getName());
-                stmt.setInt(2, route.getCoordinates().getX().intValue());
-                stmt.setInt(3, route.getCoordinates().getY());
-                stmt.setInt(4, route.getFrom().getX());
+                if(!setFields){
+                    stmt.setInt(1, route.getId());
+                    stmt.setString(2, route.getName());
+                    stmt.setInt(3, route.getCoordinates().getX().intValue());
+                    stmt.setInt(4, route.getCoordinates().getY());
 
-                if (route.getFrom().getY() == null){
-                    stmt.setNull(5, Types.DOUBLE);
-                } else {
-                    stmt.setFloat(5, route.getFrom().getY());
-                }
+                    stmt.setTimestamp(5, Timestamp.valueOf(route.getCreationDate()));
 
-                if (route.getFrom().getZ() == null){
-                    stmt.setNull(6, Types.FLOAT);
-                } else {
-                    stmt.setDouble(6, route.getFrom().getZ());
-                }
+                    stmt.setInt(6, route.getFrom().getX());
 
-                stmt.setString(7, route.getFrom().getLocationName());
-                stmt.setInt(8, route.getTo().getX());
+                    if (route.getFrom().getY() == null) {
+                        stmt.setNull(7, Types.DOUBLE);
+                    } else {
+                        stmt.setFloat(7, route.getFrom().getY());
+                    }
 
-                if (route.getTo().getY() == null){
-                    stmt.setNull(9, Types.DOUBLE);
-                } else {
-                    stmt.setFloat(9, route.getFrom().getY());
-                }
+                    if (route.getFrom().getZ() == null) {
+                        stmt.setNull(8, Types.FLOAT);
+                    } else {
+                        stmt.setDouble(8, route.getFrom().getZ());
+                    }
 
-                if (route.getTo().getZ() == null){
-                    stmt.setNull(10, Types.FLOAT);
-                } else {
-                    stmt.setDouble(10, route.getFrom().getZ());
-                }
+                    stmt.setString(9, route.getFrom().getLocationName());
+                    stmt.setInt(10, route.getTo().getX());
 
-                stmt.setString(11, route.getTo().getLocationName());
-                stmt.setInt(12, (int) route.getDistance());
-                stmt.setString(13, user.getUsername());
+                    if (route.getTo().getY() == null) {
+                        stmt.setNull(11, Types.DOUBLE);
+                    } else {
+                        stmt.setFloat(11, route.getFrom().getY());
+                    }
 
-                try (ResultSet rs = stmt.executeQuery()){
-                    if(rs.next()){
-                        route.setId(rs.getInt(1));
-                        route.setCreationDate(rs.getTimestamp(2).toLocalDateTime());
-                        route.setUser(user);
+                    if (route.getTo().getZ() == null) {
+                        stmt.setNull(12, Types.FLOAT);
+                    } else {
+                        stmt.setDouble(12, route.getFrom().getZ());
+                    }
 
-                        return route;
+                    stmt.setString(13, route.getTo().getLocationName());
+                    stmt.setInt(14, (int) route.getDistance());
+                    stmt.setString(15, route.getUser());
+
+                    return route;
+                } else{
+                    stmt.setString(1, route.getName());
+                    stmt.setInt(2, route.getCoordinates().getX().intValue());
+                    stmt.setInt(3, route.getCoordinates().getY());
+                    stmt.setInt(4, route.getFrom().getX());
+
+                    if (route.getFrom().getY() == null) {
+                        stmt.setNull(5, Types.FLOAT);
+                    } else {
+                        stmt.setFloat(5, route.getFrom().getY());
+                    }
+
+                    if (route.getFrom().getZ() == null) {
+                        stmt.setNull(6, Types.DOUBLE);
+                    } else {
+                        stmt.setDouble(6, route.getFrom().getZ());
+                    }
+
+                    stmt.setString(7, route.getFrom().getLocationName());
+                    stmt.setInt(8, route.getTo().getX());
+
+                    if (route.getTo().getY() == null) {
+                        stmt.setNull(9, Types.FLOAT);
+                    } else {
+                        stmt.setFloat(9, route.getFrom().getY());
+                    }
+
+                    if (route.getTo().getZ() == null) {
+                        stmt.setNull(10, Types.DOUBLE);
+                    } else {
+                        stmt.setDouble(10, route.getFrom().getZ());
+                    }
+
+                    stmt.setString(11, route.getTo().getLocationName());
+                    stmt.setInt(12, (int) route.getDistance());
+                    stmt.setString(13, user.getUsername());
+
+                    try (ResultSet rs = stmt.executeQuery()) {
+                        if (rs.next()) {
+                            route.setId(rs.getInt(1));
+                            route.setCreationDate(rs.getTimestamp(2).toLocalDateTime());
+                            route.setUser(user);
+
+                            return route;
+                        }
                     }
                 }
             }
@@ -169,25 +221,29 @@ public class DBHandler {
             try(PreparedStatement stmt = connection.prepareStatement(getAllRoutesQuery)){
                 try(ResultSet rs = stmt.executeQuery()){
                     while(rs.next()){
-                        Route route = new Route(
-                                rs.getInt(1),
-                                rs.getString(2),
-                                rs.getLong(3),
-                                rs.getInt(4),
-                                rs.getTimestamp(5).toLocalDateTime(),
-                                rs.getInt(6),
-                                rs.getFloat(7),
-                                rs.getDouble(8),
-                                rs.getString(9),
-                                rs.getInt(10),
-                                rs.getFloat(11),
-                                rs.getDouble(12),
-                                rs.getString(13),
-                                rs.getLong(14),
-                                rs.getString(15)
-                        );
+                        try{
+                            Route route = new Route(
+                                    rs.getInt(1),
+                                    rs.getString(2),
+                                    rs.getLong(3),
+                                    rs.getInt(4),
+                                    rs.getTimestamp(5).toLocalDateTime(),
+                                    rs.getInt(6),
+                                    rs.getFloat(7),
+                                    rs.getDouble(8),
+                                    rs.getString(9),
+                                    rs.getInt(10),
+                                    rs.getFloat(11),
+                                    rs.getDouble(12),
+                                    rs.getString(13),
+                                    rs.getLong(14),
+                                    rs.getString(15)
+                            );
 
-                        collection.add(route);
+                            collection.add(route);
+                        } catch (Exception e){
+                            IOHandler.println(e.getClass().getSimpleName() + ": " + e.getMessage());
+                        }
                     }
 
                     return collection;
