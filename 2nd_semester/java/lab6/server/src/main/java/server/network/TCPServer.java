@@ -74,7 +74,7 @@ public class TCPServer{
         }
     }
 
-    public static class RequestHandler implements Runnable{
+    private static class RequestHandler implements Runnable{
         private SocketChannel clientSocket;
         BlockingQueue requestQueue;
 
