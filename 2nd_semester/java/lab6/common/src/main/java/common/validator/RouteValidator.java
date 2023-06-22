@@ -26,6 +26,34 @@ public class RouteValidator extends Validator{
         }
     }
 
+    public static void validateParams(
+            int id,
+            String name,
+            Long coordinatesX,
+            Integer coordinatesY,
+            Integer fromX,
+            String fromName,
+            Integer toX,
+            String toName,
+            long distance) throws InvalidParameterValueException{
+        if (id < 0){
+            throw new InvalidParameterValueException("id must be an integer greater than zero");
+        }
+
+        checkEmptinessOfParameter(name, "name");
+        if (checkIfNull(coordinatesX) || checkIfNull(coordinatesY)){
+            throw new InvalidParameterValueException("coordinates parameters cannot be null");
+        }
+
+        if (checkIfNull(fromX) || checkIfNull(fromName) || checkIfNull(toX) || checkIfNull(toName)){
+            throw new InvalidParameterValueException("X and name of Location cannot be null");
+        }
+
+        if(distance < 1){
+            throw new InvalidParameterValueException("distance must be greater than 1");
+        }
+    }
+
     public static String getEntityName(){
         return "Route";
     }
