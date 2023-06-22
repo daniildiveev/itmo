@@ -21,7 +21,7 @@ public class Add extends CommandWithElement {
 
     @Override
     public Response execute(CollectionHandler collectionHandler) {
-        Route route = DBHandler.createRoute(this.route, this.user);
+        Route route = DBHandler.createRoute(this.route, this.user, true);
 
         if(route != null){
             PriorityQueue<Route> collection = collectionHandler.getCollection();
