@@ -1,14 +1,11 @@
 package common.commands.collection;
 
-import common.entities.Route;
 import common.handler.CollectionHandler;
+import common.handler.DBHandler;
 import common.network.Response;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.PriorityQueue;
+import java.util.Objects;
+
 
 public class Exit extends CollectionCommand {
     @Override
@@ -23,6 +20,12 @@ public class Exit extends CollectionCommand {
 
     @Override
     public Response execute(CollectionHandler collectionHandler) {
-        return null;
+        DBHandler.removeAllUserRoutes(this.user);
+
+        collectionHandler.getCollection().stream()
+                .filter(r -> Objects.equals(r.getUser(), this.user.getUsername()))
+                .forEach(r -> DBHandler.createRoute(r, this.user, false));
+
+        return new Response(201, null, this.user);
     }
 }
