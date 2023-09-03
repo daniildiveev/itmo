@@ -13,6 +13,10 @@
 1. [Linux terminal basics](https://github.com/daniildiveev/itmo/tree/main/1st_semester/csbasics/lab0)
 2. [Basic computer elaboration](https://github.com/daniildiveev/itmo/tree/main/1st_semester/csbasics/lab1)
 
+## Basics of Professional Activity (2nd semester)
+
+Whole project [here](https://github.com/daniildiveev/opd-2-sem)
+
 ## Computer science:
 1. [Numeral systems](https://github.com/daniildiveev/itmo/tree/main/1st_semester/cs/lab0)
 2. [Noise-resitant code synthesis](https://github.com/daniildiveev/itmo/tree/main/1st_semester/cs/lab1)
@@ -25,3 +29,9 @@
 1. [Subject domains](https://github.com/daniildiveev/itmo/tree/main/2nd_semester/db/lab0)
 2. [Joins](https://github.com/daniildiveev/itmo/tree/main/2nd_semester/db/lab1)
 3. [Database normal forms](https://github.com/daniildiveev/itmo/tree/main/2nd_semester/db/lab2)
+
+## Web programming 
+
+All labs [here](https://github.com/daniildiveev/itmo-web)
+
+
